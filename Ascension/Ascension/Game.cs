@@ -36,6 +36,7 @@ namespace Ascension
             honorOnBoard = 30 * numPlayers;
             boardView.lblHonorCount.Text = honorOnBoard.ToString();
             
+            
 		}
 
         public Game ()
