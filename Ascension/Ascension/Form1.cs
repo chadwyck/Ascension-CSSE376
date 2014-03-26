@@ -10,10 +10,10 @@ using System.Windows.Forms;
 
 namespace Ascension
 {
-    public partial class Form1 : Form
+    public partial class StartView : Form
     {
         private Game game;
-        public Form1()
+        public StartView()
         {
             InitializeComponent();
         }

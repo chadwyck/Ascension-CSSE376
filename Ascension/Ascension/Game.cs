@@ -30,6 +30,8 @@ namespace Ascension
             //    throw new ArgumentNullException("Please select a number of players.");
             if ((numPlayers < 2)||(numPlayers > 4))
                 throw new ArgumentOutOfRangeException("Must have between 2 and 4 players.");
+
+            //CardCollection portal = new CardCollection();
             
             honorOnBoard = 30 * numPlayers;
             boardView.lblHonorCount.Text = honorOnBoard.ToString();
