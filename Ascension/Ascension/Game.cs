@@ -7,7 +7,7 @@ namespace Ascension
     {
         private int numPlayers;
         private BoardView boardView = new BoardView();
-        private CardView cardView = new CardView();
+        
         public int currTurn
         {
             get;
@@ -43,11 +43,22 @@ namespace Ascension
             get;
             private set;
         }
+        public PortalDeck pDeck
+        {
+            get;
+            private set;
+        }
+        public CenterRow cenRow
+        {
+            get;
+            private set;
+        }
+
 
         public Game (int numPlayers)
 		{
             boardView.Show();
-            cardView.Show();
+            
             this.numPlayers = numPlayers;
             this.honorOnBoard = numPlayers * 30;
             if ((numPlayers < 2)||(numPlayers > 4))
@@ -68,7 +79,10 @@ namespace Ascension
             {
                 player4 = new Player(this, 4);
             }
+            
             generateCards();
+           
+
         }
 
         public void generateCards(){
@@ -87,7 +101,25 @@ namespace Ascension
             Card samaelsTrickster = new Card(this, "Samael's Trickster", null, 0, 3, 1, 0, 0, 1, 0, "fallen", "monster");
             Card corrosiveWidow = new Card(this, "Corrosive Widow", null, 0, 4, 0, 0, 0, 3, 0, "fallen", "monster"); // Each opponent must destroy construct they control
             Card tormentedSoul = new Card(this, "Tormented Soul", null, 0, 3, 0, 0, 0, 1, 1, "fallen", "monster");
-            Card mistakeOfCreation = new Card(this, "Mistake of Creation", null, 0, 4, 0, 0, 0, 4, 0, "fallen", "monster"); // Needs to banish card from center row and/or card from discard pile  
+            Card mistakeOfCreation = new Card(this, "Mistake of Creation", null, 0, 4, 0, 0, 0, 4, 0, "fallen", "monster"); 
+            // Needs to banish card from center row and/or card from discard pile  
+            pDeck = new PortalDeck();
+            
+            pDeck.add(voidthirster);
+            pDeck.add(theAllSeeingEye);
+            pDeck.add(theGrandDesign);
+            pDeck.add(masterDhartha);
+            pDeck.add(demonSlayer);
+            pDeck.add(lifeboundInitiate);
+            pDeck.add(avatarGolem);
+            pDeck.add(samaelsTrickster);
+            pDeck.add(corrosiveWidow);
+            pDeck.add(tormentedSoul);
+            pDeck.add(mistakeOfCreation);
+            boardView.updatePortal(pDeck);
+           cenRow = new CenterRow(pDeck,new VoidDeck());
+           boardView.updateCenRow(cenRow,pDeck);
+
 		}
 
         public Game()
@@ -115,6 +147,7 @@ namespace Ascension
                 this.currTurn = 1;
             else this.currTurn = this.currTurn + 1;
         }
-
+       
+        
     }
 }

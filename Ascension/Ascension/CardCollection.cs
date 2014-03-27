@@ -28,5 +28,19 @@ namespace Ascension
             length--;
             cards.Remove(card);
         }
+        public String[] toStringArray()
+        {
+            List<String> names = new List<String>();
+            foreach(Card card in cards){
+                names.Add(card.cardName);
+                
+            }
+            return names.ToArray();
+        }
+        public Card getCard(int index)
+        {
+
+            return cards.ElementAt<Card>(index);
+        }
     }
 }

@@ -11,12 +11,17 @@ using System.Windows.Forms;
 namespace Ascension
 {
     public partial class CardView : Form
-    {
+    {   
+        public Card currCard;
         public CardView()
         {
             InitializeComponent();
         }
-
+        public void update(Card card)
+        {
+            currCard = card;
+            upFrame();
+        }
         private void label1_Click(object sender, EventArgs e)
         {
 
@@ -24,6 +29,13 @@ namespace Ascension
 
         private void label6_Click(object sender, EventArgs e)
         {
+
+        }
+        private void upFrame() 
+        {
+            cardName.Text = currCard.cardName;
+            rCost.Text = currCard.runeCost.ToString();
+            pCost.Text = currCard.powerCost.ToString();
 
         }
     }

@@ -11,7 +11,7 @@ namespace Ascension
         private PortalDeck pDeck;
         private VoidDeck vDeck;
 
-        public CenterRow(PortalDeck PortalDeck, VoidDeck VoidDeck)
+        public CenterRow(PortalDeck PortalDeck, VoidDeck VoidDeck) : base()
         {
             pDeck = PortalDeck;
             vDeck = VoidDeck;
@@ -25,7 +25,7 @@ namespace Ascension
         public override void remove(Card card)
         {
             base.remove(card);
-            vDeck.add(card);
+            //vDeck.add(card);
             cards.Add(pDeck.draw());
         }
     }
