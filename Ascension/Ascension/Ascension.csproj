@@ -60,8 +60,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Card.cs" />
-    <Compile Include="Class2.cs" />
-    <Compile Include="Form2.cs">
+    <Compile Include="Class2.cs" />    <Compile Include="CardCollection.cs" />
+    <Compile Include="CenterRow.cs" />
+    <Compile Include="VoidDeck.cs" />
+    <Compile Include="Shuffleable.cs" />
+    <Compile Include="PortalDeck.cs" />    <Compile Include="Form2.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form2.Designer.cs">
