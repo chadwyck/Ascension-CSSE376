@@ -62,8 +62,7 @@ namespace Ascension
 
 
 
-        public Card (Game game, string cardName, System.Drawing.Image cardImage, int runeCost, int powerCost, int runeGain, int powerGain, int endGameHonorGain, int immediateHonorGain, int cardsToDraw, string faction, string cardType)
-        {
+        public Card (Game game, string cardName, System.Drawing.Image cardImage, int runeCost, int powerCost, int runeGain, int powerGain, int endGameHonorGain, int immediateHonorGain, int cardsToDraw, string faction, string cardType)        {
             this.game = game;
             this.cardName = cardName;
             this.cardImage = cardImage;
