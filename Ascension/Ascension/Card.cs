@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ascension
 {
-    class Card
+    public class Card
     {
         public string cardName
         {
@@ -56,7 +56,7 @@ namespace Ascension
 
 
 
-        public Card (string cardName, System.Drawing.Image cardImage, int runeCost, int powerCost, int runeGain, int powerGain, int honorGain, int cardsToDraw)
+        public Card (Game game, string cardName, System.Drawing.Image cardImage, int runeCost, int powerCost, int runeGain, int powerGain, int honorGain, int cardsToDraw)
         {
             this.cardName = cardName;
             this.cardImage = cardImage;
