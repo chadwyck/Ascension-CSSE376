@@ -8,6 +8,12 @@ namespace Ascension
 {
     class Card
     {
+        public Game game
+        {
+            get;
+            private set;
+        }
+
         public string cardName
         {
             get;
@@ -56,8 +62,9 @@ namespace Ascension
 
 
 
-        public Card (string cardName, System.Drawing.Image cardImage, int runeCost, int powerCost, int runeGain, int powerGain, int honorGain, int cardsToDraw)
+        public Card (Game game, string cardName, System.Drawing.Image cardImage, int runeCost, int powerCost, int runeGain, int powerGain, int endGameHonorGain, int immediateHonorGain, int cardsToDraw, string faction, string cardType)
         {
+            this.game = game;
             this.cardName = cardName;
             this.cardImage = cardImage;
             this.powerCost = powerCost;
@@ -66,5 +73,45 @@ namespace Ascension
             this.honorGain = honorGain;
             this.cardsToDraw = cardsToDraw;
         }
+
+
+        public void generateCards()
+        {
+            //
+            
+        }
+
+        public void moveSelf(CardCollection to, CardCollection from)
+        {
+            //To-Do: add and remove card
+        }
+
+        public void changeHonor(int n)
+        {
+            game.getPlayer(game.currTurn).addHonor(n);
+        }
+
+        public void changeRunes(int n)
+        {
+            game.getPlayer(game.currTurn).addRunes(n);
+        }
+
+        public void changePower(int n)
+        {
+            game.getPlayer(game.currTurn).addPower(n);
+        }
+
+        public void playCard()
+        {
+            changeHonor(this.honorGain);
+            changeRunes(this.runeGain);
+            changePower(this.powerGain);
+        }
+
+        public void banishCard()
+        {
+            //
+        }
+
     }
 }
