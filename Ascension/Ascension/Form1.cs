@@ -27,7 +27,7 @@ namespace Ascension
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Game game = new Game(Convert.ToInt32(comboBox1.SelectedItem.ToString()));
+            Game game = new Game(Convert.ToInt32(comboBox1.Text.ToString()));
             this.Visible = false;
         }
 

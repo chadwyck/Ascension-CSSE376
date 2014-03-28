@@ -15,11 +15,17 @@ namespace Ascension
         private PortalDeck pDeck;
         private CenterRow cenRow;
         private CardView cardView;
-        public BoardView()
+        private Game game;
+
+        public BoardView(Game gm)
         {
             InitializeComponent();
             cardView = new CardView();
             cardView.Show();
+            game = gm;
+            this.game.getCurrPlayer().endTurn();
+            this.updatePlayer();
+            this.currentPlayNum.Text = "Player " + this.game.getCurrPlayer().playerNumber;
         }
 
         private void Form2_Load(object sender, EventArgs e)
@@ -29,12 +35,22 @@ namespace Ascension
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            Card temp;
+            if((temp = game.buyMyst()) != null)
+            {
+                game.getCurrPlayer().purchase(temp, false, temp.runeCost);
+            }
+            updatePlayer();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            Card temp;
+            if ((temp = game.buyHI()) != null)
+            {
+                game.getCurrPlayer().purchase(temp, false, temp.runeCost);
+            }
+            updatePlayer();
         }
 
         private void label9_Click(object sender, EventArgs e)
@@ -70,5 +86,32 @@ namespace Ascension
         {
             cardView.update(cenRow.getCard(comboBox1.SelectedIndex));
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            game.advanceTurn();
+            this.currentPlayNum.Text = "Player " + game.getCurrPlayer().playerNumber;
+            this.updatePlayer();
+        }
+        public void updatePlayer()
+        {
+
+            playDeck.Items.Clear();
+            playHand.Items.Clear();
+            playPlay.Items.Clear();
+            playDisc.Items.Clear();
+            playDeck.Items.AddRange(game.getCurrPlayer().deck.toStringArray());
+
+            playHand.Items.AddRange(game.getCurrPlayer().hand.toStringArray());
+            playPlay.Items.AddRange(game.getCurrPlayer().onBoard.toStringArray());
+            playDisc.Items.AddRange(game.getCurrPlayer().discardPile.toStringArray());
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            game.getCurrPlayer().addHonor(2);
+            
+        }
+
     }
 }

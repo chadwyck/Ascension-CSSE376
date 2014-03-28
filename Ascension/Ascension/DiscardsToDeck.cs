@@ -18,5 +18,11 @@ namespace Ascension
             remove(card);
             discard.add(card);
         }
+        public void discardAllCards()
+        {
+            while(this.length<0)
+                discardCard(this.getCard(0));
+            
+        }
     }
 }

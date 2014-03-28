@@ -6,42 +6,24 @@ namespace Ascension
     public class Game
     {
         private int numPlayers;
-        private BoardView boardView = new BoardView();
+        private BoardView boardView;
         
         public int currTurn
         {
             get;
             private set;
         }
-        public Player player1
-        {
-            get;
-            private set;
-        }
-        public Player player2
-        {
-            get;
-            private set;
-        }
-        public Player player3
-        {
-            get;
-            private set;
-        }
-        public Player player4
-        {
-            get;
-            private set;
-        }
+       
         public int GameInt
         {
             get; private set;
         }
+        
 
         public int honorOnBoard
         {
             get;
-            private set;
+            set;
         }
         public PortalDeck pDeck
         {
@@ -53,35 +35,38 @@ namespace Ascension
             get;
             private set;
         }
-
-
+        private CardCollection myst;
+        private CardCollection heavyIn;
+        private Player[] plyrs;
         public Game (int numPlayers)
 		{
-            boardView.Show();
-            
-            this.numPlayers = numPlayers;
-            this.honorOnBoard = numPlayers * 30;
+            currTurn = 1;
             if ((numPlayers < 2)||(numPlayers > 4))
                 throw new ArgumentOutOfRangeException("Must have between 2 and 4 players.");
+            this.numPlayers = numPlayers;
+            plyrs = new Player[numPlayers];
+            for (int i = 0; i < numPlayers; i++)
+                plyrs[i] = new Player(this, i + 1);
+            myst = new CardCollection();
+            heavyIn = new CardCollection();
+            generateCards();
+            boardView = new BoardView(this);
+            boardView.Show();
+            boardView.updatePortal(pDeck);
+            cenRow = new CenterRow(pDeck, new VoidDeck());
+            boardView.updateCenRow(cenRow, pDeck);
+            
+            
+            this.honorOnBoard = numPlayers * 30;
+           
             honorOnBoard = 30 * numPlayers;
             boardView.lblHonorCount.Text = honorOnBoard.ToString();
-            currTurn = 1; //Player 1 is always starting at the moment.
-            if (numPlayers >= 2)
-            {
-                player1 = new Player(this, 1);
-                player2 = new Player(this, 2);
-            }
-            if (numPlayers >= 3)
-            {
-                player3 = new Player(this, 3);
-            }
-            if (numPlayers == 4)
-            {
-                player4 = new Player(this, 4);
-            }
             
-            generateCards();
-           
+             //Player 1 is always starting at the moment.
+            
+            
+            
+            boardView.updatePlayer();
 
         }
 
@@ -116,10 +101,23 @@ namespace Ascension
             pDeck.add(corrosiveWidow);
             pDeck.add(tormentedSoul);
             pDeck.add(mistakeOfCreation);
-            boardView.updatePortal(pDeck);
-           cenRow = new CenterRow(pDeck,new VoidDeck());
-           boardView.updateCenRow(cenRow,pDeck);
-
+            
+            pDeck.shuffle();
+           
+            
+           foreach(Player p in plyrs){
+                for (int j = 0; j < 8; j++)
+                    p.deck.add(apprentice);
+                p.deck.add(militia);
+                p.deck.add(militia);
+           }
+            
+           
+           for (int i = 0; i < 30; i++)
+           {
+               myst.add(mystic);
+               heavyIn.add(heavyInfantry);
+           }
 		}
 
         public Game()
@@ -130,24 +128,43 @@ namespace Ascension
         //This part, could use refactoring (put players in an array, etc.)
         public Player getPlayer(int n)
         {
-            if (n == 1)
-                return player1;
-            if (n == 2)
-                return player2;
-            if (n == 3)
-                return player3;
-            if (n == 4)
-                return player4;
+            if ((1 <= n)&& (n<= this.numPlayers))
+                return this.plyrs[n];
             else return null;
+        }
+        public Player getCurrPlayer()
+        {
+            return this.plyrs[(this.currTurn - 1) % this.numPlayers];
         }
 
         public void advanceTurn()
         {
-            if (this.currTurn == numPlayers)
-                this.currTurn = 1;
-            else this.currTurn = this.currTurn + 1;
+            this.getCurrPlayer().endTurn();
+            this.currTurn++;
+            
         }
-       
+        public Card buyMyst()
+        {
+            Card temp = null;
+            if (myst.length != 0)
+            {
+
+                temp = myst.getCard(0);
+                myst.remove(temp);
+            }
+            return temp;
+        }
+        public Card buyHI()
+        {
+            Card temp = null;
+            if (heavyIn.length != 0)
+            {
+
+                temp = heavyIn.getCard(0);
+                heavyIn.remove(temp);
+            }
+            return temp;
+        }
         
     }
 }

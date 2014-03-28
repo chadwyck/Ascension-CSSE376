@@ -50,31 +50,31 @@ namespace Ascension
             private set;
         }
 
-        public CardCollection constructs
+        public ConstructDeck constructs
         {
             get;
             private set;
         }
 
-        public CardCollection deck
+        public HandDeck deck
         {
             get;
             private set;
         }
 
-        public CardCollection hand
+        public InHand hand
         {
             get;
             private set;
         }
 
-        public CardCollection onBoard
+        public InPlay onBoard
         {
             get;
             private set;
         }
 
-        public CardCollection discardPile
+        public DiscardDeck discardPile
         {
             get;
             private set;
@@ -85,11 +85,13 @@ namespace Ascension
             this.playerHonor = 0;
             this.currentRunes = 0;
             this.currentPower = 0;
-            this.constructs = new CardCollection();
-            this.deck = new CardCollection();
-            this.hand = new CardCollection();
-            this.onBoard = new CardCollection();
-            this.discardPile = new CardCollection();
+            this.discardPile = new DiscardDeck();
+            this.constructs = new ConstructDeck(this.discardPile);
+            this.deck = new HandDeck();
+            this.onBoard = new InPlay(this.discardPile);
+            this.hand = new InHand(this.discardPile, this.onBoard, this.deck);
+            
+           
             this.playerRunes = 0;
             this.playerPower = 0;
             this.game = game;
@@ -98,6 +100,7 @@ namespace Ascension
         public void addHonor(int honor)
         {
             this.playerHonor = this.playerHonor + honor;
+            this.game.honorOnBoard = this.game.honorOnBoard - honor;
         }
 
         public void addRunes(int runes)
@@ -114,8 +117,26 @@ namespace Ascension
         {
             this.playerPower = 0;
             this.playerRunes = 0;
-            this.game.advanceTurn();
+            this.hand.newHand();
         }
+        public void purchase(Card crd, Boolean play, int Cost)
+        {
+            if (!play)
+            {
+                discardPile.add(crd);
+            }
+            else
+            {
+                this.play(crd);
+            }
+
+        }
+        public void play(Card crd)
+        {
+            onBoard.add(crd);
+        }
+        
+
 
     }
 }

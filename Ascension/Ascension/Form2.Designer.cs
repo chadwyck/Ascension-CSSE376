@@ -36,13 +36,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.playHand = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.playPlay = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
+            this.playDisc = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.comboBox5 = new System.Windows.Forms.ComboBox();
+            this.playDeck = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.comboBox6 = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -58,6 +58,7 @@
             this.label15 = new System.Windows.Forms.Label();
             this.portalCombo = new System.Windows.Forms.ComboBox();
             this.label16 = new System.Windows.Forms.Label();
+            this.currentPlayNum = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // comboBox1
@@ -101,6 +102,7 @@
             this.button3.TabIndex = 3;
             this.button3.Text = "Kill Cultist";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // label1
             // 
@@ -121,6 +123,7 @@
             this.button4.TabIndex = 5;
             this.button4.Text = "End Turn";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button5
             // 
@@ -132,14 +135,14 @@
             this.button5.Text = "Play All";
             this.button5.UseVisualStyleBackColor = true;
             // 
-            // comboBox2
+            // playHand
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(443, 482);
-            this.comboBox2.Margin = new System.Windows.Forms.Padding(4);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(160, 24);
-            this.comboBox2.TabIndex = 7;
+            this.playHand.FormattingEnabled = true;
+            this.playHand.Location = new System.Drawing.Point(443, 482);
+            this.playHand.Margin = new System.Windows.Forms.Padding(4);
+            this.playHand.Name = "playHand";
+            this.playHand.Size = new System.Drawing.Size(160, 24);
+            this.playHand.TabIndex = 7;
             // 
             // label2
             // 
@@ -151,14 +154,14 @@
             this.label2.TabIndex = 8;
             this.label2.Text = "Current Hand";
             // 
-            // comboBox3
+            // playPlay
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(648, 482);
-            this.comboBox3.Margin = new System.Windows.Forms.Padding(4);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(160, 24);
-            this.comboBox3.TabIndex = 9;
+            this.playPlay.FormattingEnabled = true;
+            this.playPlay.Location = new System.Drawing.Point(648, 482);
+            this.playPlay.Margin = new System.Windows.Forms.Padding(4);
+            this.playPlay.Name = "playPlay";
+            this.playPlay.Size = new System.Drawing.Size(160, 24);
+            this.playPlay.TabIndex = 9;
             // 
             // label3
             // 
@@ -170,14 +173,14 @@
             this.label3.TabIndex = 10;
             this.label3.Text = "On Table";
             // 
-            // comboBox4
+            // playDisc
             // 
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(864, 482);
-            this.comboBox4.Margin = new System.Windows.Forms.Padding(4);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(160, 24);
-            this.comboBox4.TabIndex = 11;
+            this.playDisc.FormattingEnabled = true;
+            this.playDisc.Location = new System.Drawing.Point(864, 482);
+            this.playDisc.Margin = new System.Windows.Forms.Padding(4);
+            this.playDisc.Name = "playDisc";
+            this.playDisc.Size = new System.Drawing.Size(160, 24);
+            this.playDisc.TabIndex = 11;
             // 
             // label4
             // 
@@ -189,14 +192,14 @@
             this.label4.TabIndex = 12;
             this.label4.Text = "Discard Pile";
             // 
-            // comboBox5
+            // playDeck
             // 
-            this.comboBox5.FormattingEnabled = true;
-            this.comboBox5.Location = new System.Drawing.Point(243, 482);
-            this.comboBox5.Margin = new System.Windows.Forms.Padding(4);
-            this.comboBox5.Name = "comboBox5";
-            this.comboBox5.Size = new System.Drawing.Size(160, 24);
-            this.comboBox5.TabIndex = 13;
+            this.playDeck.FormattingEnabled = true;
+            this.playDeck.Location = new System.Drawing.Point(243, 482);
+            this.playDeck.Margin = new System.Windows.Forms.Padding(4);
+            this.playDeck.Name = "playDeck";
+            this.playDeck.Size = new System.Drawing.Size(160, 24);
+            this.playDeck.TabIndex = 13;
             // 
             // label5
             // 
@@ -348,12 +351,22 @@
             this.label16.TabIndex = 28;
             this.label16.Text = "Portal (For Testing)";
             // 
+            // currentPlayNum
+            // 
+            this.currentPlayNum.AutoSize = true;
+            this.currentPlayNum.Location = new System.Drawing.Point(494, 55);
+            this.currentPlayNum.Name = "currentPlayNum";
+            this.currentPlayNum.Size = new System.Drawing.Size(52, 17);
+            this.currentPlayNum.TabIndex = 29;
+            this.currentPlayNum.Text = "Player ";
+            // 
             // BoardView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1339, 670);
+            this.Controls.Add(this.currentPlayNum);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.portalCombo);
             this.Controls.Add(this.label15);
@@ -369,13 +382,13 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.comboBox6);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.comboBox5);
+            this.Controls.Add(this.playDeck);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.comboBox4);
+            this.Controls.Add(this.playDisc);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.comboBox3);
+            this.Controls.Add(this.playPlay);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.playHand);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.label1);
@@ -401,13 +414,13 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox playHand;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.ComboBox playPlay;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox comboBox4;
+        private System.Windows.Forms.ComboBox playDisc;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox comboBox5;
+        private System.Windows.Forms.ComboBox playDeck;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox comboBox6;
         private System.Windows.Forms.Label label6;
@@ -423,5 +436,6 @@
         private System.Windows.Forms.ComboBox portalCombo;
         private System.Windows.Forms.Label label16;
         public System.Windows.Forms.Label lblHonorCount;
+        private System.Windows.Forms.Label currentPlayNum;
     }
 }

@@ -9,13 +9,38 @@ namespace Ascension
     public class InHand : DiscardsToDeck
     {
         InPlay inPlay;
-        public InHand(DiscardDeck discrd, InPlay inPly) : base(discrd)
+        HandDeck deck;
+        DiscardDeck discard;
+        public InHand(DiscardDeck discrd, InPlay inPly, HandDeck dck) : base(discrd)
         {
+            discard = discrd;
+            deck = dck;
             inPlay = inPly;
         }
         public void playCard(Card card)
         {
             inPlay.add(card);
+        }
+        public void newHand()
+        {
+            this.inPlay.discardAllCards();
+            this.discardAllCards();
+            this.draw(5);
+
+        }
+        public void draw(int n)
+        {
+            for (int i = 0; i < n; i++)
+            {
+                if (this.deck.length == 0)
+                {
+                    foreach (var temp in this.discard.emptyDiscard())
+                        this.deck.add(temp);
+                        this.deck.shuffle();
+                }
+
+                this.add(this.deck.draw());
+            }
         }
     }
 }
