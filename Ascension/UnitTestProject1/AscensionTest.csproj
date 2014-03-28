@@ -55,6 +55,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="TestPortalDeck.cs" />
+    <Compile Include="testPlayer.cs" />
     <Compile Include="GameTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CardCollectionTest.cs" />

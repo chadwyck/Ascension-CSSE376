@@ -9,7 +9,7 @@ namespace Ascension
     public class PortalDeck : Shuffleable
     {
 
-        public PortalDeck()
+        public PortalDeck() : base()
         {
 
         }

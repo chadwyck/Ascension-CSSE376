@@ -58,7 +58,6 @@ namespace AscensionTest
             Assert.AreEqual(0, target.playerPower);
         }
 
-       
 
 
 

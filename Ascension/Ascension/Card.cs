@@ -73,6 +73,11 @@ namespace Ascension
             this.cardsToDraw = cardsToDraw;
         }
 
+        public Card()
+        {
+            // TODO: Complete member initialization
+        }
+
 
         public void generateCards()
         {
