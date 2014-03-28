@@ -8,16 +8,20 @@ namespace Ascension
 {
     public class DiscardDeck : CardCollection
     {
-
-        public List<Card> emptyDiscard()
+        HandDeck handDeck;
+        public DiscardDeck(HandDeck handDck) : base()
         {
-            List<Card> ret = new List<Card>();
+            this.handDeck = handDck;
+        }
+
+        public void emptyDiscard()
+        {
             while(this.length>0)
             {
-                ret.Add(this.getCard(0));
+                handDeck.add(this.getCard(0));
                 remove(this.getCard(0));
             }
-            return ret;
+            handDeck.shuffle();
         }
     }
 }

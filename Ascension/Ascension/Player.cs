@@ -85,9 +85,9 @@ namespace Ascension
             this.playerHonor = 0;
             this.currentRunes = 0;
             this.currentPower = 0;
-            this.discardPile = new DiscardDeck();
-            this.constructs = new ConstructDeck(this.discardPile);
             this.deck = new HandDeck();
+            this.discardPile = new DiscardDeck(this.deck);
+            this.constructs = new ConstructDeck(this.discardPile);
             this.onBoard = new InPlay(this.discardPile);
             this.hand = new InHand(this.discardPile, this.onBoard, this.deck);
             

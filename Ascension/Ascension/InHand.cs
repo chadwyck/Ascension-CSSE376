@@ -26,7 +26,6 @@ namespace Ascension
             this.inPlay.discardAllCards();
             this.discardAllCards();
             this.draw(5);
-
         }
         public void draw(int n)
         {
@@ -34,9 +33,7 @@ namespace Ascension
             {
                 if (this.deck.length == 0)
                 {
-                    foreach (var temp in this.discard.emptyDiscard())
-                        this.deck.add(temp);
-                        this.deck.shuffle();
+                    this.discard.emptyDiscard();
                 }
 
                 this.add(this.deck.draw());
