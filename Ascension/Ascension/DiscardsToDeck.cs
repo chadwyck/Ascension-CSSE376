@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ascension
 {
-    class DiscardsToDeck : CardCollection
+    public class DiscardsToDeck : CardCollection
     {
         private DiscardDeck discard;
         public DiscardsToDeck(DiscardDeck discrd) : base()

@@ -8,6 +8,8 @@ namespace Ascension
 {
     public class ConstructDeck : DiscardsToDeck
     {
+        public ConstructDeck (DiscardDeck discrd) : base(discrd) { }
+
         public void destroyOneConstruct (Card card)
         {
             discardCard(card);

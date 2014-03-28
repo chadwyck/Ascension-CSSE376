@@ -8,6 +8,6 @@ namespace Ascension
 {
     public class InPlay : DiscardsToDeck
     {
-
+        public InPlay (DiscardDeck discrd) : base(discrd) { }
     }
 }
