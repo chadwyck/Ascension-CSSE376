@@ -21,5 +21,11 @@ namespace Ascension
                 cards[n] = val;
             }
         }
+        public Card draw()
+        {
+            Card card = cards[0];
+            remove(card);
+            return card;
+        }
     }
 }
