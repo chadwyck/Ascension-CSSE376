@@ -23,7 +23,7 @@ namespace Ascension
             cardView = new CardView();
             cardView.Show();
             game = gm;
-            this.game.getCurrPlayer().endTurn();
+            
             this.updatePlayer();
             this.currentPlayNum.Text = "Player " + this.game.getCurrPlayer().playerNumber;
         }

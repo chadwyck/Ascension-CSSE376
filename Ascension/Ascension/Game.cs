@@ -50,6 +50,10 @@ namespace Ascension
             myst = new CardCollection();
             heavyIn = new CardCollection();
             generateCards();
+            foreach (var temp in plyrs){
+                temp.endTurn();
+                temp.deck.shuffle();
+            }
             boardView = new BoardView(this);
             boardView.Show();
             boardView.updatePortal(pDeck);

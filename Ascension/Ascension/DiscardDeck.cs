@@ -12,10 +12,10 @@ namespace Ascension
         public List<Card> emptyDiscard()
         {
             List<Card> ret = new List<Card>();
-            foreach (var item in cards)
+            while(this.length>0)
             {
-                ret.Add(item);
-                remove(item);
+                ret.Add(this.getCard(0));
+                remove(this.getCard(0));
             }
             return ret;
         }
