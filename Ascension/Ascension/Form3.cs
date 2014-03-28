@@ -13,9 +13,11 @@ namespace Ascension
     public partial class CardView : Form
     {   
         public Card currCard;
+        private Card noneSelected;
         public CardView()
         {
             InitializeComponent();
+            noneSelected = new Card(null,"Please Select a Card", null, 0, 0, 0, 0, 0, 0, 0, null, "basic");
         }
         public void update(Card card)
         {
@@ -57,7 +59,24 @@ namespace Ascension
 
         private void button2_Click(object sender, EventArgs e)
         {
+            currCard.game.getCurrPlayer().purchase(currCard, false, currCard.runeCost);
 
+            currCard.game.boardView.updatePlayer();
+            currCard.game.boardView.updateCenRow(currCard.game.cenRow, currCard.game.pDeck);
+            update(noneSelected);
+
+        }
+
+        private void CardView_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Play_Click(object sender, EventArgs e)
+        {
+            currCard.game.getCurrPlayer().play(currCard);
+            currCard.game.boardView.updatePlayer();
+            update(noneSelected);
         }
     }
 }

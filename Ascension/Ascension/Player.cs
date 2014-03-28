@@ -121,19 +121,30 @@ namespace Ascension
         }
         public void purchase(Card crd, Boolean play, int Cost)
         {
-            if (!play)
+            if (Cost <= this.playerRunes)
             {
-                discardPile.add(crd);
+                this.playerRunes = this.playerRunes - Cost;
+
+                if (!play)
+                {
+                    this.game.cenRow.remove(crd);
+                    discardPile.add(crd);
+                }
+                else
+                {
+                    this.play(crd);
+                }
             }
-            else
-            {
-                this.play(crd);
-            }
+           
 
         }
         public void play(Card crd)
         {
+            hand.remove(crd);
             onBoard.add(crd);
+            addRunes(crd.runeGain);
+            addPower(crd.powerGain);
+            addHonor(crd.honorGain);
         }
         
 

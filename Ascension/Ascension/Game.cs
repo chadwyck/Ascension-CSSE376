@@ -6,7 +6,7 @@ namespace Ascension
     public class Game
     {
         private int numPlayers;
-        private BoardView boardView;
+        public BoardView boardView;
         
         public int currTurn
         {

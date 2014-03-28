@@ -15,6 +15,7 @@ namespace Ascension
         private PortalDeck pDeck;
         private CenterRow cenRow;
         private CardView cardView;
+        private InHand inHand;
         private Game game;
 
         public BoardView(Game gm)
@@ -105,12 +106,27 @@ namespace Ascension
             playHand.Items.AddRange(game.getCurrPlayer().hand.toStringArray());
             playPlay.Items.AddRange(game.getCurrPlayer().onBoard.toStringArray());
             playDisc.Items.AddRange(game.getCurrPlayer().discardPile.toStringArray());
+            runeNum.Text = this.game.getCurrPlayer().playerRunes.ToString();
+            powNum.Text = this.game.getCurrPlayer().playerPower.ToString();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             game.getCurrPlayer().addHonor(2);
             
+        }
+
+        private void playHand_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cardView.update(this.game.getCurrPlayer().hand.getCard(playHand.SelectedIndex));
+
+
+            //cardView.update(cenRow.getCard(comboBox1.SelectedIndex));
+        }
+
+        private void playPlay_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cardView.update(this.game.getCurrPlayer().onBoard.getCard(playHand.SelectedIndex));
         }
 
     }
