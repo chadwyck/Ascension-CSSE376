@@ -39,6 +39,8 @@
             this.rCost = new System.Windows.Forms.Label();
             this.pCost = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.Purchase = new System.Windows.Forms.Button();
+            this.Kill = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -97,7 +99,7 @@
             this.button1.Location = new System.Drawing.Point(372, 446);
             this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(163, 30);
+            this.button1.Size = new System.Drawing.Size(163, 27);
             this.button1.TabIndex = 5;
             this.button1.Text = "Use Selected Ability";
             this.button1.UseVisualStyleBackColor = true;
@@ -152,11 +154,32 @@
             this.pictureBox1.TabIndex = 10;
             this.pictureBox1.TabStop = false;
             // 
+            // Purchase
+            // 
+            this.Purchase.Location = new System.Drawing.Point(372, 496);
+            this.Purchase.Name = "Purchase";
+            this.Purchase.Size = new System.Drawing.Size(163, 28);
+            this.Purchase.TabIndex = 11;
+            this.Purchase.Text = "Purchase";
+            this.Purchase.UseVisualStyleBackColor = true;
+            this.Purchase.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // Kill
+            // 
+            this.Kill.Location = new System.Drawing.Point(371, 552);
+            this.Kill.Name = "Kill";
+            this.Kill.Size = new System.Drawing.Size(164, 26);
+            this.Kill.TabIndex = 12;
+            this.Kill.Text = "Kill";
+            this.Kill.UseVisualStyleBackColor = true;
+            // 
             // CardView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(551, 650);
+            this.Controls.Add(this.Kill);
+            this.Controls.Add(this.Purchase);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.pCost);
             this.Controls.Add(this.rCost);
@@ -190,5 +213,7 @@
         private System.Windows.Forms.Label rCost;
         private System.Windows.Forms.Label pCost;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button Purchase;
+        private System.Windows.Forms.Button Kill;
     }
 }

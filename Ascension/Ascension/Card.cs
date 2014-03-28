@@ -60,6 +60,24 @@ namespace Ascension
             private set;
         }
 
+        public int endGameHonorGain
+        {
+            get;
+            private set;
+        }
+
+        public string faction
+        {
+            get;
+            private set;
+        }
+
+        public string cardType
+        {
+            get;
+            private set;
+        }
+
 
 
         public Card (Game game, string cardName, System.Drawing.Image cardImage, int runeCost, int powerCost, int runeGain, int powerGain, int endGameHonorGain, int immediateHonorGain, int cardsToDraw, string faction, string cardType)        {
@@ -67,10 +85,13 @@ namespace Ascension
             this.cardName = cardName;
             this.cardImage = cardImage;
             this.powerCost = powerCost;
+            this.runeCost = runeCost;
             this.runeGain = runeGain;
             this.powerGain = powerGain;
             this.honorGain = honorGain;
             this.cardsToDraw = cardsToDraw;
+            this.faction = faction;
+            this.cardType = cardType;
         }
 
 

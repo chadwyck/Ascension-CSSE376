@@ -50,31 +50,31 @@ namespace Ascension
             private set;
         }
 
-        public ArrayList constructs
+        public CardCollection constructs
         {
             get;
             private set;
         }
 
-        public ArrayList deck
+        public CardCollection deck
         {
             get;
             private set;
         }
 
-        public ArrayList hand
+        public CardCollection hand
         {
             get;
             private set;
         }
 
-        public ArrayList onBoard
+        public CardCollection onBoard
         {
             get;
             private set;
         }
 
-        public ArrayList discardPile
+        public CardCollection discardPile
         {
             get;
             private set;
@@ -85,11 +85,11 @@ namespace Ascension
             this.playerHonor = 0;
             this.currentRunes = 0;
             this.currentPower = 0;
-            this.constructs = new ArrayList();
-            this.deck = new ArrayList();
-            this.hand = new ArrayList();
-            this.onBoard = new ArrayList();
-            this.discardPile = new ArrayList();
+            this.constructs = new CardCollection();
+            this.deck = new CardCollection();
+            this.hand = new CardCollection();
+            this.onBoard = new CardCollection();
+            this.discardPile = new CardCollection();
             this.playerRunes = 0;
             this.playerPower = 0;
             this.game = game;
@@ -116,5 +116,6 @@ namespace Ascension
             this.playerRunes = 0;
             this.game.advanceTurn();
         }
+
     }
 }
