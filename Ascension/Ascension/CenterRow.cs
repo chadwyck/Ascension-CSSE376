@@ -25,7 +25,7 @@ namespace Ascension
         public override void remove(Card card)
         {
             base.remove(card);
-            vDeck.add(card);
+            //vDeck.add(card);
             cards.Add(pDeck.draw());
         }
     }
