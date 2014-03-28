@@ -81,6 +81,7 @@ namespace Ascension
         }
         public Player(Game game, int playerNumber)
         {
+
             this.playerNumber = playerNumber;
             this.playerHonor = 0;
             this.currentRunes = 0;
@@ -95,6 +96,12 @@ namespace Ascension
             this.playerRunes = 0;
             this.playerPower = 0;
             this.game = game;
+            Card apprentice = new Card(this.game, "Apprentice", null, 0, 0, 1, 0, 0, 0, 0, null, "basic");
+            Card militia = new Card(this.game, "Militia", null, 0, 0, 0, 1, 0, 0, 0, null, "basic");
+            for (int j = 0; j < 8; j++)
+            deck.add(apprentice);
+            deck.add(militia);
+            deck.add(militia);
         }
 
         public void addHonor(int honor)

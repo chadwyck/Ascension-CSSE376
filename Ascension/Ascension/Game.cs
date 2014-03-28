@@ -110,10 +110,7 @@ namespace Ascension
            
             
            foreach(Player p in plyrs){
-                for (int j = 0; j < 8; j++)
-                    p.deck.add(apprentice);
-                p.deck.add(militia);
-                p.deck.add(militia);
+                
            }
             
            

@@ -44,5 +44,15 @@ namespace AscensionTest
             Assert.AreEqual(target.honorOnBoard, 120);
         }
 
+        [Test()]
+        public void TestAdvTurn()
+        {
+            var target = new Game(3);
+            target.advanceTurn();
+            target.advanceTurn();
+            Assert.AreEqual(3, target.currTurn);
+        }
+
+
     }
 }

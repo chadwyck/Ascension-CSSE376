@@ -35,13 +35,16 @@ namespace Ascension
         }
         private void upFrame() 
         {
-            cardName.Text = currCard.cardName;
-            rCost.Text = currCard.runeCost.ToString();
-            pCost.Text = currCard.powerCost.ToString();
-            killOrPurchase();
-
+           
+                
+                cardName.Text = currCard.cardName;
+                rCost.Text = currCard.runeCost.ToString();
+                pCost.Text = currCard.powerCost.ToString();
+                killOrPurchase();
         }
 
+        
+       
         private void killOrPurchase()
         {
             if (currCard.cardType == "monster")
@@ -74,9 +77,12 @@ namespace Ascension
 
         private void Play_Click(object sender, EventArgs e)
         {
-            currCard.game.getCurrPlayer().play(currCard);
-            currCard.game.boardView.updatePlayer();
-            update(noneSelected);
+            if (!currCard.cardName.Equals("Please Select a Card"))
+            {
+                currCard.game.getCurrPlayer().play(currCard);
+                currCard.game.boardView.updatePlayer();
+                update(noneSelected);
+            }
         }
     }
 }
