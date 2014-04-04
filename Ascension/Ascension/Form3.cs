@@ -84,5 +84,14 @@ namespace Ascension
                 update(noneSelected);
             }
         }
+
+        private void Kill_Click(object sender, EventArgs e)
+        {
+            currCard.game.getCurrPlayer().kill(currCard, currCard.powerCost);
+
+            currCard.game.boardView.updatePlayer();
+            currCard.game.boardView.updateCenRow(currCard.game.cenRow, currCard.game.pDeck);
+            update(noneSelected);
+        }
     }
 }

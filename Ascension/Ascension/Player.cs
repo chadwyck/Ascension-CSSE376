@@ -147,6 +147,18 @@ namespace Ascension
             hand.remove(crd);
             onBoard.add(crd);
             crd.playCard();
-        }        
+        }
+
+        public void kill(Card crd, int Cost)
+        {
+            if (Cost <= this.playerPower)
+            {
+                this.playerPower = this.playerPower - Cost;
+                this.game.cenRow.remove(crd);
+                discardPile.add(crd);
+            }
+        }
+                
+
     }
 }

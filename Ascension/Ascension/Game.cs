@@ -155,24 +155,37 @@ namespace Ascension
         public Card buyMyst()
         {
             Card temp = null;
-            if (myst.length != 0)
+
+            if ((myst.length != 0) && (getCurrPlayer().playerRunes >= 3))
             {
 
                 temp = myst.getCard(0);
                 myst.remove(temp);
+                getCurrPlayer().addRunes(-3);
             }
             return temp;
         }
         public Card buyHI()
         {
             Card temp = null;
-            if (heavyIn.length != 0)
+            if ((heavyIn.length != 0) && (getCurrPlayer().playerRunes >= 2))
             {
 
                 temp = heavyIn.getCard(0);
                 heavyIn.remove(temp);
+                getCurrPlayer().addRunes(-2);
             }
             return temp;
+        }
+
+        public void killCultist()
+        {
+            if (getCurrPlayer().playerPower >= 2)
+            {
+                getCurrPlayer().addHonor(1);
+                getCurrPlayer().addPower(-2);
+                boardView.updatePlayer();
+            }
         }
 
         public void endGame()
