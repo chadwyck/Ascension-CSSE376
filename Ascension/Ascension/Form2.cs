@@ -122,7 +122,7 @@ namespace Ascension
 
         private void button3_Click(object sender, EventArgs e)
         {
-            game.getCurrPlayer().addHonor(2);
+            game.killCultist();
             
         }
 

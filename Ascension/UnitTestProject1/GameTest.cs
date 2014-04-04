@@ -59,6 +59,21 @@ namespace AscensionTest
             Assert.AreEqual(3, target.currTurn);
         }
 
+        [Test()]
+        public void TestNotEnoughPowerToKillCultist()
+        {
+            var target = new Game(2);
+            target.killCultist();
+            Assert.True(target.getCurrPlayer().playerHonor == 0);
+        }
 
+        [Test()]
+        public void TestKillCultist()
+        {
+            var target = new Game(2);
+            target.getCurrPlayer().addPower(2);
+            target.killCultist();
+            Assert.True((target.getCurrPlayer().playerHonor == 1) && (target.getCurrPlayer().playerPower == 0));
+        }
     }
 }

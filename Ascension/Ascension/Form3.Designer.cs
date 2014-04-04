@@ -147,7 +147,7 @@
             // Purchase
             // 
             this.Purchase.Location = new System.Drawing.Point(279, 403);
-            this.Purchase.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Purchase.Margin = new System.Windows.Forms.Padding(2);
             this.Purchase.Name = "Purchase";
             this.Purchase.Size = new System.Drawing.Size(122, 23);
             this.Purchase.TabIndex = 11;
@@ -158,12 +158,13 @@
             // Kill
             // 
             this.Kill.Location = new System.Drawing.Point(278, 448);
-            this.Kill.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Kill.Margin = new System.Windows.Forms.Padding(2);
             this.Kill.Name = "Kill";
             this.Kill.Size = new System.Drawing.Size(123, 21);
             this.Kill.TabIndex = 12;
             this.Kill.Text = "Kill";
             this.Kill.UseVisualStyleBackColor = true;
+            this.Kill.Click += new System.EventHandler(this.Kill_Click);
             // 
             // Play
             // 
