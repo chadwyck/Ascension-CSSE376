@@ -27,6 +27,7 @@ namespace Ascension
             this.discardAllCards();
             this.draw(5);
         }
+        
         public void draw(int n)
         {
             for (int i = 0; i < n; i++)

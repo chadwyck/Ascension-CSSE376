@@ -1,12 +1,17 @@
-﻿
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Ascension
 {
     public class Game
     {
+        private const int HONOR = 0, RUNES = 1, POWER = 2; // metricIDs
         private int numPlayers;
         public BoardView boardView;
+        public bool endOfGame { get; private set; }
         
         public int currTurn
         {
@@ -40,6 +45,7 @@ namespace Ascension
         private Player[] plyrs;
         public Game (int numPlayers)
 		{
+            endOfGame = false;
             currTurn = 1;
             if ((numPlayers < 2)||(numPlayers > 4))
                 throw new ArgumentOutOfRangeException("Must have between 2 and 4 players.");
@@ -75,7 +81,9 @@ namespace Ascension
         }
 
         public void generateCards(){
-            Card apprentice = new Card(this, "Apprentice", null, 0, 0, 1, 0, 0, 0, 0, null, "basic");
+            Card apprentice = new Card(this, "Apprentice", null, 0, 0, 0, null, "basic",
+                new List<CardAction> { new ChangeMetricCount(RUNES, 5, this) });
+            //Card apprentice = new Card(this, "Apprentice", null, 0, 0, 1, 0, 0, 0, 0, null, "basic");
             Card militia = new Card(this, "Militia", null, 0, 0, 0, 1, 0, 0, 0, null, "basic");
             Card heavyInfantry = new Card(this, "Heavy Infantry", null, 0, 0, 0, 2, 1, 0, 0, null, "basic");
             Card mystic = new Card(this, "Mystic", null, 0, 0, 2, 0, 1, 0, 0, null, "basic");
@@ -129,9 +137,9 @@ namespace Ascension
         //This part, could use refactoring (put players in an array, etc.)
         public Player getPlayer(int n)
         {
-            if ((1 <= n)&& (n<= this.numPlayers))
-                return this.plyrs[n];
-            else return null;
+            if ((n >= this.numPlayers) || (n < 0))
+                throw new ArgumentOutOfRangeException("Wrong player index");
+            return this.plyrs[n];
         }
         public Player getCurrPlayer()
         {
@@ -165,6 +173,11 @@ namespace Ascension
                 heavyIn.remove(temp);
             }
             return temp;
+        }
+
+        public void endGame()
+        {
+            this.endOfGame = true;
         }
         
     }

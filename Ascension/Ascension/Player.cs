@@ -9,76 +9,40 @@ namespace Ascension
 {
     public class Player
     {
-        public Game game
-        {
-            get;
-            private set;
-        }
-        public int playerNumber
-        {
-            get;
-            private set;
-        }
 
-        public int playerPower
-        {
-            get;
-            private set;
-        }
+        private const int HONOR = 0, RUNES = 1, POWER = 2; // metricIDs
 
-        public int playerRunes
-        {
-            get;
-            private set;
-        }
 
-        public int playerHonor
-        {
-            get;
-            private set;
-        }
+        public Game game { get; private set; }
+        public int playerNumber { get; private set; }
 
-        public int currentRunes
-        {
-            get;
-            private set;
-        }
 
-        public int currentPower
-        {
-            get;
-            private set;
-        }
+        public int playerPower { get; private set; }
 
-        public ConstructDeck constructs
-        {
-            get;
-            private set;
-        }
+        public int playerRunes { get; private set; }
 
-        public HandDeck deck
-        {
-            get;
-            private set;
-        }
 
-        public InHand hand
-        {
-            get;
-            private set;
-        }
+        public int playerHonor { get; private set; }
 
-        public InPlay onBoard
-        {
-            get;
-            private set;
-        }
 
-        public DiscardDeck discardPile
-        {
-            get;
-            private set;
-        }
+        public int currentRunes { get; private set; }
+
+
+        public int currentPower { get; private set; }
+
+        public ConstructDeck constructs { get; private set; }
+
+
+        public HandDeck deck { get; private set; }
+
+
+        public InHand hand { get; private set; }
+
+
+        public InPlay onBoard { get; private set; }
+
+        public DiscardDeck discardPile { get; private set; }
+
         public Player(Game game, int playerNumber)
         {
 
@@ -88,6 +52,7 @@ namespace Ascension
             this.currentPower = 0;
             this.deck = new HandDeck();
             this.discardPile = new DiscardDeck(this.deck);
+            this.deck.setDiscard(this.discardPile);
             this.constructs = new ConstructDeck(this.discardPile);
             this.onBoard = new InPlay(this.discardPile);
             this.hand = new InHand(this.discardPile, this.onBoard, this.deck);
@@ -96,28 +61,64 @@ namespace Ascension
             this.playerRunes = 0;
             this.playerPower = 0;
             this.game = game;
-            Card apprentice = new Card(this.game, "Apprentice", null, 0, 0, 1, 0, 0, 0, 0, null, "basic");
-            Card militia = new Card(this.game, "Militia", null, 0, 0, 0, 1, 0, 0, 0, null, "basic");
+
+            Card apprentice = new Card(this.game, "Apprentice", null, 0, 0, 0, null, "basic",
+                new List<CardAction> { new ChangeMetricCount(RUNES, 5, this.game), 
+                                       new ChangeMetricCount(HONOR, 10, this.game)});
+            //Card apprentice = new Card(this.game, "Apprentice", null, 0, 0, 1, 0, 0, 0, 0, null, "basic");
+
+            Card militia = new Card(this.game, "Militia", null, 0, 0, 0, null, "basic",
+                new List<CardAction> { new ChangeMetricCount(POWER, 3, this.game),
+                                       new ChangeMetricCount(HONOR, 10, this.game),
+                                       new MoveFromTo(deck, hand, false, false)});
+            //Card militia = new Card(this.game, "Militia", null, 0, 0, 0, 1, 0, 0, 0, null, "basic");
             for (int j = 0; j < 8; j++)
             deck.add(apprentice);
             deck.add(militia);
             deck.add(militia);
         }
 
-        public void addHonor(int honor)
+
+        public void addHonor(int honor)  // LEGACY CODE - NEEED TO REMOVE
         {
-            this.playerHonor = this.playerHonor + honor;
-            this.game.honorOnBoard = this.game.honorOnBoard - honor;
+
+            this.changeMetricCount(HONOR, honor);
         }
 
-        public void addRunes(int runes)
-        {
-            this.playerRunes = this.playerRunes + runes;
+
+        public void addRunes(int runes) // LEGACY CODE - NEEED TO REMOVE
+
+            this.changeMetricCount(RUNES, runes);
         }
 
-        public void addPower(int power)
+
+        public void addPower(int power) // LEGACY CODE - NEEED TO REMOVE
+
+            this.changeMetricCount(POWER, power);
+        }
+
+        public void changeMetricCount(int metricID, int incrementBy)
         {
-            this.playerPower = this.playerPower + power;
+            switch (metricID)
+            {
+                case HONOR:
+                    this.playerHonor = this.playerHonor + incrementBy;
+                    this.game.honorOnBoard = this.game.honorOnBoard - incrementBy;
+                    if (this.game.honorOnBoard < 1)
+                    {
+                        this.game.honorOnBoard = 0;
+                        this.game.endGame();
+                    }
+                    break;
+                case RUNES:
+                    this.playerRunes = this.playerRunes + incrementBy;
+                    break;
+                case POWER:
+                    this.playerPower = this.playerPower + incrementBy;
+                    break;
+                default:
+                    throw new System.ArgumentException("MetricID must be between 0 and 2", "metricID");
+            }
         }
 
         public void endTurn()
@@ -145,10 +146,17 @@ namespace Ascension
            
 
         }
+
+        public int getEndGameHonor()
+        {
+            return this.playerHonor;
+        }
+
         public void play(Card crd)
         {
             hand.remove(crd);
             onBoard.add(crd);
+
             crd.playCard();
         }
         

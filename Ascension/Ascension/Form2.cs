@@ -90,9 +90,17 @@ namespace Ascension
 
         private void button4_Click(object sender, EventArgs e)
         {
-            game.advanceTurn();
-            this.currentPlayNum.Text = "Player " + game.getCurrPlayer().playerNumber;
-            this.updatePlayer();
+            if (game.endOfGame)
+            {
+                EndGameForm endGameForm = new EndGameForm(this.game);
+                endGameForm.Show();
+            }
+            else
+            {
+                game.advanceTurn();
+                this.currentPlayNum.Text = "Player " + game.getCurrPlayer().playerNumber;
+                this.updatePlayer();
+            }
         }
         public void updatePlayer()
         {
@@ -106,6 +114,8 @@ namespace Ascension
             playHand.Items.AddRange(game.getCurrPlayer().hand.toStringArray());
             playPlay.Items.AddRange(game.getCurrPlayer().onBoard.toStringArray());
             playDisc.Items.AddRange(game.getCurrPlayer().discardPile.toStringArray());
+            lblHonorCount.Text = this.game.honorOnBoard.ToString();
+            lblYourHonor.Text = this.game.getCurrPlayer().playerHonor.ToString();
             runeNum.Text = this.game.getCurrPlayer().playerRunes.ToString();
             powNum.Text = this.game.getCurrPlayer().playerPower.ToString();
         }

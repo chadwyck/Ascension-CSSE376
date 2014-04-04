@@ -37,9 +37,8 @@ namespace Ascension
             }
             return names.ToArray();
         }
-        public Card getCard(int index)
+        public virtual Card getCard(int index)
         {
-
             return cards.ElementAt<Card>(index);
         }
     }
