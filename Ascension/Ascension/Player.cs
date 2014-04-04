@@ -11,33 +11,26 @@ namespace Ascension
     {
 
         private const int HONOR = 0, RUNES = 1, POWER = 2; // metricIDs
-
-
+        
         public Game game { get; private set; }
+
         public int playerNumber { get; private set; }
-
-
+        
         public int playerPower { get; private set; }
 
         public int playerRunes { get; private set; }
-
-
+        
         public int playerHonor { get; private set; }
-
-
+        
         public int currentRunes { get; private set; }
-
-
+        
         public int currentPower { get; private set; }
 
         public ConstructDeck constructs { get; private set; }
-
-
+        
         public HandDeck deck { get; private set; }
-
-
+        
         public InHand hand { get; private set; }
-
 
         public InPlay onBoard { get; private set; }
 
@@ -81,19 +74,18 @@ namespace Ascension
 
         public void addHonor(int honor)  // LEGACY CODE - NEEED TO REMOVE
         {
-
             this.changeMetricCount(HONOR, honor);
         }
 
 
         public void addRunes(int runes) // LEGACY CODE - NEEED TO REMOVE
-
+        {
             this.changeMetricCount(RUNES, runes);
         }
 
 
         public void addPower(int power) // LEGACY CODE - NEEED TO REMOVE
-
+        {
             this.changeMetricCount(POWER, power);
         }
 
@@ -143,8 +135,6 @@ namespace Ascension
                     this.play(crd);
                 }
             }
-           
-
         }
 
         public int getEndGameHonor()
@@ -156,11 +146,7 @@ namespace Ascension
         {
             hand.remove(crd);
             onBoard.add(crd);
-
             crd.playCard();
-        }
-        
-
-
+        }        
     }
 }
