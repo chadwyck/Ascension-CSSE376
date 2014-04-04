@@ -53,7 +53,7 @@
             this.runeNum = new System.Windows.Forms.Label();
             this.powNum = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
+            this.lblYourHonor = new System.Windows.Forms.Label();
             this.voidCombo = new System.Windows.Forms.ComboBox();
             this.label15 = new System.Windows.Forms.Label();
             this.portalCombo = new System.Windows.Forms.ComboBox();
@@ -281,14 +281,14 @@
             this.label13.TabIndex = 23;
             this.label13.Text = "Your Honor";
             // 
-            // label14
+            // lblYourHonor
             // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(270, 450);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(13, 13);
-            this.label14.TabIndex = 24;
-            this.label14.Text = "0";
+            this.lblYourHonor.AutoSize = true;
+            this.lblYourHonor.Location = new System.Drawing.Point(270, 450);
+            this.lblYourHonor.Name = "lblYourHonor";
+            this.lblYourHonor.Size = new System.Drawing.Size(13, 13);
+            this.lblYourHonor.TabIndex = 24;
+            this.lblYourHonor.Text = "0";
             // 
             // voidCombo
             // 
@@ -345,7 +345,7 @@
             this.Controls.Add(this.portalCombo);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.voidCombo);
-            this.Controls.Add(this.label14);
+            this.Controls.Add(this.lblYourHonor);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.powNum);
             this.Controls.Add(this.runeNum);
@@ -403,7 +403,7 @@
         private System.Windows.Forms.Label runeNum;
         private System.Windows.Forms.Label powNum;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label lblYourHonor;
         private System.Windows.Forms.ComboBox voidCombo;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.ComboBox portalCombo;
