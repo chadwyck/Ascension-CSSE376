@@ -75,5 +75,19 @@ namespace AscensionTest
             target.killCultist();
             Assert.True((target.getCurrPlayer().playerHonor == 1) && (target.getCurrPlayer().playerPower == 0));
         }
+
+        [Test()]
+        public void TestValidBuyMystic() //This needs to be fixed, it's not really a unit test.
+        {
+            var target = new Game(2);
+            target.getCurrPlayer().addRunes(4);
+            Card temp;
+            if ((temp = target.buyMyst()) != null)
+            {
+                target.getCurrPlayer().purchase(temp, false, temp.runeCost);
+            }
+            Assert.True((target.getCurrPlayer().playerRunes == 1) && (target.getCurrPlayer().discardPile.cards.Count == 1));
+        }
+
     }
 }
