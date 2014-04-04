@@ -80,45 +80,36 @@ namespace Ascension
 
 
 
-        public Card (Game game, string cardName, System.Drawing.Image cardImage, int runeCost, int powerCost, int runeGain, int powerGain, int endGameHonorGain, int immediateHonorGain, int cardsToDraw, string faction, string cardType)        {
+        public Card (Game game, string cardName, System.Drawing.Image cardImage, int runeCost, int powerCost, int runeGains, int powerGains, int endGameHonorGain, int immediateHonorGain, int cardsToDraw, string faction, string cardType)        {
             this.game = game;
             this.cardName = cardName;
             this.cardImage = cardImage;
             this.powerCost = powerCost;
             this.runeCost = runeCost;
-            this.runeGain = runeGain;
-            this.powerGain = powerGain;
-            this.honorGain = honorGain;
+            this.runeGain = runeGains;
+            this.powerGain = powerGains;
+            this.honorGain = immediateHonorGain;
             this.cardsToDraw = cardsToDraw;
             this.faction = faction;
             this.cardType = cardType;
         }
 
 
-        public void generateCards()
+      
+
+        private void changeHonor(int n)
         {
-            //
-            
+            game.getCurrPlayer().addHonor(n);
         }
 
-        public void moveSelf(CardCollection to, CardCollection from)
+        private void changeRunes(int n)
         {
-            //To-Do: add and remove card
+            game.getCurrPlayer().addRunes(n);
         }
 
-        public void changeHonor(int n)
+        private void changePower(int n)
         {
-            game.getPlayer(game.currTurn).addHonor(n);
-        }
-
-        public void changeRunes(int n)
-        {
-            game.getPlayer(game.currTurn).addRunes(n);
-        }
-
-        public void changePower(int n)
-        {
-            game.getPlayer(game.currTurn).addPower(n);
+            game.getCurrPlayer().addPower(n);
         }
 
         public void playCard()
@@ -130,7 +121,7 @@ namespace Ascension
 
         public void banishCard()
         {
-            //
+          //
         }
 
     }

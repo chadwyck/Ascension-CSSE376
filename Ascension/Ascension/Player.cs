@@ -149,9 +149,7 @@ namespace Ascension
         {
             hand.remove(crd);
             onBoard.add(crd);
-            addRunes(crd.runeGain);
-            addPower(crd.powerGain);
-            addHonor(crd.honorGain);
+            crd.playCard();
         }
         
 

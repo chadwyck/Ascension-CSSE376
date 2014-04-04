@@ -15,7 +15,13 @@ namespace AscensionTest
             var target = new Game(TestGameInt);
             Assert.IsNotNull(target);
         }
-
+        [Test()]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void TestNoInput()
+        {
+            var target = new Game();
+            
+        }
         [Test()]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void TestInvalidInput()
