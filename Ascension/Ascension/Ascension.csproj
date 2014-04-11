@@ -75,6 +75,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AILogic.cs" />
     <Compile Include="Card.cs" />
     <Compile Include="CardAction.cs" />
     <Compile Include="CardCollection.cs" />
