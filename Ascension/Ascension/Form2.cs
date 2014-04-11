@@ -42,6 +42,7 @@ namespace Ascension
                 game.getCurrPlayer().purchase(temp, false, temp.runeCost);
             }
             updatePlayer();
+            
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -52,6 +53,7 @@ namespace Ascension
                 game.getCurrPlayer().purchase(temp, false, temp.runeCost);
             }
             updatePlayer();
+            this.game.canDoMore();
         }
 
         private void label9_Click(object sender, EventArgs e)
