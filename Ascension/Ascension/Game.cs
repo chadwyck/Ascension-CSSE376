@@ -52,9 +52,19 @@ namespace Ascension
         private Player[] plyrs;
         public Game (int numPlayers)
 		{
+            gameInitialize(numPlayers, false);
+        }
+
+        //public Game(int numPlayers, bool isTest)
+        //{
+        //    gameInitialize(numPlayers, true);
+        //}
+
+        private void gameInitialize(int numPlayers, bool isTest)
+        {
             endOfGame = false;
             currTurn = 1;
-            if ((numPlayers < 2)||(numPlayers > 4))
+            if ((numPlayers < 2) || (numPlayers > 4))
                 throw new ArgumentOutOfRangeException("Must have between 2 and 4 players.");
             this.numPlayers = numPlayers;
             plyrs = new Player[numPlayers];
@@ -63,32 +73,38 @@ namespace Ascension
             myst = new CardCollection();
             heavyIn = new CardCollection();
             generateCards();
-            foreach (var temp in plyrs){
+            foreach (var temp in plyrs)
+            {
                 temp.endTurn();
                 temp.deck.shuffle();
             }
-            boardView = new BoardView(this);
+            //if (isTest)
+            //{
+            //    boardView = new BoardView(this, isTest);
+            //}
+            //else
+            //{
+                boardView = new BoardView(this);
+            //}
             boardView.Show();
             boardView.updatePortal(pDeck);
             voidDeck = new CardCollection();
             cenRow = new CenterRow(pDeck, voidDeck);
             boardView.updateCenRow(cenRow, pDeck);
             this.firstTimeList = new List<FirstTimeGet>();
-            
-            
+
+
             this.honorOnBoard = numPlayers * 30;
-           
+
             honorOnBoard = 30 * numPlayers;
             boardView.lblHonorCount.Text = honorOnBoard.ToString();
-            
-             //Player 1 is always starting at the moment.
-            
-            
-            
+
+            //Player 1 is always starting at the moment.
+
+
+
             boardView.updatePlayer();
-
         }
-
         public void generateCards(){
             Card apprentice = new Card(this, "Apprentice", null, 0, 0, 0, null, "basic",
                 new List<CardAction> { new ChangeMetricCount(RUNES, 1, this) });

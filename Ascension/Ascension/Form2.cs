@@ -30,6 +30,16 @@ namespace Ascension
             this.currentPlayNum.Text = "Player " + this.game.getCurrPlayer().playerNumber;
         }
 
+        public BoardView(Game gm, bool f)
+        {
+            cardView = new CardView();
+            cardView.Show();
+            game = gm;
+
+            this.updatePlayer();
+            this.currentPlayNum.Text = "Player " + this.game.getCurrPlayer().playerNumber;
+        }
+
         private void Form2_Load(object sender, EventArgs e)
         {
 
