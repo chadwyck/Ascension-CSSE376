@@ -65,6 +65,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -80,6 +81,7 @@
     <Compile Include="CardCollection.cs" />
     <Compile Include="CenterRow.cs" />
     <Compile Include="ChangeMetricCount.cs" />
+    <Compile Include="CardImport.cs" />
     <Compile Include="ConstructDeck.cs" />
     <Compile Include="DiscardDeck.cs" />
     <Compile Include="DiscardsToDeck.cs" />
@@ -172,6 +174,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="boardbackground.png" />
+    <Content Include="MilitiaTest.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

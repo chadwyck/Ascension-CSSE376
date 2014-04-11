@@ -8,31 +8,31 @@ namespace Ascension
 {
     public class Card
     {
-        public Game game { get; private set; }
+        public Game game { get; set; }
 
-        public string cardName { get; private set; }
+        public string cardName { get; set; }
 
-        public System.Drawing.Image cardImage { get; private set; }
+        public System.Drawing.Image cardImage { get; set; }
 
-        public int runeCost { get; private set; }
+        public int runeCost { get;  set; }
 
-        public int powerCost { get; private set; }
+        public int powerCost { get; set; }
 
         public int powerGain { get; private set; } // LEGACY CODE - NEEED TO REMOVE
         
         public int runeGain { get; private set; } // LEGACY CODE - NEEED TO REMOVE
 
-        public int honorGain { get; private set; } // LEGACY CODE - NEEED TO REMOVE
+       public int honorGain { get; private set; } // LEGACY CODE - NEEED TO REMOVE
 
-        public int cardsToDraw { get; private set; }
+        public int cardsToDraw { get; set; }
 
-        public int endGameHonorGain { get; private set; }
+        public int endGameHonorGain { get; set; }
 
-        public string faction { get; private set; }
+        public string faction { get;  set; }
 
-        public string cardType { get; private set; }
+        public string cardType { get; set; }
 
-        public List<CardAction> actions { get; private set; }
+        public List<CardAction> actions { get; set; }
 
         public Card (Game game, string cardName, System.Drawing.Image cardImage, int runeCost,
                     int powerCost, int runeGain, int powerGain, int endGameHonorGain,

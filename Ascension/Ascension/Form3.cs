@@ -17,10 +17,12 @@ namespace Ascension
         public CardView()
         {
             InitializeComponent();
-            noneSelected = new Card(null,"Please Select a Card", null, 0, 0, 0, 0, 0, 0, 0, null, "basic");
+           // currCard = (new CardImport("",null).deck.First<Card>());
+           noneSelected = new Card(null,"Please Select a Card", null, 0, 0, 0, 0, 0, 0, 0, null, "basic");
         }
         public void update(Card card)
         {
+            //currCard = (new CardImport("", null).deck.First<Card>());
             currCard = card;
             upFrame();
         }
