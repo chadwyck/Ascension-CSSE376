@@ -4,23 +4,33 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Ascension;
+using System.IO;
 
 
 namespace Ascension
 {
-    class CardImport
+   public class  CardImport
     {
         private Game game;
-        public List<Card> deck { get; private set; }
-        public CardImport(String file, Game gme)
+        
+        private PortalDeck deck { get; set; }
+        public CardImport() {
+            deck = new PortalDeck();
+        }
+        public PortalDeck cardImport(Game gme)
         {
-            game = gme;
-            deck = new List<Card>();
-            var json = System.IO.File.ReadAllText(@"C:\Users\barnesgl\Documents\Documents\Classes\2013-2014\Q3\CSSE376\Ascension-CSSE376\Ascension\Ascension\MilitiaTest.txt");
-            imCard card =  new System.Web.Script.Serialization.JavaScriptSerializer().Deserialize<imCard>(json);
-            deck.Add(new Card(game, card.cardName, null, card.runeCost, card.powerCost, card.endGameHonorGain, card.faction, card.cardType,
-                cardActionGen(card.actions)));
+            deck = new PortalDeck();
+            string currentDirName = /*@""+System.IO.Directory.GetCurrentDirectory()+"\\CardSets\\Standard\\";*/ @"C:\Users\barnesgl\Documents\Documents\Classes\2013-2014\Q3\CSSE376\Ascension-CSSE376\Ascension\Ascension\CardSets\Standard\";
+            string[] files = System.IO.Directory.GetFiles(currentDirName, "*.txt");
 
+            foreach (string cardFile in files)
+            {
+                deck.add(fileToCard(cardFile));
+            }
+            
+            
+            
+            return deck;
         }
         private class imCard{
         
@@ -65,6 +75,14 @@ namespace Ascension
                 }
             }
         return ret;
+        }
+        private Card fileToCard(String file)
+        {
+            var json = System.IO.File.ReadAllText(file);
+            imCard card = new System.Web.Script.Serialization.JavaScriptSerializer().Deserialize<imCard>(json);
+            return new Card(game, card.cardName, null, card.runeCost, card.powerCost, card.endGameHonorGain, card.faction, card.cardType,
+                 cardActionGen(card.actions));
+            
         }
     }
 

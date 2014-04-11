@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Ascension;
 
 namespace Ascension
 {
@@ -16,13 +17,14 @@ namespace Ascension
         private Card noneSelected;
         public CardView()
         {
+            
             InitializeComponent();
-           // currCard = (new CardImport("",null).deck.First<Card>());
+            //currCard = (new CardImport()).cardImport(null).draw();
            noneSelected = new Card(null,"Please Select a Card", null, 0, 0, 0, 0, 0, 0, 0, null, "basic");
         }
         public void update(Card card)
         {
-            //currCard = (new CardImport("", null).deck.First<Card>());
+            
             currCard = card;
             upFrame();
         }
