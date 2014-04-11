@@ -8,8 +8,8 @@ namespace Ascension
 {
     public class ChangeMetricCount : CardAction
     {
-        private int metricID, incrementBy;
-        private Game game;
+        protected int metricID, incrementBy;
+        protected Game game;
         public ChangeMetricCount (int metricID, int incrementBy, Game game)
         {
             this.metricID = metricID;

@@ -13,6 +13,7 @@ namespace Ascension
     public partial class BoardView : Form
     {
         private PortalDeck pDeck;
+        private CardCollection voidDeck;
         private CenterRow cenRow;
         private CardView cardView;
         private InHand inHand;
@@ -73,6 +74,13 @@ namespace Ascension
             pDeck = pDek;
             portalCombo.Items.Clear();
             portalCombo.Items.AddRange(pDeck.toStringArray());
+
+        }
+        public void updateVoidDeck(CardCollection vdDeck)
+        {
+            voidDeck = vdDeck;
+            voidCombo.Items.Clear();
+            voidCombo.Items.AddRange(voidDeck.toStringArray());
 
         }
         public void updateCenRow(CenterRow cRow,PortalDeck pDek)
@@ -137,6 +145,16 @@ namespace Ascension
         private void playPlay_SelectedIndexChanged(object sender, EventArgs e)
         {
             cardView.update(this.game.getCurrPlayer().onBoard.getCard(playHand.SelectedIndex));
+        }
+
+        private void button5_Click(object sender, EventArgs e)  // Play All
+        {
+            //this.inHand = this.game.getCurrPlayer().hand;
+            //for (int i = 0; i < inHand.cards.Count; i++)
+            //{
+            //    inHand.playCard(inHand.getCard(0));
+            //}
+            //this.updatePlayer();
         }
 
     }

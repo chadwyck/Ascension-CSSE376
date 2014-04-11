@@ -20,6 +20,8 @@ namespace Ascension
         public void playCard(Card card)
         {
             inPlay.add(card);
+            this.remove(card);
+            card.playCard();
         }
         public void newHand()
         {

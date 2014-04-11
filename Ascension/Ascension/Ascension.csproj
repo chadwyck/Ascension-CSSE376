@@ -89,11 +89,11 @@
     <Compile Include="EndGameForm.Designer.cs">
       <DependentUpon>EndGameForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="FirstTimeGet.cs" />
     <Compile Include="HandDeck.cs" />
     <Compile Include="InHand.cs" />
     <Compile Include="InPlay.cs" />
     <Compile Include="MoveFromTo.cs" />
-    <Compile Include="VoidDeck.cs" />
     <Compile Include="Shuffleable.cs" />
     <Compile Include="PortalDeck.cs" />
     <Compile Include="Form2.cs">

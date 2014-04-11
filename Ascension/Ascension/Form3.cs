@@ -89,6 +89,7 @@ namespace Ascension
         {
             currCard.game.getCurrPlayer().kill(currCard, currCard.powerCost);
 
+            currCard.game.boardView.updateVoidDeck(currCard.game.voidDeck);
             currCard.game.boardView.updatePlayer();
             currCard.game.boardView.updateCenRow(currCard.game.cenRow, currCard.game.pDeck);
             update(noneSelected);

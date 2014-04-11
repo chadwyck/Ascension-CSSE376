@@ -9,9 +9,10 @@ namespace Ascension
     public class CenterRow : CardCollection
     {
         private PortalDeck pDeck;
-        private VoidDeck vDeck;
+        private CardCollection vDeck;
 
-        public CenterRow(PortalDeck PortalDeck, VoidDeck VoidDeck) : base()
+        public CenterRow(PortalDeck PortalDeck, CardCollection VoidDeck)
+            : base()
         {
             pDeck = PortalDeck;
             vDeck = VoidDeck;

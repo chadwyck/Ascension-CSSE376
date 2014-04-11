@@ -56,13 +56,12 @@ namespace Ascension
             this.game = game;
 
             Card apprentice = new Card(this.game, "Apprentice", null, 0, 0, 0, null, "basic",
-                new List<CardAction> { new ChangeMetricCount(RUNES, 5, this.game), 
-                                       new ChangeMetricCount(HONOR, 10, this.game)});
+                new List<CardAction> { new ChangeMetricCount(POWER, 1, game),
+                                       new FirstTimeGet("fallen", "monster", HONOR, 39, game) });
             //Card apprentice = new Card(this.game, "Apprentice", null, 0, 0, 1, 0, 0, 0, 0, null, "basic");
 
             Card militia = new Card(this.game, "Militia", null, 0, 0, 0, null, "basic",
                 new List<CardAction> { new ChangeMetricCount(POWER, 3, this.game),
-                                       new ChangeMetricCount(HONOR, 10, this.game),
                                        new MoveFromTo(deck, hand, false, false)});
             //Card militia = new Card(this.game, "Militia", null, 0, 0, 0, 1, 0, 0, 0, null, "basic");
             for (int j = 0; j < 8; j++)
@@ -153,9 +152,10 @@ namespace Ascension
         {
             if (Cost <= this.playerPower)
             {
+                crd.playCard();
                 this.playerPower = this.playerPower - Cost;
                 this.game.cenRow.remove(crd);
-                discardPile.add(crd);
+                this.game.voidDeck.add(crd);
             }
         }
                 
