@@ -89,5 +89,62 @@ namespace AscensionTest
             Assert.True((target.getCurrPlayer().playerRunes == 1) && (target.getCurrPlayer().discardPile.cards.Count == 1));
         }
 
+        [Test()]
+        public void TestCanDoMoreRunes()
+        {
+            var target = new Game(3);
+            target.cenRow.add(new Card(target, "Test", null, 3, 0, 1, "Void", "Hero", null));
+            target.getCurrPlayer().addRunes(4);
+            bool canDoMore = target.canDoMore();
+            Assert.IsTrue(canDoMore);
+        }
+
+        [Test()]
+        public void TestCannotDoMoreRunesButHasMoreCards()
+        {
+            var target = new Game(3);
+            target.getCurrPlayer().addRunes((-1) * target.getCurrPlayer().currentRunes);
+            bool canDoMore = target.canDoMore();
+            Assert.IsTrue(canDoMore);
+        }
+
+        [Test()]
+        public void TestCannotDoMoreRunesAndNoMoreCards()
+        {
+            var target = new Game(3);
+            target.getCurrPlayer().addRunes((-1) * target.getCurrPlayer().currentRunes);
+            target.getCurrPlayer().hand.discardAllCards();
+            bool canDoMore = target.canDoMore();
+            Assert.IsFalse(canDoMore);
+        }
+
+        [Test()]
+        public void TestCanDoMorePower()
+        {
+            var target = new Game(3);
+            target.cenRow.add(new Card(target, "Test", null, 0, 3, 1, "fallen", "monster", null));
+            target.getCurrPlayer().addPower(4);
+            bool canDoMore = target.canDoMore();
+            Assert.IsTrue(canDoMore);
+        }
+
+        [Test()]
+        public void TestCannotDoMorePowerButMoreCards()
+        {
+            var target = new Game(3);
+            target.cenRow.add(new Card(target, "Test", null, 0, 3, 1, "fallen", "monster", null));
+            bool canDoMore = target.canDoMore();
+            Assert.IsTrue(canDoMore);
+        }
+
+        [Test()]
+        public void TestCannotDoMorePowerAndNoMoreCards()
+        {
+            var target = new Game(3);
+            target.cenRow.add(new Card(target, "Test", null, 0, 3, 1, "fallen", "monster", null));
+            target.getCurrPlayer().hand.discardAllCards();
+            bool canDoMore = target.canDoMore();
+            Assert.IsFalse(canDoMore);
+        }
     }
 }
