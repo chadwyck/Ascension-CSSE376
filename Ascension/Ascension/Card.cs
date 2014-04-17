@@ -87,7 +87,6 @@ namespace Ascension
                 if (game.firstTimeList[i].checkCase(this.faction, this.cardType))
                 {
                     game.firstTimeList[i].gain();
-                    break;
                 }
             }
             foreach (var action in this.actions)

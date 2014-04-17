@@ -14,6 +14,7 @@ namespace Ascension
         public bool endOfGame { get; private set; }
 
         public List<FirstTimeGet> firstTimeList { get; set; }
+        public CardsPlayed cardsPlayed { get; set; }
 
         public int currTurn
         {
@@ -92,6 +93,7 @@ namespace Ascension
             cenRow = new CenterRow(pDeck, voidDeck);
             boardView.updateCenRow(cenRow, pDeck);
             this.firstTimeList = new List<FirstTimeGet>();
+            this.cardsPlayed = new CardsPlayed();
 
 
             this.honorOnBoard = numPlayers * 30;
@@ -138,6 +140,9 @@ namespace Ascension
                 new List<CardAction> { new ChangeMetricCount(HONOR, 3, this)}); // Each opponent must destroy construct they control
             Card tormentedSoul = new Card(this, "Tormented Soul", null, 0, 3, 0, "fallen", "monster",
                 new List<CardAction> { new ChangeMetricCount(HONOR, 1, this)});
+            Card runicLycanthrope = new Card(this, "Runic Lycanthrope", null, 3, 0, 1, "lifebound", "hero",
+                new List<CardAction> { new ChangeMetricCount(RUNES, 2, this),
+                                        new ForEachCardType("lifebound","hero",true,POWER,2,this) });
             Card mistakeOfCreation = new Card(this, "Mistake of Creation", null, 0, 4, 0, "fallen", "monster",
                 new List<CardAction> { new ChangeMetricCount(HONOR, 4, this)}); 
             // Needs to banish card from center row and/or card from discard pile  
@@ -153,6 +158,7 @@ namespace Ascension
             pDeck.add(samaelsTrickster);
             pDeck.add(corrosiveWidow);
             pDeck.add(tormentedSoul);
+            pDeck.add(runicLycanthrope);
             pDeck.add(mistakeOfCreation);
             
             pDeck.shuffle();
@@ -190,6 +196,7 @@ namespace Ascension
         public void advanceTurn()
         {
             this.firstTimeList.Clear();
+            this.cardsPlayed.Clear();
             this.getCurrPlayer().endTurn();
             this.currTurn++;
             
