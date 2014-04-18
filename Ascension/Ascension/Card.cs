@@ -65,20 +65,7 @@ namespace Ascension
             this.actions = actions;
         }
         
-        public void changeHonor(int n) // LEGACY CODE - NEEED TO REMOVE
-        {
-            game.getPlayer(game.currTurn).addHonor(n);
-        }
-
-        public void changeRunes(int n) // LEGACY CODE - NEEED TO REMOVE
-        {
-            game.getPlayer(game.currTurn).addRunes(n);
-        }
-
-        public void changePower(int n) // LEGACY CODE - NEEED TO REMOVE
-        {
-            game.getPlayer(game.currTurn).addPower(n);
-        }
+        
 
         public void playCard()
         {

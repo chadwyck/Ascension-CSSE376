@@ -76,11 +76,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
-=======
     <Compile Include="AI.cs" />
     <Compile Include="AILogic.cs" />
->>>>>>> c7d7fbc10d7d83ed71bc6b366c7d8a184c7ddc6c
     <Compile Include="Card.cs" />
     <Compile Include="CardAction.cs" />
     <Compile Include="CardCollection.cs" />
@@ -181,7 +178,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="boardbackground.png" />
-    <Content Include="CardSets\Standard\MilitiaTest.txt" />
+    <Content Include="CardSets\Standard\militia.txt" />
+    <Content Include="CardSets\Standard\apprentice.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
