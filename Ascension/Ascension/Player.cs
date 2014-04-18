@@ -12,7 +12,7 @@ namespace Ascension
 
         private const int HONOR = 0, RUNES = 1, POWER = 2; // metricIDs
         
-        public Game game { get; private set; }
+        public Game game { get; protected set; }
 
         public int playerNumber { get; private set; }
         
@@ -36,6 +36,10 @@ namespace Ascension
 
         public DiscardDeck discardPile { get; private set; }
 
+        public Player()
+        {
+            //should something go here?
+        }
         public Player(Game game, int playerNumber)
         {
 

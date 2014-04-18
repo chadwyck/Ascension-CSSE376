@@ -48,7 +48,7 @@ namespace Ascension
             get;
             private set;
         }
-        private CardCollection myst;
+        public CardCollection myst; //made this public so AI could access it. Should really AI functions it so it can be private.
         private CardCollection heavyIn;
         private Player[] plyrs;
         public Game (int numPlayers)
