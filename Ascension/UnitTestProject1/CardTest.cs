@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Ascension;
 using NUnit.Framework;
 
@@ -8,6 +9,7 @@ namespace AscensionTest
     class CardTest
     {
         private Game testGame;
+        private const int HONOR = 0, RUNES = 1, POWER = 2; // metricIDs
         Card apprentice;
         Card militia;
         Card heavyInfantry;
@@ -19,12 +21,23 @@ namespace AscensionTest
         [SetUp()]
         public void setup()
         {
-           testGame = new Game(2);
-           apprentice = new Card(testGame, "Apprentice", null, 0, 0, 1, 0, 0, 0, 0, null, "basic");
-           militia = new Card(testGame, "Militia", null, 0, 0, 0, 1, 0, 0, 0, null, "basic");
-           heavyInfantry = new Card(testGame, "Heavy Infantry", null, 0, 0, 0, 2, 1, 0, 0, null, "basic");
-           mystic = new Card(testGame, "Mystic", null, 0, 0, 2, 0, 1, 0, 0, null, "basic");
-           fakeHonor = new Card(testGame, "freeHonor", null, 0, 0, 0, 0, 0, 3, 0, null, "basic");
+            testGame = new Game(2);
+           apprentice = new Card(testGame, "Apprentice", null, 0, 0, 0, null, "basic",
+                                new List<CardAction> { new ChangeMetricCount(RUNES, 1, testGame) });
+           heavyInfantry = new Card(testGame, "Heavy Infantry", null, 2, 0, 1, null, "basic",
+                                new List<CardAction> { new ChangeMetricCount(POWER, 2, testGame) });
+           militia = new Card(testGame, "Militia", null, 0, 0, 0, null, "basic",
+                                new List<CardAction> { new ChangeMetricCount(POWER, 1, testGame) });
+           mystic = new Card(testGame, "Mystic", null, 3, 0, 1, null, "basic",
+                                new List<CardAction> { new ChangeMetricCount(RUNES, 2, testGame) });
+           fakeHonor = new Card(testGame, "freeHonor", null, 0, 0, 0, null, "basic",
+                                new List<CardAction> { new ChangeMetricCount(HONOR, 3, testGame) });
+
+           //apprentice = new Card(testGame, "Apprentice", null, 0, 0, 1, 0, 0, 0, 0, null, "basic");
+           //militia = new Card(testGame, "Militia", null, 0, 0, 0, 1, 0, 0, 0, null, "basic");
+           //heavyInfantry = new Card(testGame, "Heavy Infantry", null, 0, 0, 0, 2, 1, 0, 0, null, "basic");
+           //mystic = new Card(testGame, "Mystic", null, 0, 0, 2, 0, 1, 0, 0, null, "basic");
+           //fakeHonor = new Card(testGame, "freeHonor", null, 0, 0, 0, 0, 0, 3, 0, null, "basic");
            x = 0;
         }
         [Test()]

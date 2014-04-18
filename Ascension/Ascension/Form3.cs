@@ -83,6 +83,7 @@ namespace Ascension
         {
             if (!currCard.cardName.Equals("Please Select a Card"))
             {
+                currCard.game.cardsPlayed.add(currCard);
                 currCard.game.getCurrPlayer().play(currCard);
                 currCard.game.boardView.updatePlayer();
                 update(noneSelected);
@@ -93,6 +94,7 @@ namespace Ascension
         {
             currCard.game.getCurrPlayer().kill(currCard, currCard.powerCost);
 
+            currCard.game.boardView.updateVoidDeck(currCard.game.voidDeck);
             currCard.game.boardView.updatePlayer();
             currCard.game.boardView.updateCenRow(currCard.game.cenRow, currCard.game.pDeck);
             update(noneSelected);

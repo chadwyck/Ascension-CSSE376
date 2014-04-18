@@ -12,7 +12,7 @@ namespace Ascension
 
         private const int HONOR = 0, RUNES = 1, POWER = 2; // metricIDs
         
-        public Game game { get; private set; }
+        public Game game { get; protected set; }
 
         public int playerNumber { get; private set; }
         
@@ -36,6 +36,10 @@ namespace Ascension
 
         public DiscardDeck discardPile { get; private set; }
 
+        public Player()
+        {
+            //should something go here?
+        }
         public Player(Game game, int playerNumber)
         {
 
@@ -55,16 +59,14 @@ namespace Ascension
             this.playerPower = 0;
             this.game = game;
 
-            Card apprentice = new Card(this.game, "Apprentice", null, 0, 0, 0, null, "basic",
-                new List<CardAction> { new ChangeMetricCount(RUNES, 5, this.game), 
-                                       new ChangeMetricCount(HONOR, 10, this.game)});
-            //Card apprentice = new Card(this.game, "Apprentice", null, 0, 0, 1, 0, 0, 0, 0, null, "basic");
+            Card apprentice = new Card(this.game, "Apprentice", null, 0, 0, 0, "lifebound", "hero",
+                new List<CardAction> { new ChangeMetricCount(RUNES, 5, game),
+                                       new FirstTimeGet("fallen", "monster", HONOR, 5, game) });
 
             Card militia = new Card(this.game, "Militia", null, 0, 0, 0, null, "basic",
                 new List<CardAction> { new ChangeMetricCount(POWER, 3, this.game),
-                                       new ChangeMetricCount(HONOR, 10, this.game),
-                                       new MoveFromTo(deck, hand, false, false)});
-            //Card militia = new Card(this.game, "Militia", null, 0, 0, 0, 1, 0, 0, 0, null, "basic");
+                                       new MoveFromTo(deck, hand, false, false),
+                                       new ForEachCardType("lifebound","hero",false,HONOR,2,this.game)});
             for (int j = 0; j < 8; j++)
             deck.add(apprentice);
             deck.add(militia);
@@ -153,9 +155,10 @@ namespace Ascension
         {
             if (Cost <= this.playerPower)
             {
+                crd.playCard();
                 this.playerPower = this.playerPower - Cost;
                 this.game.cenRow.remove(crd);
-                discardPile.add(crd);
+                this.game.voidDeck.add(crd);
             }
         }
                 

@@ -12,7 +12,10 @@ namespace Ascension
         private int numPlayers;
         public BoardView boardView;
         public bool endOfGame { get; private set; }
-        
+
+        public List<FirstTimeGet> firstTimeList { get; set; }
+        public CardsPlayed cardsPlayed { get; set; }
+
         public int currTurn
         {
             get;
@@ -35,19 +38,34 @@ namespace Ascension
             get;
             private set;
         }
+        public CardCollection voidDeck
+        {
+            get;
+            private set;
+        }
         public CenterRow cenRow
         {
             get;
             private set;
         }
-        private CardCollection myst;
+        public CardCollection myst; //made this public so AI could access it. Should really AI functions it so it can be private.
         private CardCollection heavyIn;
         private Player[] plyrs;
         public Game (int numPlayers)
 		{
+            gameInitialize(numPlayers, false);
+        }
+
+        //public Game(int numPlayers, bool isTest)
+        //{
+        //    gameInitialize(numPlayers, true);
+        //}
+
+        private void gameInitialize(int numPlayers, bool isTest)
+        {
             endOfGame = false;
             currTurn = 1;
-            if ((numPlayers < 2)||(numPlayers > 4))
+            if ((numPlayers < 2) || (numPlayers > 4))
                 throw new ArgumentOutOfRangeException("Must have between 2 and 4 players.");
             this.numPlayers = numPlayers;
             plyrs = new Player[numPlayers];
@@ -56,49 +74,77 @@ namespace Ascension
             myst = new CardCollection();
             heavyIn = new CardCollection();
             generateCards();
-            foreach (var temp in plyrs){
+            foreach (var temp in plyrs)
+            {
                 temp.endTurn();
                 temp.deck.shuffle();
             }
-            boardView = new BoardView(this);
+            //if (isTest)
+            //{
+            //    boardView = new BoardView(this, isTest);
+            //}
+            //else
+            //{
+                boardView = new BoardView(this);
+            //}
             boardView.Show();
             boardView.updatePortal(pDeck);
-            cenRow = new CenterRow(pDeck, new VoidDeck());
+            voidDeck = new CardCollection();
+            cenRow = new CenterRow(pDeck, voidDeck);
             boardView.updateCenRow(cenRow, pDeck);
-            
-            
+            this.firstTimeList = new List<FirstTimeGet>();
+            this.cardsPlayed = new CardsPlayed();
+
+
             this.honorOnBoard = numPlayers * 30;
-           
+
             honorOnBoard = 30 * numPlayers;
             boardView.lblHonorCount.Text = honorOnBoard.ToString();
-            
-             //Player 1 is always starting at the moment.
-            
-            
-            
+
+            //Player 1 is always starting at the moment.
+
+
+
             boardView.updatePlayer();
-
         }
-
         public void generateCards(){
             Card apprentice = new Card(this, "Apprentice", null, 0, 0, 0, null, "basic",
-                new List<CardAction> { new ChangeMetricCount(RUNES, 5, this) });
-            //Card apprentice = new Card(this, "Apprentice", null, 0, 0, 1, 0, 0, 0, 0, null, "basic");
-            Card militia = new Card(this, "Militia", null, 0, 0, 0, 1, 0, 0, 0, null, "basic");
-            Card heavyInfantry = new Card(this, "Heavy Infantry", null, 0, 0, 0, 2, 1, 0, 0, null, "basic");
-            Card mystic = new Card(this, "Mystic", null, 0, 0, 2, 0, 1, 0, 0, null, "basic");
-            Card voidthirster = new Card(this, "Voidthirster", null, 5, 0, 0, 1, 3, 1, 0, "void", "construct"); //One honor per turn, honorGain when first monster in center is defeated each turn
-            Card theAllSeeingEye = new Card(this, "The All Seeing Eye", null, 6, 0, 0, 0, 2, 0, 1, "enlightened", "construct");
-            Card theGrandDesign = new Card(this, "The Grand Design", null, 6, 0, 2, 0, 6, 0, 0, "mechana", "construct"); //Honor can only be used for Mechana Constructs and only once per turn.
-            Card yggdrasilStaff = new Card(this, "Yggdrasil Staff", null, 4, 0, 0, 1, 2, 3, 0, "lifebound", "construct"); // Need to do the "once per turn" ability
-            Card masterDhartha = new Card(this, "Master Dhartha", null, 7, 0, 0, 0, 3, 0, 3, "enlightened", "hero");
-            Card demonSlayer = new Card(this, "Demon Slayer", null, 4, 0, 0, 3, 2, 0, 0, "void", "hero");
-            Card lifeboundInitiate = new Card(this, "Lifebound Initiate", null, 1, 0, 1, 0, 1, 1, 0, "lifebound", "hero");
-            Card avatarGolem = new Card(this, "Avatar Golem", null, 4, 0, 0, 2, 2, 1, 0, "mechana", "hero"); //1 for each faction among constructs you control
-            Card samaelsTrickster = new Card(this, "Samael's Trickster", null, 0, 3, 1, 0, 0, 1, 0, "fallen", "monster");
-            Card corrosiveWidow = new Card(this, "Corrosive Widow", null, 0, 4, 0, 0, 0, 3, 0, "fallen", "monster"); // Each opponent must destroy construct they control
-            Card tormentedSoul = new Card(this, "Tormented Soul", null, 0, 3, 0, 0, 0, 1, 1, "fallen", "monster");
-            Card mistakeOfCreation = new Card(this, "Mistake of Creation", null, 0, 4, 0, 0, 0, 4, 0, "fallen", "monster"); 
+                new List<CardAction> { new ChangeMetricCount(RUNES, 1, this) });
+
+            Card heavyInfantry = new Card(this, "Heavy Infantry", null, 2, 0, 1, null, "basic",
+                new List<CardAction> { new ChangeMetricCount(POWER, 2, this) });
+            Card mystic = new Card(this, "Mystic", null, 3, 0, 1, null, "basic",
+                new List<CardAction> { new ChangeMetricCount(RUNES, 2, this) });
+            Card voidthirster = new Card(this, "Voidthirster", null, 5, 0, 3, "void", "construct",
+                new List<CardAction> { new ChangeMetricCount(POWER, 1, this),
+                                       new FirstTimeGet("fallen", "monster", HONOR, 39, this)}); //One honor per turn, honorGain when first monster in center is defeated each turn
+            Card theAllSeeingEye = new Card(this, "The All Seeing Eye", null, 6, 0, 2, "enlightened", "construct",
+                new List<CardAction> { });
+            Card theGrandDesign = new Card(this, "The Grand Design", null, 6, 0, 6, "mechana", "construct",
+                new List<CardAction> { new ChangeMetricCount(RUNES, 2, this) }); //Honor can only be used for Mechana Constructs and only once per turn.
+            Card yggdrasilStaff = new Card(this, "Yggdrasil Staff", null, 4, 0, 2, "lifebound", "construct",
+                new List<CardAction> { new ChangeMetricCount(POWER, 1, this) }); // Need to do the "once per turn" ability
+            Card masterDhartha = new Card(this, "Master Dhartha", null, 7, 0, 3, "enlightened", "hero",
+                new List<CardAction> { new ChangeMetricCount(POWER, 100, this) });
+            Card demonSlayer = new Card(this, "Demon Slayer", null, 4, 0, 2, "void", "hero",
+                new List<CardAction> { new ChangeMetricCount(POWER, 3, this) });
+            Card lifeboundInitiate = new Card(this, "Lifebound Initiate", null, 1, 0, 1, "lifebound", "hero",
+                new List<CardAction> { new ChangeMetricCount(RUNES, 1, this),
+                                       new ChangeMetricCount(HONOR, 1, this)});
+            Card avatarGolem = new Card(this, "Avatar Golem", null, 4, 0, 2, "mechana", "hero",
+                new List<CardAction> { new ChangeMetricCount(POWER, 2, this) }); //1 for each faction among constructs you control
+            Card samaelsTrickster = new Card(this, "Samael's Trickster", null, 0, 3, 0, "fallen", "monster",
+                new List<CardAction> { new ChangeMetricCount(RUNES, 1, this),
+                                       new ChangeMetricCount(HONOR, 1, this)});
+            Card corrosiveWidow = new Card(this, "Corrosive Widow", null, 0, 4, 0, "fallen", "monster",
+                new List<CardAction> { new ChangeMetricCount(HONOR, 3, this)}); // Each opponent must destroy construct they control
+            Card tormentedSoul = new Card(this, "Tormented Soul", null, 0, 3, 0, "fallen", "monster",
+                new List<CardAction> { new ChangeMetricCount(HONOR, 1, this)});
+            Card runicLycanthrope = new Card(this, "Runic Lycanthrope", null, 3, 0, 1, "lifebound", "hero",
+                new List<CardAction> { new ChangeMetricCount(RUNES, 2, this),
+                                        new ForEachCardType("lifebound","hero",true,POWER,2,this) });
+            Card mistakeOfCreation = new Card(this, "Mistake of Creation", null, 0, 4, 0, "fallen", "monster",
+                new List<CardAction> { new ChangeMetricCount(HONOR, 4, this)}); 
             // Needs to banish card from center row and/or card from discard pile  
             pDeck = new PortalDeck();
             
@@ -112,6 +158,7 @@ namespace Ascension
             pDeck.add(samaelsTrickster);
             pDeck.add(corrosiveWidow);
             pDeck.add(tormentedSoul);
+            pDeck.add(runicLycanthrope);
             pDeck.add(mistakeOfCreation);
             
             pDeck.shuffle();
@@ -148,6 +195,8 @@ namespace Ascension
 
         public void advanceTurn()
         {
+            this.firstTimeList.Clear();
+            this.cardsPlayed.Clear();
             this.getCurrPlayer().endTurn();
             this.currTurn++;
             

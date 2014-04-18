@@ -64,12 +64,7 @@ namespace Ascension
             this.cardType = cardType;
             this.actions = actions;
         }
-
-        public void moveSelf(CardCollection to, CardCollection from) // LEGACY CODE - NEEED TO REMOVE
-        {
-            //To-Do: add and remove card
-        }
-
+        
         public void changeHonor(int n) // LEGACY CODE - NEEED TO REMOVE
         {
             game.getPlayer(game.currTurn).addHonor(n);
@@ -87,24 +82,17 @@ namespace Ascension
 
         public void playCard()
         {
-            //if ((honorGain + runeGain + powerGain) != 0) // LEGACY CODE - NEEED TO REMOVE
-            //{
-            //    changeHonor(this.honorGain); 
-            //    changeRunes(this.runeGain);
-            //    changePower(this.powerGain);
-            //}
-            //else
-            //{
-                foreach (var action in this.actions)
+            for (int i = 0; i < game.firstTimeList.Count; i++)
+            {
+                if (game.firstTimeList[i].checkCase(this.faction, this.cardType))
                 {
-                    action.doAction();
+                    game.firstTimeList[i].gain();
                 }
-            //}
-        }
-
-        public void banishCard() // LEGACY CODE - NEEED TO REMOVE
-        {
-            //
+            }
+            foreach (var action in this.actions)
+            {
+                action.doAction();
+            }
         }
     }
 }

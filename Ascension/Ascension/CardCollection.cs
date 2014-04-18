@@ -28,6 +28,10 @@ namespace Ascension
             length--;
             cards.Remove(card);
         }
+        public void Clear()
+        {
+            cards.Clear();
+        }
         public String[] toStringArray()
         {
             List<String> names = new List<String>();
