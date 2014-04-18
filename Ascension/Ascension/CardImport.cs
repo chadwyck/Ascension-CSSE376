@@ -13,9 +13,10 @@ namespace Ascension
     {
         private Game game;
         
-        private PortalDeck deck { get; set; }
-        public CardImport() {
-            deck = new PortalDeck();
+        public PortalDeck deck { get; private set; }
+        public CardImport(Game gme) {
+            game = gme;
+            deck = cardImport(game);
         }
         public PortalDeck cardImport(Game gme)
         {
@@ -25,6 +26,7 @@ namespace Ascension
 
             foreach (string cardFile in files)
             {
+                Console.WriteLine(cardFile);
                 deck.add(fileToCard(cardFile));
             }
             

@@ -57,8 +57,24 @@ namespace AscensionTest
             target.endTurn();
             Assert.AreEqual(0, target.playerPower);
         }
-
-
+        [Test()]
+        public void testkill(){
+            Game game = new Game(2);
+            game.advanceTurn();
+            game.getCurrPlayer().play(game.getCurrPlayer().hand.getCard(0));
+            game.getCurrPlayer().kill(game.cenRow.cards[0], 0);
+            Assert.AreEqual(game.voidDeck.length, 1);
+        }
+        [Test()]
+        public void testPurchase()
+        {
+            Game game = new Game(2);
+            game.advanceTurn();
+            game.getCurrPlayer().play(game.getCurrPlayer().hand.getCard(0));
+            game.getCurrPlayer().purchase(game.cenRow.cards[0], true, 0);
+            game.getCurrPlayer().purchase(game.cenRow.cards[0], false, 0);
+            Assert.AreEqual(game.getCurrPlayer().discardPile.length, 1);
+        }
 
 
 

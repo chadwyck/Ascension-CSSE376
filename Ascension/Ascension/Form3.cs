@@ -24,8 +24,8 @@ namespace Ascension
         }
         public void update(Card card)
         {
-            currCard = (new CardImport()).cardImport(null).draw();
-            //currCard = card;
+            //currCard = (new CardImport()).cardImport(null).draw();
+            currCard = card;
             upFrame();
         }
         private void label1_Click(object sender, EventArgs e)
