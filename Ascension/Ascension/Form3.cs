@@ -19,13 +19,13 @@ namespace Ascension
         {
             
             InitializeComponent();
-            //currCard = (new CardImport()).cardImport(null).draw();
-           noneSelected = new Card(null,"Please Select a Card", null, 0, 0, 0, 0, 0, 0, 0, null, "basic");
+            
+           //noneSelected = new Card(null,"Please Select a Card", null, 0, 0, 0, 0, 0, 0, 0, null, "basic");
         }
         public void update(Card card)
         {
-            
-            currCard = card;
+            currCard = (new CardImport()).cardImport(null).draw();
+            //currCard = card;
             upFrame();
         }
         private void label1_Click(object sender, EventArgs e)
