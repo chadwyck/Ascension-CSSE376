@@ -16,7 +16,7 @@ namespace AscensionTest
         PortalDeck deck;
         Game testgame;
         [SetUp()]
-        public void setup()
+        public void Setup()
         {
             testgame = new Game(2);
             CardImport im = new CardImport(testgame);
@@ -24,7 +24,7 @@ namespace AscensionTest
             
         }
         [Test()]
-        public void testImport()
+        public void TestImport()
         {
            
             testgame.advanceTurn();

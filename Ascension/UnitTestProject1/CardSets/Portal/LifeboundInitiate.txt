@@ -1,0 +1,19 @@
+﻿{
+	"cardName": "Lifebound Initiate",
+	"cardImage": "",
+	"runeCost": 5,
+	"powerCost": 0,
+	
+	"endGameHonorGain": 2,
+	"faction": "Lifebound",
+	"cardType": "hero",
+	"actions":[
+		{"type":"changeMetric",
+		"metricID": 0,
+		"incrementBy": 1},
+		{"type":"changeMetric",
+		"metricID": 1,
+		"incrementBy": 1}
+
+	]
+}

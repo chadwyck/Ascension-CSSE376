@@ -92,7 +92,7 @@ namespace AscensionTest
             var target = new Game(2);
             target.getCurrPlayer().addRunes(3);
             Card temp;
-            if ((temp = target.buyMyst()) != null)
+            if ((temp = target.buyHI()) != null)
             {
                 target.getCurrPlayer().purchase(temp, false, temp.runeCost);
             }

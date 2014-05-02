@@ -1,12 +1,15 @@
 ﻿using System;
 using Ascension;
 using NUnit.Framework;
+using System.Collections.Generic;
 
 namespace AscensionTest
 {
     [TestFixture()]
     public class CardCollectionTest
     {
+        private const int HONOR = 0, RUNES = 1, POWER = 2; // metricIDs
+
         private Game testGame = new Game(2);
         Card voidthirster;
         Card demonSlayer;
@@ -15,9 +18,15 @@ namespace AscensionTest
         [SetUp()]
         public void setup()
         {
-             voidthirster = new Card(testGame, "Voidthirster", null, 5, 0, 0, 1, 3, 1, 0, "void", "construct");
-             demonSlayer = new Card(testGame, "Demon Slayer", null, 4, 0, 0, 3, 2, 0, 0, "void", "hero");
-             samaelsTrickster = new Card(testGame, "Samael's Trickster", null, 0, 3, 1, 0, 0, 1, 0, "fallen", "monster");
+            voidthirster = new Card(testGame, "Voidthirster", null, 5, 0, 3, "void", "construct",
+                new List<CardAction> { new ChangeMetricCount(POWER, 1, testGame),
+                                       new FirstTimeGet("fallen", "monster", HONOR, 39, testGame)});
+            demonSlayer = new Card(testGame, "Demon Slayer", null, 4, 0, 2, "void", "hero",
+                new List<CardAction> { new ChangeMetricCount(POWER, 3, testGame) });
+            samaelsTrickster = new Card(testGame, "Samael's Trickster", null, 0, 3, 0, "fallen", "monster",
+                new List<CardAction> { new ChangeMetricCount(RUNES, 1, testGame),
+                                       new ChangeMetricCount(HONOR, 1, testGame)});
+
         }
         [Test()]
         public void testEmptyCC()

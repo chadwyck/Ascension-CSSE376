@@ -67,7 +67,7 @@ namespace AscensionTest
 
             aiLogic.aiPlayer.addRunes(5);
             aiLogic.buyMystic();
-            Assert.True(aiLogic.aiPlayer.discardPile.cards[0].cardName == "mystic");
+            Assert.AreEqual("Mystic", aiLogic.aiPlayer.discardPile.cards[0].cardName);
 
         }
 
