@@ -19,6 +19,16 @@ namespace AscensionTest
             Assert.True(aiTest != null);
         }
 
+        [Test]
+        public void TestThatAIGetsACard()
+        {
+            Game game = new Game(3, true);
+            game.getCurrPlayer().endTurn();
+            game.getCurrPlayer().endTurn();
+            game.getCurrPlayer().endTurn();
+            Assert.True(game.getCurrPlayer().discardPile.cards.Count == 5 || game.voidDeck.cards.Count == 1);
+            //This needs to be looked at again. -JRB
+        }
 
 
 

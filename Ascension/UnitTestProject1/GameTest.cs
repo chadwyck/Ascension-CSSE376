@@ -158,6 +158,13 @@ namespace AscensionTest
         }
 
         [Test()]
+        public void TestGameCanInitializeWithAI()
+        {
+            var target = new Game(3, true);
+            Assert.True(target.hasAI);
+        }
+
+        [Test()]
         public void TestLastPlayerIsAI()
         {
             var target = new Game(3, true);
