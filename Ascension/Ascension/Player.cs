@@ -14,27 +14,27 @@ namespace Ascension
         
         public Game game { get; protected set; }
 
-        public int playerNumber { get; private set; }
+        public int playerNumber { get; protected set; }
         
-        public int playerPower { get; private set; }
+        public int playerPower { get; protected set; }
 
-        public int playerRunes { get; private set; }
+        public int playerRunes { get; protected set; }
         
-        public int playerHonor { get; private set; }
+        public int playerHonor { get; protected set; }
         
-        public int currentRunes { get; private set; }
+        public int currentRunes { get; protected set; }
         
-        public int currentPower { get; private set; }
+        public int currentPower { get; protected set; }
 
-        public ConstructDeck constructs { get; private set; }
+        public ConstructDeck constructs { get; protected set; }
         
-        public HandDeck deck { get; private set; }
+        public HandDeck deck { get; protected set; }
         
-        public InHand hand { get; private set; }
+        public InHand hand { get; protected set; }
 
-        public InPlay onBoard { get; private set; }
+        public InPlay onBoard { get; protected set; }
 
-        public DiscardDeck discardPile { get; private set; }
+        public DiscardDeck discardPile { get; protected set; }
 
         public Player()
         {

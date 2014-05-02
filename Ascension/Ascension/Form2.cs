@@ -18,6 +18,7 @@ namespace Ascension
         private CardView cardView;
         private InHand inHand;
         private Game game;
+        private AILogic aiLogic;
 
         public BoardView(Game gm)
         {
@@ -131,6 +132,35 @@ namespace Ascension
             playDisc.Items.Clear();
             playDeck.Items.AddRange(game.getCurrPlayer().deck.toStringArray());
 
+            if ((game.hasAI) && (game.currTurn % game.numPlayers == 0))
+            {
+                Boolean isMonster = game.cenRow.cards[0].cardType == "monster";
+                Card currCard = game.cenRow.cards[0];
+                int cardCost;
+                if (isMonster)
+                {
+                    cardCost = game.cenRow.cards[0].powerCost;
+                }
+                else 
+                {
+                    cardCost = game.cenRow.cards[0].runeCost;
+                }
+                game.getCurrPlayer().addRunes(10);
+                game.getCurrPlayer().addPower(10);
+                game.getCurrPlayer().play(game.getCurrPlayer().hand.cards[0]);
+                if (isMonster)
+                {
+                    game.getCurrPlayer().kill(game.cenRow.cards[0], cardCost);
+                    currCard.game.boardView.updateVoidDeck(currCard.game.voidDeck);
+                }
+                else
+                {
+                    game.getCurrPlayer().purchase(game.cenRow.cards[0], false, cardCost);
+                }
+
+               // game.boardView.updateCenRow(game.cenRow, game.pDeck);
+            }
+
             playHand.Items.AddRange(game.getCurrPlayer().hand.toStringArray());
             playPlay.Items.AddRange(game.getCurrPlayer().onBoard.toStringArray());
             playDisc.Items.AddRange(game.getCurrPlayer().discardPile.toStringArray());
@@ -138,6 +168,7 @@ namespace Ascension
             lblYourHonor.Text = this.game.getCurrPlayer().playerHonor.ToString();
             runeNum.Text = this.game.getCurrPlayer().playerRunes.ToString();
             powNum.Text = this.game.getCurrPlayer().playerPower.ToString();
+
         }
 
         private void button3_Click(object sender, EventArgs e)

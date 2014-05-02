@@ -24,7 +24,7 @@ namespace Ascension
 
             if ((this.game.myst.length != 0) && (aiPlayer.playerRunes >= 3))
             {
-
+                aiPlayer.addRunes(3);
                 temp = this.game.myst.getCard(0);
                 this.game.myst.remove(temp);
                 aiPlayer.addRunes(-3); //these references to aiPlayer really ought to be abstracted
