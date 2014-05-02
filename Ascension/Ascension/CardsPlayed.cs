@@ -28,33 +28,33 @@ namespace Ascension
 
             return count;
         }
-        public int numberOfFaction(string faction)
-        {
-            int count = 0;
+        //public int numberOfFaction(string faction)
+        //{
+        //    int count = 0;
 
-            foreach (Card card in cards)
-            {
-                if (card.faction == faction)
-                {
-                    count++;
-                }
-            }
+        //    foreach (Card card in cards)
+        //    {
+        //        if (card.faction == faction)
+        //        {
+        //            count++;
+        //        }
+        //    }
 
-            return count;
-        }
-        public int numberOfCardType(string cardType)
-        {
-            int count = 0;
+        //    return count;
+        //}
+        //public int numberOfCardType(string cardType)
+        //{
+        //    int count = 0;
 
-            foreach (Card card in cards)
-            {
-                if (card.cardType == cardType)
-                {
-                    count++;
-                }
-            }
+        //    foreach (Card card in cards)
+        //    {
+        //        if (card.cardType == cardType)
+        //        {
+        //            count++;
+        //        }
+        //    }
 
-            return count;
-        }
+        //    return count;
+        //}
     }
 }

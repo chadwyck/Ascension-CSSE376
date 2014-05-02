@@ -44,17 +44,17 @@ namespace Ascension
             }
         }
 
-        private int numOf()
-        {
-            if (faction == null)
-            {
-                return this.game.cardsPlayed.numberOfCardType(cardType);
-            }
-            if (cardType == null)
-            {
-                return this.game.cardsPlayed.numberOfCardType(faction);
-            }
-            return this.game.cardsPlayed.numberOf(faction, cardType);
-        }
+        //private int numOf()
+        //{
+        //    if (faction == null)
+        //    {
+        //        return this.game.cardsPlayed.numberOfCardType(cardType);
+        //    }
+        //    if (cardType == null)
+        //    {
+        //        return this.game.cardsPlayed.numberOfCardType(faction);
+        //    }
+        //    return this.game.cardsPlayed.numberOf(faction, cardType);
+        //}
     }
 }
