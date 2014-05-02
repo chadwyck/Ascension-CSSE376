@@ -6,10 +6,16 @@ using System.Threading.Tasks;
 
 namespace Ascension
 {
-    class ForEachCardType : ChangeMetricCount
+    public class ForEachCardType : ChangeMetricCount
     {
         string faction, cardType;
         bool playedOne;
+        private string p1;
+        private string p2;
+        private bool p3;
+        private int POWER;
+        private int p4;
+        private Game testGame;
         public ForEachCardType(string faction, string cardType, bool playedOne, int metricID, int incrementBy, Game game)
             : base(metricID, incrementBy, game)
         {
@@ -17,6 +23,7 @@ namespace Ascension
             this.cardType = cardType;
             this.playedOne = playedOne;
         }
+
 
         override public void doAction()
         {

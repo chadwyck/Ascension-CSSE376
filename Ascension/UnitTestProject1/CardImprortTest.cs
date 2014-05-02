@@ -12,7 +12,7 @@ namespace AscensionTest
     class CardImportTest
     {
         
-       
+        
         PortalDeck deck;
         Game testgame;
         [SetUp()]
@@ -20,7 +20,7 @@ namespace AscensionTest
         {
             testgame = new Game(2);
             CardImport im = new CardImport(testgame);
-           deck = im.deck;
+            deck = im.deck;
             
         }
         [Test()]
