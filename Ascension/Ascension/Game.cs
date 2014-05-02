@@ -9,12 +9,13 @@ namespace Ascension
     public class Game
     {
         private const int HONOR = 0, RUNES = 1, POWER = 2; // metricIDs
-        private int numPlayers;
+        public int numPlayers;
         public BoardView boardView;
         public bool endOfGame { get; private set; }
 
         public List<FirstTimeGet> firstTimeList { get; set; }
         public CardsPlayed cardsPlayed { get; set; }
+        public Boolean hasAI;
 
         public int currTurn
         {
@@ -54,6 +55,13 @@ namespace Ascension
         public Game (int numPlayers)
 		{
             gameInitialize(numPlayers, false);
+            this.hasAI = false;
+        }
+
+        public Game(int numPlayers, Boolean hasAI)
+        {
+            this.hasAI = true;
+            gameInitialize(numPlayers, false);
         }
 
         //public Game(int numPlayers, bool isTest)
@@ -65,47 +73,105 @@ namespace Ascension
         {
             endOfGame = false;
             currTurn = 1;
-            if ((numPlayers < 2) || (numPlayers > 4))
-                throw new ArgumentOutOfRangeException("Must have between 2 and 4 players.");
-            this.numPlayers = numPlayers;
-            plyrs = new Player[numPlayers];
-            for (int i = 0; i < numPlayers; i++)
-                plyrs[i] = new Player(this, i + 1);
-            myst = new CardCollection();
-            heavyIn = new CardCollection();
-            generateCards();
-            foreach (var temp in plyrs)
+            if (!this.hasAI)
             {
-                temp.endTurn();
-                temp.deck.shuffle();
-            }
-            //if (isTest)
-            //{
-            //    boardView = new BoardView(this, isTest);
-            //}
-            //else
-            //{
+                Console.WriteLine("In the regular init.");
+                if ((numPlayers < 2) || (numPlayers > 4))
+                    throw new ArgumentOutOfRangeException("Must have between 2 and 4 players.");
+                this.numPlayers = numPlayers;
+                plyrs = new Player[numPlayers];
+                for (int i = 0; i < numPlayers; i++)
+                    plyrs[i] = new Player(this, i + 1);
+                myst = new CardCollection();
+                heavyIn = new CardCollection();
+                generateCards();
+                foreach (var temp in plyrs)
+                {
+                    temp.endTurn();
+                    temp.deck.shuffle();
+                }
+                //if (isTest)
+                //{
+                //    boardView = new BoardView(this, isTest);
+                //}
+                //else
+                //{
                 boardView = new BoardView(this);
-            //}
-            boardView.Show();
-            boardView.updatePortal(pDeck);
-            voidDeck = new CardCollection();
-            cenRow = new CenterRow(pDeck, voidDeck);
-            boardView.updateCenRow(cenRow, pDeck);
-            this.firstTimeList = new List<FirstTimeGet>();
-            this.cardsPlayed = new CardsPlayed();
+                //}
+                boardView.Show();
+                boardView.updatePortal(pDeck);
+                voidDeck = new CardCollection();
+                cenRow = new CenterRow(pDeck, voidDeck);
+                boardView.updateCenRow(cenRow, pDeck);
+                this.firstTimeList = new List<FirstTimeGet>();
+                this.cardsPlayed = new CardsPlayed();
 
 
-            this.honorOnBoard = numPlayers * 30;
+                this.honorOnBoard = numPlayers * 30;
 
-            honorOnBoard = 30 * numPlayers;
-            boardView.lblHonorCount.Text = honorOnBoard.ToString();
+                honorOnBoard = 30 * numPlayers;
+                boardView.lblHonorCount.Text = honorOnBoard.ToString();
 
-            //Player 1 is always starting at the moment.
+                //Player 1 is always starting at the moment.
 
 
 
-            boardView.updatePlayer();
+                boardView.updatePlayer();
+            }
+            else
+            {
+                Console.WriteLine("In the AI init.");
+                if ((numPlayers < 1) || (numPlayers > 3))
+                    throw new ArgumentOutOfRangeException("Must have between 2 and 4 players, including AI.");
+                this.numPlayers = numPlayers + 1;
+                numPlayers = numPlayers + 1; //Not sure if this is needed; I just wanted to not modify below code as much as possible.
+                plyrs = new Player[numPlayers];
+                for (int i = 0; i < numPlayers; i++)
+                {
+                    if (i != (numPlayers - 1))
+                        plyrs[i] = new Player(this, i + 1);
+                    else
+                    {
+                        plyrs[i] = new AI(this, i + 1);
+                        Console.WriteLine("Added an AI.");
+                    }
+                }
+                myst = new CardCollection();
+                heavyIn = new CardCollection();
+                generateCards();
+                foreach (var temp in plyrs)
+                {
+                    temp.endTurn();
+                    temp.deck.shuffle();
+                }
+                //if (isTest)
+                //{
+                //    boardView = new BoardView(this, isTest);
+                //}
+                //else
+                //{
+                boardView = new BoardView(this);
+                //}
+                boardView.Show();
+                boardView.updatePortal(pDeck);
+                voidDeck = new CardCollection();
+                cenRow = new CenterRow(pDeck, voidDeck);
+                boardView.updateCenRow(cenRow, pDeck);
+                this.firstTimeList = new List<FirstTimeGet>();
+                this.cardsPlayed = new CardsPlayed();
+
+
+                this.honorOnBoard = numPlayers * 30;
+
+                honorOnBoard = 30 * numPlayers;
+                boardView.lblHonorCount.Text = honorOnBoard.ToString();
+
+                //Player 1 is always starting at the moment.
+
+
+
+                boardView.updatePlayer();
+            }
         }
         public void generateCards(){
             Card apprentice = new Card(this, "Apprentice", null, 0, 0, 0, null, "basic",
@@ -176,12 +242,13 @@ namespace Ascension
             pDeck.add(mistakeOfCreation);
             
             pDeck.shuffle();
+
             CardImport card = new CardImport(this);
             pDeck = card.cardImport(this);
            foreach(Player p in plyrs){
                 
            }
-            
+
            
            for (int i = 0; i < 30; i++)
            {
