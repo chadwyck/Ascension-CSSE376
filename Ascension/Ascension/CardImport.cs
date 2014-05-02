@@ -21,13 +21,13 @@ namespace Ascension
         public PortalDeck cardImport(Game gme)
         {
             deck = new PortalDeck();
-            string currentDirName = /*@""+System.IO.Directory.GetCurrentDirectory()+"\\CardSets\\Standard\\";*/ @"C:\Users\barnesgl\Documents\Documents\Classes\2013-2014\Q3\CSSE376\Ascension-CSSE376\Ascension\Ascension\CardSets\Portal\";
-           
+            string currentDirName = @""+System.IO.Directory.GetCurrentDirectory().Substring(0,System.IO.Directory.GetCurrentDirectory().Length-10)+"\\CardSets\\Portal\\";;
+            Console.WriteLine(currentDirName);
             string[] files = System.IO.Directory.GetFiles(currentDirName, "*.txt");
 
             foreach (string cardFile in files)
             {
-                Console.WriteLine(cardFile);
+                
                 deck.add(fileToCard(cardFile));
             }
             
@@ -102,7 +102,7 @@ namespace Ascension
         private Card fileToCard(String file)
         {
             var json = System.IO.File.ReadAllText(file);
-            Console.WriteLine(json);
+           
             imCard card = new System.Web.Script.Serialization.JavaScriptSerializer().Deserialize<imCard>(json);
             return new Card(game, card.cardName, null, card.runeCost, card.powerCost, card.endGameHonorGain, card.faction, card.cardType,
                  cardActionGen(card.actions));

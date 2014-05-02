@@ -61,7 +61,7 @@ namespace Ascension
 
             Card militia = new Card(base.game, "Militia", null, 0, 0, 0, null, "basic",
                 new List<CardAction> { new ChangeMetricCount(POWER, 3, base.game),
-                                       new MoveFromTo(deck, hand, false, false),
+                                       new MoveFromTo("deck", "hand", false, false,base.game),
                                        new ForEachCardType("lifebound","hero",false,HONOR,2,base.game)});
             for (int j = 0; j < 8; j++)
                 base.deck.add(apprentice);
