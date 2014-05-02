@@ -156,5 +156,14 @@ namespace AscensionTest
             bool canDoMore = target.canDoMore();
             Assert.IsFalse(canDoMore);
         }
+
+        [Test()]
+        public void TestLastPlayerIsAI()
+        {
+            var target = new Game(3, true);
+            AI aiTest = new AI(new Game(4), 3); // just made ot get an instance of something that is an AI.
+            Assert.True(target.getPlayer(3).GetType() == aiTest.GetType());
+        }
+
     }
 }

@@ -18,7 +18,6 @@ namespace AscensionTest
         [SetUp()]
         public void setup()
         {
-<<<<<<< HEAD
             voidthirster = new Card(testGame, "Voidthirster", null, 5, 0, 3, "void", "construct",
                 new List<CardAction> { new ChangeMetricCount(POWER, 1, testGame),
                                        new FirstTimeGet("fallen", "monster", HONOR, 39, testGame)});
@@ -28,11 +27,6 @@ namespace AscensionTest
                 new List<CardAction> { new ChangeMetricCount(RUNES, 1, testGame),
                                        new ChangeMetricCount(HONOR, 1, testGame)});
 
-=======
-             voidthirster = new Card(testGame, "Voidthirster", null, 5, 0, 1, "void", "construct", null);
-             demonSlayer = new Card(testGame, "Demon Slayer", null, 4, 0, 0, "void", "hero", null);
-             samaelsTrickster = new Card(testGame, "Samael's Trickster", null, 0, 3, 1, "fallen", "monster", null);
->>>>>>> Added some AI control and made center row update properly.
         }
         [Test()]
         public void testEmptyCC()

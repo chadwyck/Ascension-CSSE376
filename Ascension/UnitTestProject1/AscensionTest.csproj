@@ -58,6 +58,7 @@
     <Compile Include="AILogicTest.cs" />
     <Compile Include="CardTest.cs" />
     <Compile Include="CardImprortTest.cs" />
+    <Compile Include="AITest.cs" />
     <Compile Include="PlayerTest.cs" />
     <Compile Include="GameTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
