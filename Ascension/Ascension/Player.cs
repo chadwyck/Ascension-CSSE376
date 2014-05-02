@@ -74,19 +74,19 @@ namespace Ascension
         }
 
 
-        public void addHonor(int honor)  // LEGACY CODE - NEEED TO REMOVE
+        public void addHonor(int honor)  
         {
             this.changeMetricCount(HONOR, honor);
         }
 
 
-        public void addRunes(int runes) // LEGACY CODE - NEEED TO REMOVE
+        public void addRunes(int runes) 
         {
             this.changeMetricCount(RUNES, runes);
         }
 
 
-        public void addPower(int power) // LEGACY CODE - NEEED TO REMOVE
+        public void addPower(int power) 
         {
             this.changeMetricCount(POWER, power);
         }
@@ -154,7 +154,7 @@ namespace Ascension
         public void kill(Card crd, int Cost)
         {
             if (Cost <= this.playerPower)
-            {
+            {                                                                                             
                 crd.playCard();
                 this.playerPower = this.playerPower - Cost;
                 this.game.cenRow.remove(crd);
