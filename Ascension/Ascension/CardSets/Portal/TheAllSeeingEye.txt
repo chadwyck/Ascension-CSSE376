@@ -1,0 +1,13 @@
+﻿{
+	"cardName": "The All Seeing Eye",
+	"cardImage": "",
+	"runeCost": 6,
+	"powerCost": 0,
+	
+	"endGameHonorGain": 2,
+	"faction": "enlightened",
+	"cardType": "construct",
+	"actions":[
+	{"type":""}
+	]
+}

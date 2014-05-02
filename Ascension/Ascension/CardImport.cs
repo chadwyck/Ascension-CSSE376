@@ -21,7 +21,8 @@ namespace Ascension
         public PortalDeck cardImport(Game gme)
         {
             deck = new PortalDeck();
-            string currentDirName = /*@""+System.IO.Directory.GetCurrentDirectory()+"\\CardSets\\Standard\\";*/ @"C:\Users\barnesgl\Documents\Documents\Classes\2013-2014\Q3\CSSE376\Ascension-CSSE376\Ascension\Ascension\CardSets\Standard\";
+            string currentDirName = /*@""+System.IO.Directory.GetCurrentDirectory()+"\\CardSets\\Standard\\";*/ @"C:\Users\barnesgl\Documents\Documents\Classes\2013-2014\Q3\CSSE376\Ascension-CSSE376\Ascension\Ascension\CardSets\Portal\";
+           
             string[] files = System.IO.Directory.GetFiles(currentDirName, "*.txt");
 
             foreach (string cardFile in files)
@@ -62,12 +63,18 @@ namespace Ascension
                public string type { get; set; }
                public int metricID { get; set; }
                public int incrementBy { get; set; }
+               public bool userChoice{get;set;}
+               public bool optional { get; set; }
+               public string faction {get; set;}
+               public string cardType { get; set;}
+               public bool playedOne { get; set; }
+               public string fromCC { get; set; }
+               public string toCC { get; set; }
+               
+
 
         }
-        //private class imChangeMetricCount: imCardAction {
-           //     public int metricID { get; set; }
-         //     public int incrementBy { get; set; }
-        //}
+        
         private List<CardAction> cardActionGen(List<imCardAction> acts){
             List<CardAction> ret = new List<CardAction>();
             foreach (var act in acts)
@@ -75,12 +82,27 @@ namespace Ascension
                 if(act.type.Equals("changeMetric")){
                     ret.Add(new ChangeMetricCount(act.metricID,act.incrementBy, game));
                 }
+                if (act.type.Equals("firstTimeGet"))
+                {
+                    ret.Add(new FirstTimeGet(act.faction, act.cardType,act.metricID, act.incrementBy, game));
+                }
+                 if (act.type.Equals("forEachCardType"))
+                {
+                    ret.Add(new ForEachCardType(act.faction, act.cardType, act.playedOne, act.metricID, act.incrementBy, game));
+                }
+               if (act.type.Equals("moveFromTo"))
+                {
+                  
+                    ret.Add(new MoveFromTo(act.fromCC, act.toCC,act.userChoice,act.optional,game));
+                }
+               
             }
         return ret;
         }
         private Card fileToCard(String file)
         {
             var json = System.IO.File.ReadAllText(file);
+            Console.WriteLine(json);
             imCard card = new System.Web.Script.Serialization.JavaScriptSerializer().Deserialize<imCard>(json);
             return new Card(game, card.cardName, null, card.runeCost, card.powerCost, card.endGameHonorGain, card.faction, card.cardType,
                  cardActionGen(card.actions));

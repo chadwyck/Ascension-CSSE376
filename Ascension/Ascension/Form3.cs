@@ -19,8 +19,8 @@ namespace Ascension
         {
             
             InitializeComponent();
-            
-           //noneSelected = new Card(null,"Please Select a Card", null, 0, 0, 0, 0, 0, 0, 0, null, "basic");
+
+            noneSelected = new Card(null, "Please Select a Card", null, 0, 0, 0, "", "basic", null);
         }
         public void update(Card card)
         {

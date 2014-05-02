@@ -178,8 +178,18 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="boardbackground.png" />
-    <Content Include="CardSets\Standard\militia.txt" />
-    <Content Include="CardSets\Standard\apprentice.txt" />
+    <Content Include="CardSets\PlayerHand\militia.txt" />
+    <Content Include="CardSets\PlayerHand\apprentice.txt" />
+    <Content Include="CardSets\Portal\SamaelsTrickster.txt" />
+    <Content Include="CardSets\Portal\TormentedSoul.txt" />
+    <Content Include="CardSets\Portal\AvatarGolem.txt" />
+    <Content Include="CardSets\Portal\LifeboundInitiate.txt" />
+    <Content Include="CardSets\Portal\DemonSlayer.txt" />
+    <Content Include="CardSets\Portal\MasterDhartha.txt" />
+    <Content Include="CardSets\Portal\YggdrasilStaff.txt" />
+    <Content Include="CardSets\Portal\TheGrandDesign.txt" />
+    <Content Include="CardSets\Portal\TheAllSeeingEye.txt" />
+    <Content Include="CardSets\Portal\VoidThirster.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
