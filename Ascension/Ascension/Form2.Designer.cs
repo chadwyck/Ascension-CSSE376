@@ -44,7 +44,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.playDeck = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.comboBox6 = new System.Windows.Forms.ComboBox();
+            this.playConstructs = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -59,7 +59,8 @@
             this.portalCombo = new System.Windows.Forms.ComboBox();
             this.label16 = new System.Windows.Forms.Label();
             this.currentPlayNum = new System.Windows.Forms.Label();
-            this.SuspendLayout();
+			this.button6 = new System.Windows.Forms.Button();
+			this.mechRuneNum = new System.Windows.Forms.Label();            this.SuspendLayout();
             // 
             // comboBox1
             // 
@@ -199,13 +200,13 @@
             this.label5.TabIndex = 14;
             this.label5.Text = "Deck";
             // 
-            // comboBox6
+            // playConstructs
             // 
-            this.comboBox6.FormattingEnabled = true;
-            this.comboBox6.Location = new System.Drawing.Point(49, 469);
-            this.comboBox6.Name = "comboBox6";
-            this.comboBox6.Size = new System.Drawing.Size(121, 21);
-            this.comboBox6.TabIndex = 15;
+            this.playConstructs.FormattingEnabled = true;
+            this.playConstructs.Location = new System.Drawing.Point(49, 469);
+            this.playConstructs.Name = "playConstructs";
+            this.playConstructs.Size = new System.Drawing.Size(121, 21);
+            this.playConstructs.TabIndex = 15;
             // 
             // label6
             // 
@@ -335,13 +336,35 @@
             this.currentPlayNum.TabIndex = 29;
             this.currentPlayNum.Text = "Player ";
             // 
-            // BoardView
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(49, 509);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(75, 23);
+            this.button6.TabIndex = 30;
+            this.button6.Text = "Play All ";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+
+            // mechRuneNum
+            // 
+            this.mechRuneNum.AutoSize = true;
+            this.mechRuneNum.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.mechRuneNum.ForeColor = System.Drawing.SystemColors.Control;
+            this.mechRuneNum.Location = new System.Drawing.Point(730, 28);
+            this.mechRuneNum.Name = "mechRuneNum";
+            this.mechRuneNum.Size = new System.Drawing.Size(13, 13);
+            this.mechRuneNum.TabIndex = 30;
+            this.mechRuneNum.Text = "0";
+            //             // BoardView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1004, 544);
-            this.Controls.Add(this.currentPlayNum);
+            this.Controls.Add(this.button6);
+            this.Controls.Add(this.mechRuneNum);            this.Controls.Add(this.currentPlayNum);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.portalCombo);
             this.Controls.Add(this.label15);
@@ -355,7 +378,7 @@
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.comboBox6);
+            this.Controls.Add(this.playConstructs);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.playDeck);
             this.Controls.Add(this.label4);
@@ -373,7 +396,6 @@
             this.Controls.Add(this.comboBox1);
             this.Name = "BoardView";
             this.Text = "Board";
-            this.Load += new System.EventHandler(this.Form2_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -396,7 +418,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox playDeck;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox comboBox6;
+        private System.Windows.Forms.ComboBox playConstructs;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
@@ -411,5 +433,6 @@
         private System.Windows.Forms.Label label16;
         public System.Windows.Forms.Label lblHonorCount;
         private System.Windows.Forms.Label currentPlayNum;
-    }
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Label mechRuneNum;    }
 }

@@ -14,7 +14,7 @@ namespace AscensionTest
         [Test]
         public void TestThatAIInitializes()
         {
-            Game game = new Game(3);
+            Game game = new Game(3, false, true);
             AI aiTest = new AI(game, 4);
             Assert.True(aiTest != null);
         }
@@ -22,7 +22,7 @@ namespace AscensionTest
         [Test]
         public void TestThatAIGetsACard()
         {
-            Game game = new Game(3, true);
+            Game game = new Game(3, true, true);
             game.getCurrPlayer().endTurn();
             game.getCurrPlayer().endTurn();
             game.getCurrPlayer().endTurn();

@@ -8,9 +8,9 @@ namespace AscensionTest
     [TestFixture()]
     public class CardCollectionTest
     {
-        private const int HONOR = 0, RUNES = 1, POWER = 2; // metricIDs
+        private const int HONOR = 0, RUNES = 1, POWER = 2, MECHRUNES = 3; // metricIDs
 
-        private Game testGame = new Game(2);
+        private Game testGame = new Game(2, false, true);
         Card voidthirster;
         Card demonSlayer;
         Card samaelsTrickster;
@@ -62,6 +62,19 @@ namespace AscensionTest
             Card drawn2 = pd.draw();
             Assert.AreEqual(drawn2, demonSlayer);
             Assert.AreEqual(pd.length, 0);
+        }
+        [Test()]
+        public void testHandDeck()
+        {
+            var hd = new HandDeck();
+            var dd = new DiscardDeck(hd);
+            var ip = new InPlay(dd);
+            var ih = new InHand(dd,ip,hd);
+            ih.playCard(voidthirster);
+            hd.add(voidthirster);
+            hd.addToTop(demonSlayer);
+            var cardOnTop = hd.getCard(0);
+            Assert.AreEqual(demonSlayer, cardOnTop);
         }
     }
 }

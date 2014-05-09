@@ -8,7 +8,7 @@ namespace Ascension
 {
     public class Game
     {
-        private const int HONOR = 0, RUNES = 1, POWER = 2; // metricIDs
+        private const int HONOR = 0, RUNES = 1, POWER = 2, MECHRUNES = 3; // metricIDs
         public int numPlayers;
         public BoardView boardView;
         public bool endOfGame { get; private set; }
@@ -60,14 +60,15 @@ namespace Ascension
 
         public Game(int numPlayers, Boolean hasAI)
         {
-            this.hasAI = true;
+            this.hasAI = hasAI;
             gameInitialize(numPlayers, false);
         }
 
-        //public Game(int numPlayers, bool isTest)
-        //{
-        //    gameInitialize(numPlayers, true);
-        //}
+        public Game(int numPlayers, Boolean hasAI, bool isTest)
+        {
+            this.hasAI = hasAI;
+            gameInitialize(numPlayers, isTest);
+        }
 
         private void gameInitialize(int numPlayers, bool isTest)
         {
@@ -96,9 +97,12 @@ namespace Ascension
                 //}
                 //else
                 //{
-                boardView = new BoardView(this);
+                boardView = new BoardView(this, isTest);
                 //}
-                boardView.Show();
+                if (!isTest)
+                {
+                    boardView.Show();
+                }
                 boardView.updatePortal(pDeck);
                 voidDeck = new CardCollection();
                 cenRow = new CenterRow(pDeck, voidDeck);
@@ -144,15 +148,13 @@ namespace Ascension
                     temp.endTurn();
                     temp.deck.shuffle();
                 }
-                //if (isTest)
-                //{
-                //    boardView = new BoardView(this, isTest);
-                //}
-                //else
-                //{
-                boardView = new BoardView(this);
-                //}
-                boardView.Show();
+                
+                boardView = new BoardView(this, isTest);
+
+                if (!isTest)
+                {
+                    boardView.Show();
+                }
                 boardView.updatePortal(pDeck);
                 voidDeck = new CardCollection();
                 cenRow = new CenterRow(pDeck, voidDeck);
@@ -172,6 +174,7 @@ namespace Ascension
 
                 boardView.updatePlayer();
             }
+            boardView.setCanDoMoreButton();
         }
         public void generateCards(){
             Card apprentice = new Card(this, "Apprentice", null, 0, 0, 0, null, "basic",
@@ -280,6 +283,7 @@ namespace Ascension
             this.cardsPlayed.Clear();
             this.getCurrPlayer().endTurn();
             this.currTurn++;
+            this.getCurrPlayer().constructs.playAll();
             
         }
         public Card buyMyst()
@@ -323,21 +327,44 @@ namespace Ascension
             int availableRunes = getCurrPlayer().playerRunes;
             int availablePower = getCurrPlayer().playerPower;
 
-            foreach (Card card in cenRow.cards)
+
+            if (this.cenRow != null)
             {
-                if (card.cardType == "monster")
+                foreach (Card card in cenRow.cards)
                 {
-                    if (card.powerCost <= availablePower)
-                        return true;
+                    if (card.cardType == "monster")
+                    {
+                        if (card.powerCost <= availablePower)
+                            return true;
+                    }
+                    else
+                    {
+                        if (card.runeCost <= availableRunes)
+                            return true;
+                    }
                 }
-                else
-                {
-                    if (card.runeCost <= availableRunes)
-                        return true;
-                }
+                return this.getCurrPlayer().hand.cards.Count > 0;
             }
-            return this.getCurrPlayer().hand.cards.Count > 0;
+            return false;
                
+        }
+
+        public void playAll()
+        {
+            foreach (Card card in this.getCurrPlayer().hand.cards)
+            {
+                card.playCard();
+                this.boardView.updatePlayer();
+            }
+
+            while (this.getCurrPlayer().hand.length > 0)
+            {
+                this.getCurrPlayer().onBoard.add(this.getCurrPlayer().hand.getCard(0)); //adds first card to board
+                this.getCurrPlayer().hand.remove(this.getCurrPlayer().hand.getCard(0)); //removes from hand
+            }
+           
+            this.boardView.updatePlayer();
+
         }
 
         public void endGame()

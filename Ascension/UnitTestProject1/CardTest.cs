@@ -9,7 +9,7 @@ namespace AscensionTest
     class CardTest
     {
         private Game testGame;
-        private const int HONOR = 0, RUNES = 1, POWER = 2; // metricIDs
+        private const int HONOR = 0, RUNES = 1, POWER = 2, MECHRUNES = 3; // metricIDs
         Card apprentice;
         Card militia;
         Card heavyInfantry;
@@ -21,7 +21,7 @@ namespace AscensionTest
         [SetUp()]
         public void setup()
         {
-            testGame = new Game(2);
+            testGame = new Game(2, false, true);
            apprentice = new Card(testGame, "Apprentice", null, 0, 0, 0, null, "basic",
                                 new List<CardAction> { new ChangeMetricCount(RUNES, 1, testGame) });
            heavyInfantry = new Card(testGame, "Heavy Infantry", null, 2, 0, 1, null, "basic",
@@ -44,6 +44,7 @@ namespace AscensionTest
         public void testAddHonor()
         {
             x = testGame.getCurrPlayer().playerHonor;
+            testGame.getCurrPlayer().getEndGameHonor();
             fakeHonor.playCard();
             Assert.AreEqual(x + 3, testGame.getCurrPlayer().playerHonor);
             x = testGame.getCurrPlayer().playerHonor;
