@@ -346,6 +346,24 @@ namespace Ascension
                
         }
 
+        public void playAll()
+        {
+            foreach (Card card in this.getCurrPlayer().hand.cards)
+            {
+                card.playCard();
+                this.boardView.updatePlayer();
+            }
+
+            while (this.getCurrPlayer().hand.length > 0)
+            {
+                this.getCurrPlayer().onBoard.add(this.getCurrPlayer().hand.getCard(0)); //adds first card to board
+                this.getCurrPlayer().hand.remove(this.getCurrPlayer().hand.getCard(0)); //removes from hand
+            }
+           
+            this.boardView.updatePlayer();
+
+        }
+
         public void endGame()
         {
             this.endOfGame = true;

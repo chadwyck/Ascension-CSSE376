@@ -228,5 +228,10 @@ namespace Ascension
             button4.BackColor = Color.Red;
         }
 
+        private void button6_Click(object sender, EventArgs e)
+        {
+            this.game.playAll();
+        }
+
     }
 }

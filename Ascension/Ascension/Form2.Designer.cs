@@ -59,6 +59,7 @@
             this.portalCombo = new System.Windows.Forms.ComboBox();
             this.label16 = new System.Windows.Forms.Label();
             this.currentPlayNum = new System.Windows.Forms.Label();
+            this.button6 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // comboBox1
@@ -335,12 +336,23 @@
             this.currentPlayNum.TabIndex = 29;
             this.currentPlayNum.Text = "Player ";
             // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(49, 509);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(75, 23);
+            this.button6.TabIndex = 30;
+            this.button6.Text = "Play All ";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
             // BoardView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1004, 544);
+            this.Controls.Add(this.button6);
             this.Controls.Add(this.currentPlayNum);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.portalCombo);
@@ -411,5 +423,6 @@
         private System.Windows.Forms.Label label16;
         public System.Windows.Forms.Label lblHonorCount;
         private System.Windows.Forms.Label currentPlayNum;
+        private System.Windows.Forms.Button button6;
     }
 }

@@ -24,5 +24,6 @@ namespace Ascension
                 discardCard(this.getCard(0));
             
         }
+
     }
 }
