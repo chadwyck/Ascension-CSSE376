@@ -8,13 +8,14 @@ namespace Ascension
 {   
     public class HandDeck : Shuffleable
     {
-        DiscardDeck discard;
+        public DiscardDeck discard;
         public override Card getCard(int index)
         {
-            if (this.length == 0)
+            if (this.cards.Count == 0)
             {
                 this.discard.emptyDiscard();
-            }
+                return discard.getCard(0);
+            } else
             return cards.ElementAt<Card>(index);
         }
         public void addToTop(Card card)

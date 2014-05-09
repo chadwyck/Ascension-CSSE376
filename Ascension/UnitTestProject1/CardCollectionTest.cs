@@ -63,5 +63,18 @@ namespace AscensionTest
             Assert.AreEqual(drawn2, demonSlayer);
             Assert.AreEqual(pd.length, 0);
         }
+        [Test()]
+        public void testHandDeck()
+        {
+            var hd = new HandDeck();
+            var dd = new DiscardDeck(hd);
+            var ip = new InPlay(dd);
+            var ih = new InHand(dd,ip,hd);
+            ih.playCard(voidthirster);
+            hd.add(voidthirster);
+            hd.addToTop(demonSlayer);
+            var cardOnTop = hd.getCard(0);
+            Assert.AreEqual(demonSlayer, cardOnTop);
+        }
     }
 }

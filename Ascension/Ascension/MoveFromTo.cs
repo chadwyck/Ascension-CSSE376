@@ -61,10 +61,10 @@ namespace Ascension
 
         private void queryUser()
         {
-            if (userChoice || optional)
-            {
-                // generate form
-            }
+            //if (userChoice || optional)
+            //{
+            //    // generate form
+            //}
         }
 
     }

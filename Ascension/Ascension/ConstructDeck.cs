@@ -17,13 +17,13 @@ namespace Ascension
 
         public void destroyAllButOneConstruct (Card card)
         {
-            foreach (var item in cards)
-	        {
-                if (item != card)
+            for (int i = 0; i < cards.Count; i++ )
+            {
+                if (cards[i] != card)
                 {
-                    remove(item);
+                    remove(cards[i]);   // needs to be fixed.  Index will mess it up.
                 }
-	        }
+            }
         }
     }
 }

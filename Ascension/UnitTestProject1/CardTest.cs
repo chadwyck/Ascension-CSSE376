@@ -44,6 +44,7 @@ namespace AscensionTest
         public void testAddHonor()
         {
             x = testGame.getCurrPlayer().playerHonor;
+            testGame.getCurrPlayer().getEndGameHonor();
             fakeHonor.playCard();
             Assert.AreEqual(x + 3, testGame.getCurrPlayer().playerHonor);
             x = testGame.getCurrPlayer().playerHonor;
