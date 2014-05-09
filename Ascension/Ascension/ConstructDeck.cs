@@ -25,5 +25,13 @@ namespace Ascension
                 }
             }
         }
+
+        public void playAll()
+        {
+            foreach (var card in cards)
+            {
+                card.playCard();
+            }
+        }
     }
 }

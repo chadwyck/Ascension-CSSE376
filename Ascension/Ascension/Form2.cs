@@ -17,33 +17,30 @@ namespace Ascension
         private CenterRow cenRow;
         private CardView cardView;
         private InHand inHand;
+        private ConstructDeck constDeck;
         private Game game;
         private AILogic aiLogic;
 
         public BoardView(Game gm)
         {
-            InitializeComponent();
-            cardView = new CardView();
-            cardView.Show();
-            game = gm;
-            
-            this.updatePlayer();
-            this.currentPlayNum.Text = "Player " + this.game.getCurrPlayer().playerNumber;
+            this.initialize(gm, false);
         }
 
         public BoardView(Game gm, bool f)
         {
+            this.initialize(gm, f);
+        }
+
+        private void initialize(Game gm, bool f)
+        {
+            InitializeComponent();
             cardView = new CardView();
-            cardView.Show();
+            if (!f)
+                cardView.Show();
             game = gm;
 
             this.updatePlayer();
             this.currentPlayNum.Text = "Player " + this.game.getCurrPlayer().playerNumber;
-        }
-
-        private void Form2_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -131,6 +128,7 @@ namespace Ascension
             playHand.Items.Clear();
             playPlay.Items.Clear();
             playDisc.Items.Clear();
+            playConstructs.Items.Clear();
             playDeck.Items.AddRange(game.getCurrPlayer().deck.toStringArray());
 
             if ((game.hasAI) && (game.currTurn % game.numPlayers == 0))
@@ -182,9 +180,11 @@ namespace Ascension
             playHand.Items.AddRange(game.getCurrPlayer().hand.toStringArray());
             playPlay.Items.AddRange(game.getCurrPlayer().onBoard.toStringArray());
             playDisc.Items.AddRange(game.getCurrPlayer().discardPile.toStringArray());
+            playConstructs.Items.AddRange(game.getCurrPlayer().constructs.toStringArray());
             lblHonorCount.Text = this.game.honorOnBoard.ToString();
             lblYourHonor.Text = this.game.getCurrPlayer().playerHonor.ToString();
             runeNum.Text = this.game.getCurrPlayer().playerRunes.ToString();
+            mechRuneNum.Text = this.game.getCurrPlayer().playerMechRunes.ToString();
             powNum.Text = this.game.getCurrPlayer().playerPower.ToString();
             if (!this.game.canDoMore())
             {

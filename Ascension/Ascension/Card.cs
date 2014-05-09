@@ -49,11 +49,14 @@ namespace Ascension
 
         public void playCard()
         {
-            for (int i = 0; i < game.firstTimeList.Count; i++)
+            if (!this.cardType.Equals("construct"))
             {
-                if (game.firstTimeList[i].checkCase(this.faction, this.cardType))
+                for (int i = 0; i < game.firstTimeList.Count; i++)
                 {
-                    game.firstTimeList[i].gain();
+                    if (game.firstTimeList[i].checkCase(this.faction, this.cardType))
+                    {
+                        game.firstTimeList[i].gain();
+                    }
                 }
             }
             foreach (var action in this.actions)

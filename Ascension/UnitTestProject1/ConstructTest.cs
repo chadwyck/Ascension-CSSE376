@@ -11,11 +11,11 @@ namespace AscensionTest
     [TestFixture()]
     class ConstructTest
     {
-        private const int HONOR = 0, RUNES = 1, POWER = 2; // metricIDs
+        private const int HONOR = 0, RUNES = 1, POWER = 2, MECHRUNES = 3; // metricIDs
         
         Card voidthirster;
         Card lifebound;
-        private Game testGame = new Game(2);
+        private Game testGame = new Game(2, false, true);
 
         [SetUp()]
         public void Setup()

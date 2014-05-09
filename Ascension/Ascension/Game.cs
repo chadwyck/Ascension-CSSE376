@@ -8,7 +8,7 @@ namespace Ascension
 {
     public class Game
     {
-        private const int HONOR = 0, RUNES = 1, POWER = 2; // metricIDs
+        private const int HONOR = 0, RUNES = 1, POWER = 2, MECHRUNES = 3; // metricIDs
         public int numPlayers;
         public BoardView boardView;
         public bool endOfGame { get; private set; }
@@ -60,14 +60,15 @@ namespace Ascension
 
         public Game(int numPlayers, Boolean hasAI)
         {
-            this.hasAI = true;
+            this.hasAI = hasAI;
             gameInitialize(numPlayers, false);
         }
 
-        //public Game(int numPlayers, bool isTest)
-        //{
-        //    gameInitialize(numPlayers, true);
-        //}
+        public Game(int numPlayers, Boolean hasAI, bool isTest)
+        {
+            this.hasAI = hasAI;
+            gameInitialize(numPlayers, isTest);
+        }
 
         private void gameInitialize(int numPlayers, bool isTest)
         {
@@ -96,9 +97,12 @@ namespace Ascension
                 //}
                 //else
                 //{
-                boardView = new BoardView(this);
+                boardView = new BoardView(this, isTest);
                 //}
-                boardView.Show();
+                if (!isTest)
+                {
+                    boardView.Show();
+                }
                 boardView.updatePortal(pDeck);
                 voidDeck = new CardCollection();
                 cenRow = new CenterRow(pDeck, voidDeck);
@@ -144,15 +148,13 @@ namespace Ascension
                     temp.endTurn();
                     temp.deck.shuffle();
                 }
-                //if (isTest)
-                //{
-                //    boardView = new BoardView(this, isTest);
-                //}
-                //else
-                //{
-                boardView = new BoardView(this);
-                //}
-                boardView.Show();
+                
+                boardView = new BoardView(this, isTest);
+
+                if (!isTest)
+                {
+                    boardView.Show();
+                }
                 boardView.updatePortal(pDeck);
                 voidDeck = new CardCollection();
                 cenRow = new CenterRow(pDeck, voidDeck);
@@ -281,6 +283,7 @@ namespace Ascension
             this.cardsPlayed.Clear();
             this.getCurrPlayer().endTurn();
             this.currTurn++;
+            this.getCurrPlayer().constructs.playAll();
             
         }
         public Card buyMyst()

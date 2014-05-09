@@ -11,9 +11,9 @@ namespace AscensionTest
     [TestFixture()]
     class CardActionsTest
     {
-        private const int HONOR = 0, RUNES = 1, POWER = 2; // metricIDs
+        private const int HONOR = 0, RUNES = 1, POWER = 2, MECHRUNES = 3; // metricIDs
 
-        private Game testGame = new Game(2);
+        private Game testGame = new Game(2, false, true);
         //Card voidthirster;
         //Card demonSlayer;
         //Card samaelsTrickster;

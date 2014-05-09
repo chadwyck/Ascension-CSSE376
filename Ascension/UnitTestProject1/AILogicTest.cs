@@ -14,7 +14,7 @@ namespace AscensionTest
         [Test]
         public void TestThatAILogicInitializes()
         {
-            Game game = new Game(3);
+            Game game = new Game(3, false, true);
             AI aiPlayer = new AI(game, 3);
             AILogic aiLogic = new AILogic(aiPlayer);
             Assert.NotNull(aiLogic);
@@ -23,7 +23,7 @@ namespace AscensionTest
         [Test]
         public void TestThatAILogicHasPlayer()
         {
-            Game game = new Game(3);
+            Game game = new Game(3, false, true);
             AI aiPlayer = new AI(game, 3);
             AILogic aiLogic = new AILogic(aiPlayer);
             Assert.NotNull(aiLogic.aiPlayer);
@@ -32,7 +32,7 @@ namespace AscensionTest
         [Test]
         public void TestThatAILogicHasGame()
         {
-            Game game = new Game(3);
+            Game game = new Game(3, false, true);
             AI aiPlayer = new AI(game, 3);
             AILogic aiLogic = new AILogic(aiPlayer);
             Assert.NotNull(aiLogic.game);
@@ -41,7 +41,7 @@ namespace AscensionTest
         [Test]
         public void TestThatAILogicCanAddRunes()
         {
-            Game game = new Game(3);
+            Game game = new Game(3, false, true);
             AI aiPlayer = new AI(game, 3);
             AILogic aiLogic = new AILogic(aiPlayer);
             aiLogic.aiPlayer.addRunes(5);
@@ -51,7 +51,7 @@ namespace AscensionTest
         [Test]
         public void TestThatAILogicCanAddPower()
         {
-            Game game = new Game(3);
+            Game game = new Game(3, false, true);
             AI aiPlayer = new AI(game, 3);
             AILogic aiLogic = new AILogic(aiPlayer);
             aiLogic.aiPlayer.addPower(5);
@@ -61,7 +61,7 @@ namespace AscensionTest
         [Test]
         public void TestBuyMystic()
         {
-            Game game = new Game(3);
+            Game game = new Game(3, false, true);
             AI aiPlayer = new AI(game, 3);
             AILogic aiLogic = new AILogic(aiPlayer);
 

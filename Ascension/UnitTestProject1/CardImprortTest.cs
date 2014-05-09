@@ -18,7 +18,7 @@ namespace AscensionTest
         [SetUp()]
         public void Setup()
         {
-            testgame = new Game(2);
+            testgame = new Game(2, false, true);
             CardImport im = new CardImport(testgame);
             deck = im.deck;
             

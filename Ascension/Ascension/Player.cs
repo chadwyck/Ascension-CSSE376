@@ -10,7 +10,7 @@ namespace Ascension
     public class Player
     {
 
-        private const int HONOR = 0, RUNES = 1, POWER = 2; // metricIDs
+        private const int HONOR = 0, RUNES = 1, POWER = 2, MECHRUNES = 3; // metricIDs
         
         public Game game { get; protected set; }
 
@@ -19,6 +19,8 @@ namespace Ascension
         public int playerPower { get; protected set; }
 
         public int playerRunes { get; protected set; }
+
+        public int playerMechRunes { get; protected set; }
         
         public int playerHonor { get; protected set; }
         
@@ -59,8 +61,9 @@ namespace Ascension
             this.playerPower = 0;
             this.game = game;
 
-            Card apprentice = new Card(this.game, "Apprentice", null, 0, 0, 0, "lifebound", "hero",
+            Card apprentice = new Card(this.game, "Apprentice", null, 0, 0, 0, "lifebound", "construct",
                 new List<CardAction> { new ChangeMetricCount(RUNES, 5, game),
+                                       new ChangeMetricCount(MECHRUNES, 2, game),
                                        new FirstTimeGet("fallen", "monster", HONOR, 5, game) });
 
             Card militia = new Card(this.game, "Militia", null, 0, 0, 0, null, "basic",
@@ -110,6 +113,9 @@ namespace Ascension
                 case POWER:
                     this.playerPower = this.playerPower + incrementBy;
                     break;
+                case MECHRUNES:
+                    this.playerMechRunes = this.playerMechRunes + incrementBy;
+                    break;
                 default:
                     throw new System.ArgumentException("MetricID must be between 0 and 2", "metricID");
             }
@@ -120,22 +126,48 @@ namespace Ascension
 
             this.playerPower = 0;
             this.playerRunes = 0;
+            this.playerMechRunes = 0;
             this.hand.newHand();
         }
         public void purchase(Card crd, Boolean play, int Cost)
         {
-            if (Cost <= this.playerRunes)
+            if (crd.faction.Equals("mechana") && crd.cardType.Equals("construct"))
             {
-                this.playerRunes = this.playerRunes - Cost;
+                if (Cost <= (this.playerRunes + this.playerMechRunes))
+                {
+                    this.playerMechRunes = this.playerMechRunes - Cost;
+                    if (this.playerMechRunes < 0)
+                    {
+                        this.playerRunes = this.playerRunes + this.playerMechRunes;
+                        this.playerMechRunes = 0;
+                    }
 
-                if (!play)
-                {
-                    this.game.cenRow.remove(crd);
-                    discardPile.add(crd);
+                    if (!play)
+                    {
+                        this.game.cenRow.remove(crd);
+                        discardPile.add(crd);
+                    }
+                    else
+                    {
+                        this.play(crd);
+                    }
                 }
-                else
+            }
+            else
+            {
+                if (Cost <= this.playerRunes)
                 {
-                    this.play(crd);
+                    this.playerRunes = this.playerRunes - Cost;
+
+                    if (!play)
+                    {
+                        this.game.cenRow.remove(crd);
+                        discardPile.add(crd);
+                    }
+                    else
+                    {
+                        this.play(crd);
+                    }
                 }
             }
         }
@@ -147,8 +179,17 @@ namespace Ascension
 
         public void play(Card crd)
         {
-            hand.remove(crd);
-            onBoard.add(crd);
+            if (crd.cardType.Equals("construct"))
+            {
+                hand.remove(crd);
+                constructs.add(crd);
+            }
+            else
+            {
+                hand.remove(crd);
+                onBoard.add(crd);
+            }
+
             crd.playCard();
         }
 
