@@ -25,7 +25,7 @@ namespace Ascension
             if(path.Equals("\\PlayerHand\\"))
             deck = new HandDeck();
             string currentDirName = @""+System.IO.Directory.GetCurrentDirectory().Substring(0,System.IO.Directory.GetCurrentDirectory().Length-10)+"\\CardSets" +path;
-            Console.WriteLine(currentDirName);
+            
             string[] files = System.IO.Directory.GetFiles(currentDirName, "*.txt");
 
             foreach (string cardFile in files)
@@ -108,7 +108,7 @@ namespace Ascension
            
             imCard card = new System.Web.Script.Serialization.JavaScriptSerializer().Deserialize<imCard>(json);
             System.Drawing.Bitmap image = null;
-            string currentDirName = @"" + System.IO.Directory.GetCurrentDirectory().Substring(0, System.IO.Directory.GetCurrentDirectory().Length - 10) + "\\CardSets\\"+path+ card.cardImage;
+            string currentDirName = @"" + System.IO.Directory.GetCurrentDirectory().Substring(0, System.IO.Directory.GetCurrentDirectory().Length - 10) + "\\CardSets\\" + path + card.cardImage;
             if (card.cardImage != "")
             {
                 image = new System.Drawing.Bitmap(currentDirName);

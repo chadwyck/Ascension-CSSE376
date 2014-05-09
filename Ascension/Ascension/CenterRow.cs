@@ -20,6 +20,7 @@ namespace Ascension
             for (int i = 0; i < 6; i++)
             {
                 cards.Add(pDeck.draw());
+                System.Console.WriteLine("" +i);
             }
         }
 

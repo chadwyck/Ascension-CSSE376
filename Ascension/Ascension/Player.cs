@@ -54,7 +54,7 @@ namespace Ascension
             this.deck.setDiscard(this.discardPile);
             this.constructs = new ConstructDeck(this.discardPile);
             this.onBoard = new InPlay(this.discardPile);
-            this.hand = new InHand(this.discardPile, this.onBoard, this.deck);
+            
             
            
             this.playerRunes = 0;
@@ -75,8 +75,10 @@ namespace Ascension
             //deck.add(militia);
             //deck.add(militia);
             CardImport card = new CardImport(this.game, "\\PlayerHand\\");
-            deck = (HandDeck)card.cardImport(this.game, "\\PlayerHand\\");
-
+            this.deck = (HandDeck)card.cardImport(this.game, "\\PlayerHand\\");
+            System.Console.WriteLine("deck is  this long ;) "+this.deck.length);
+            
+            this.hand = new InHand(this.discardPile, this.onBoard, this.deck);
 //=======
 //            Card apprentice = new Card(this.game, "Apprentice", null, 0, 0, 0, "lifebound", "construct",
 //                new List<CardAction> { new ChangeMetricCount(RUNES, 5, game),
