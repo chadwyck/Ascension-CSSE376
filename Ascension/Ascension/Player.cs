@@ -117,6 +117,7 @@ namespace Ascension
 
         public void endTurn()
         {
+
             this.playerPower = 0;
             this.playerRunes = 0;
             this.hand.newHand();

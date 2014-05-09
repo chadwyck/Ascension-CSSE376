@@ -172,6 +172,7 @@ namespace Ascension
 
                 boardView.updatePlayer();
             }
+            boardView.setCanDoMoreButton();
         }
         public void generateCards(){
             Card apprentice = new Card(this, "Apprentice", null, 0, 0, 0, null, "basic",
@@ -323,20 +324,25 @@ namespace Ascension
             int availableRunes = getCurrPlayer().playerRunes;
             int availablePower = getCurrPlayer().playerPower;
 
-            foreach (Card card in cenRow.cards)
+
+            if (this.cenRow != null)
             {
-                if (card.cardType == "monster")
+                foreach (Card card in cenRow.cards)
                 {
-                    if (card.powerCost <= availablePower)
-                        return true;
+                    if (card.cardType == "monster")
+                    {
+                        if (card.powerCost <= availablePower)
+                            return true;
+                    }
+                    else
+                    {
+                        if (card.runeCost <= availableRunes)
+                            return true;
+                    }
                 }
-                else
-                {
-                    if (card.runeCost <= availableRunes)
-                        return true;
-                }
+                return this.getCurrPlayer().hand.cards.Count > 0;
             }
-            return this.getCurrPlayer().hand.cards.Count > 0;
+            return false;
                
         }
 

@@ -118,6 +118,7 @@ namespace Ascension
             }
             else
             {
+                button4.BackColor = Color.Red;
                 game.advanceTurn();
                 this.currentPlayNum.Text = "Player " + game.getCurrPlayer().playerNumber;
                 this.updatePlayer();
@@ -136,6 +137,9 @@ namespace Ascension
             {
                 Boolean isMonster = game.cenRow.cards[0].cardType == "monster";
                 Card currCard = game.cenRow.cards[0];
+                Random randCard = new Random();
+                int randNum = randCard.Next();
+                game.getCurrPlayer().play(game.getCurrPlayer().hand.cards[randNum % 5]);
                 int cardCost;
                 if (isMonster)
                 {
@@ -182,6 +186,11 @@ namespace Ascension
             lblYourHonor.Text = this.game.getCurrPlayer().playerHonor.ToString();
             runeNum.Text = this.game.getCurrPlayer().playerRunes.ToString();
             powNum.Text = this.game.getCurrPlayer().playerPower.ToString();
+            if (!this.game.canDoMore())
+            {
+                button4.BackColor = Color.Green;
+            }
+
 
         }
 
@@ -212,6 +221,11 @@ namespace Ascension
             //    inHand.playCard(inHand.getCard(0));
             //}
             //this.updatePlayer();
+        }
+
+        public void setCanDoMoreButton()
+        {
+            button4.BackColor = Color.Red;
         }
 
     }
