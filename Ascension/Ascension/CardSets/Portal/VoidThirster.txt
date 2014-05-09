@@ -10,7 +10,14 @@
 	
 		{"type": "changeMetric",
 		"metricID": 2,
-		"incrementBy": 2}
+		"incrementBy": 2},
+		{
+		"type": "firstTimeGet",
+		"faction": "void", 
+		"cardType": "construct",
+		"metricID": 0,
+		"incrementBy": 1
+		 }
 		
 		
 

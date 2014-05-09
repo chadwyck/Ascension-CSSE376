@@ -19,8 +19,8 @@ namespace AscensionTest
         public void Setup()
         {
             testgame = new Game(2);
-            CardImport im = new CardImport(testgame);
-            deck = im.deck;
+            CardImport im = new CardImport(testgame, "\\Portal\\");
+            deck = (PortalDeck)im.deck;
             
         }
         [Test()]

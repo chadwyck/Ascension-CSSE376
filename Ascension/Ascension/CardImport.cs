@@ -13,22 +13,25 @@ namespace Ascension
     {
         private Game game;
         
-        public PortalDeck deck { get; private set; }
-        public CardImport(Game gme) {
+        public CardCollection deck { get; private set; }
+        public CardImport(Game gme, string pth) {
             game = gme;
-            deck = cardImport(game);
+            deck = cardImport(game, pth);
         }
-        public PortalDeck cardImport(Game gme)
-        {
+        public CardCollection cardImport(Game gme, String path)
+        {   
+            if(path.Equals("\\Portal\\"))
             deck = new PortalDeck();
-            string currentDirName = @""+System.IO.Directory.GetCurrentDirectory().Substring(0,System.IO.Directory.GetCurrentDirectory().Length-10)+"\\CardSets\\Portal\\";;
+            if(path.Equals("\\PlayerHand\\"))
+            deck = new HandDeck();
+            string currentDirName = @""+System.IO.Directory.GetCurrentDirectory().Substring(0,System.IO.Directory.GetCurrentDirectory().Length-10)+"\\CardSets" +path;
             Console.WriteLine(currentDirName);
             string[] files = System.IO.Directory.GetFiles(currentDirName, "*.txt");
 
             foreach (string cardFile in files)
             {
                 
-                deck.add(fileToCard(cardFile));
+                deck.add(fileToCard(cardFile,path));
             }
             
             
@@ -99,12 +102,19 @@ namespace Ascension
             }
         return ret;
         }
-        private Card fileToCard(String file)
+        private Card fileToCard(String file, String path)
         {
             var json = System.IO.File.ReadAllText(file);
            
             imCard card = new System.Web.Script.Serialization.JavaScriptSerializer().Deserialize<imCard>(json);
-            return new Card(game, card.cardName, null, card.runeCost, card.powerCost, card.endGameHonorGain, card.faction, card.cardType,
+            System.Drawing.Bitmap image = null;
+            string currentDirName = @"" + System.IO.Directory.GetCurrentDirectory().Substring(0, System.IO.Directory.GetCurrentDirectory().Length - 10) + "\\CardSets\\"+path+ card.cardImage;
+            if (card.cardImage != "")
+            {
+                image = new System.Drawing.Bitmap(currentDirName);
+            }
+            
+            return new Card(game, card.cardName, image, card.runeCost, card.powerCost, card.endGameHonorGain, card.faction, card.cardType,
                  cardActionGen(card.actions));
             
         }

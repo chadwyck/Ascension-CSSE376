@@ -12,7 +12,7 @@ namespace Ascension
 
         public string cardName { get; set; }
 
-        public System.Drawing.Image cardImage { get; set; }
+        public System.Drawing.Bitmap cardImage { get; set; }
 
         public int runeCost { get;  set; }
 
@@ -29,9 +29,9 @@ namespace Ascension
 
         public List<CardAction> actions { get; set; }
 
-       
 
-        public Card (Game game, string cardName, System.Drawing.Image cardImage, int runeCost,
+
+        public Card(Game game, string cardName, System.Drawing.Bitmap cardImage, int runeCost,
                     int powerCost, int endGameHonorGain, string faction, string cardType, List<CardAction> actions)
         {
             this.game = game;

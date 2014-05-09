@@ -1,0 +1,24 @@
+﻿{
+	"cardName": "Runic Lycanthrope",
+	"cardImage": "",
+	"runeCost": 3,
+	"powerCost": 0,
+	
+	"endGameHonorGain": 1,
+	"faction": "lifebound",
+	"cardType": "hero",
+	"actions":[
+		{"type":"forEachCardType",
+		"faction": "",
+		"playedOne": true,
+		"metricID": 2,
+		"incrementBy": 2},
+		{"type":"changeMetric",
+		"faction": "",
+		"playedOne": true,
+		"metricID": 1,
+		"incrementBy": 2}
+		
+
+	]
+}
