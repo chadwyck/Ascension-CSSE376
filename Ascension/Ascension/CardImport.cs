@@ -12,7 +12,7 @@ namespace Ascension
    public class  CardImport
     {
         private Game game;
-        
+        public string currentDirName;
         
         public CardImport(Game gme, string pth) {
             game = gme;
@@ -20,9 +20,18 @@ namespace Ascension
         }
         public void cardImportP(Game gme, String path, PortalDeck deck)
         {
+
+
+            string currentDirName = @"" + System.IO.Directory.GetCurrentDirectory();
+            if (currentDirName.Contains("UnitTestProject1"))
+            {
+                currentDirName = currentDirName.Substring(0, System.IO.Directory.GetCurrentDirectory().Length - 26) + "Ascension\\CardSets\\" + path;
+            }
+            else
+            {
+                currentDirName = currentDirName.Substring(0, System.IO.Directory.GetCurrentDirectory().Length - 19) + "Ascension\\CardSets\\" + path;
+            }
            
-            
-            string currentDirName = @""+System.IO.Directory.GetCurrentDirectory().Substring(0,System.IO.Directory.GetCurrentDirectory().Length-10)+"\\CardSets" +path;
             
             string[] files = System.IO.Directory.GetFiles(currentDirName, "*.txt");
 
@@ -38,9 +47,16 @@ namespace Ascension
         }
         public void cardImportH(Game gme, String path, HandDeck deck)
         {
+
+            
+            string currentDirName = @"" + System.IO.Directory.GetCurrentDirectory();
+            if (currentDirName.Contains("UnitTestProject1"))
+            {
+                currentDirName = currentDirName.Substring(0, System.IO.Directory.GetCurrentDirectory().Length - 26) + "Ascension\\CardSets\\" + path;
+            }else {
+                currentDirName = currentDirName.Substring(0, System.IO.Directory.GetCurrentDirectory().Length - 19) + "Ascension\\CardSets\\" + path;
+            }
            
-                
-            string currentDirName = @"" + System.IO.Directory.GetCurrentDirectory().Substring(0, System.IO.Directory.GetCurrentDirectory().Length - 26) + "Ascension\\CardSets" + path;
             System.Console.WriteLine(currentDirName);
             string[] files = System.IO.Directory.GetFiles(currentDirName, "*.txt");
 
@@ -124,10 +140,17 @@ namespace Ascension
            
             imCard card = new System.Web.Script.Serialization.JavaScriptSerializer().Deserialize<imCard>(json);
             System.Drawing.Bitmap image = null;
-            string currentDirName = @"" + System.IO.Directory.GetCurrentDirectory().Substring(0, System.IO.Directory.GetCurrentDirectory().Length - 26) + "Ascension\\CardSets\\" + path + card.cardImage;
+             string currentDirName = @"" + System.IO.Directory.GetCurrentDirectory();
+            if(currentDirName.Contains("UnitTestProject1")){
+                currentDirName = currentDirName.Substring(0, System.IO.Directory.GetCurrentDirectory().Length - 26) + "Ascension\\CardSets\\" + path;
+            }else {
+                currentDirName = currentDirName.Substring(0, System.IO.Directory.GetCurrentDirectory().Length - 19) + "Ascension\\CardSets\\" + path;
+            }
+        
+           
             if (card.cardImage != "")
             {
-                image = new System.Drawing.Bitmap(currentDirName);
+                image = new System.Drawing.Bitmap(currentDirName+ card.cardImage);
             }
             
             return new Card(game, card.cardName, image, card.runeCost, card.powerCost, card.endGameHonorGain, card.faction, card.cardType,

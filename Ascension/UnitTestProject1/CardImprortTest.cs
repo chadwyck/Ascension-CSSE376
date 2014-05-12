@@ -13,16 +13,16 @@ namespace AscensionTest
     {
         
         
-        PortalDeck deck;
+        HandDeck deck;
         Game testgame;
         [SetUp()]
         public void Setup()
         {
-
+            deck = new HandDeck();
             testgame = new Game(2, false, true);
-            CardImport im = new CardImport(testgame, "\\Portal\\");
+            CardImport im = new CardImport(testgame, "\\PlayerHand\\");
 
-            im.cardImportP(testgame, "\\Portal\\", deck);
+            im.cardImportH(testgame, "\\PlayerHand\\", deck);
 
             
         }
