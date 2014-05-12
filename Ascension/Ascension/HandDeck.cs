@@ -27,5 +27,15 @@ namespace Ascension
         {
             this.discard = discardDeck;
         }
+
+        public override Card draw()
+        {
+
+            Card card = this.getCard(0);
+            remove(card);
+            return card;
+
+        }
+
     }
 }

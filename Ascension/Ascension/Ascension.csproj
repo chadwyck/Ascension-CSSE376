@@ -179,13 +179,14 @@
   <ItemGroup>
     <Content Include="boardbackground.png" />
     <Content Include="CardSets\PlayerHand\apprentice.jpg" />
-    <Content Include="CardSets\PlayerHand\1apprentice.txt" />
+    <Content Include="CardSets\PlayerHand\apprentice1.txt" />
     <Content Include="CardSets\PlayerHand\2apprentice.txt" />
     <Content Include="CardSets\PlayerHand\3apprentice.txt" />
     <Content Include="CardSets\PlayerHand\4apprentice.txt" />
     <Content Include="CardSets\PlayerHand\5apprentice.txt" />
     <Content Include="CardSets\PlayerHand\6apprentice.txt" />
     <Content Include="CardSets\PlayerHand\7apprentice.txt" />
+    <Content Include="CardSets\PlayerHand\1militia.txt" />
     <Content Include="CardSets\PlayerHand\militia.jpg" />
     <Content Include="CardSets\PlayerHand\militia.txt" />
     <Content Include="CardSets\PlayerHand\apprentice.txt" />

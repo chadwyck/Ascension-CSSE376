@@ -21,7 +21,8 @@ namespace AscensionTest
 
             testgame = new Game(2, false, true);
             CardImport im = new CardImport(testgame, "\\Portal\\");
-            deck = (PortalDeck)im.deck;
+
+            im.cardImportP(testgame, "\\Portal\\", deck);
 
             
         }

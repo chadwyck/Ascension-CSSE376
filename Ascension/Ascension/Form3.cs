@@ -44,7 +44,7 @@ namespace Ascension
                 cardName.Text = currCard.cardName;
                 rCost.Text = currCard.runeCost.ToString();
                 pCost.Text = currCard.powerCost.ToString();
-                if(currCard.cardImage!=null)
+                
                 pictureBox1.Image = currCard.cardImage;
                 pictureBox1.Show();
                 killOrPurchase();

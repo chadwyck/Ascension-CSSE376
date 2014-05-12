@@ -34,14 +34,15 @@ namespace Ascension
         {
             for (int i = 0; i < n; i++)
             {
-                System.Console.WriteLine(this.deck.length + " ala " + i + " " + n);
+                
                 if (this.deck.length == 0)
                 {
                     this.discard.emptyDiscard();
 
                 }
-                System.Console.WriteLine(this.deck.length + " " +i+" " + n);
+                System.Console.WriteLine(this.deck.length);
                this.add(this.deck.draw());
+               System.Console.WriteLine(this.deck.length);
             }
         }
     }

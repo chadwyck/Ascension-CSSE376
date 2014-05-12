@@ -81,7 +81,7 @@ namespace AscensionTest
             Card temp;
             if ((temp = target.buyMyst()) != null)
             {
-                target.getCurrPlayer().purchase(temp, false, temp.runeCost);
+                Assert.Throws<NullReferenceException>( ()=>target.getCurrPlayer().purchase(temp, false, temp.runeCost));
             }
             Assert.True((target.getCurrPlayer().playerRunes == 1)); // && (target.getCurrPlayer().discardPile.cards.Count == 1)
         }
@@ -94,7 +94,7 @@ namespace AscensionTest
             Card temp;
             if ((temp = target.buyHI()) != null)
             {
-                target.getCurrPlayer().purchase(temp, false, temp.runeCost);
+                Assert.Throws<NullReferenceException>( ()=>target.getCurrPlayer().purchase(temp, false, temp.runeCost));
             }
             Assert.True((target.getCurrPlayer().playerRunes == 1)); // && (target.getCurrPlayer().discardPile.cards.Count == 1)
         }

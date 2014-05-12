@@ -50,20 +50,25 @@ namespace Ascension
             this.currentRunes = 0;
             this.currentPower = 0;
             this.deck = new HandDeck();
+            this.game = game;
+            CardImport card = new CardImport(this.game, "\\PlayerHand\\");
+            card.cardImportH(this.game, "\\PlayerHand\\", deck);
+
             this.discardPile = new DiscardDeck(this.deck);
             this.deck.setDiscard(this.discardPile);
             this.constructs = new ConstructDeck(this.discardPile);
             this.onBoard = new InPlay(this.discardPile);
+            this.hand = new InHand(this.discardPile, this.onBoard, this.deck);
             
             
            
             this.playerRunes = 0;
             this.playerPower = 0;
-            this.game = game;
+
 
 
             //Card apprentice = new Card(this.game, "Apprentice", null, 0, 0, 0, "lifebound", "hero",
-            //    new List<CardAction> { new ChangeMetricCount(RUNES, 5, game),
+            //    new List<CardAction> { new ChangeMetricCount(RUNES, 1, game),
             //                           new FirstTimeGet("fallen", "monster", HONOR, 5, game) });
 
             //Card militia = new Card(this.game, "Militia", null, 0, 0, 0, null, "basic",
@@ -71,28 +76,11 @@ namespace Ascension
             //                           //new MoveFromTo(deck", hand, false, false),
             //                          /* new ForEachCardType("lifebound","hero",false,HONOR,2,this.game)*/});
             //for (int j = 0; j < 8; j++)
-            //deck.add(apprentice);
+            //    deck.add(apprentice);
             //deck.add(militia);
             //deck.add(militia);
-            CardImport card = new CardImport(this.game, "\\PlayerHand\\");
-            this.deck = (HandDeck)card.cardImport(this.game, "\\PlayerHand\\");
-            System.Console.WriteLine("deck is  this long ;) "+this.deck.length);
             
-            this.hand = new InHand(this.discardPile, this.onBoard, this.deck);
-//=======
-//            Card apprentice = new Card(this.game, "Apprentice", null, 0, 0, 0, "lifebound", "construct",
-//                new List<CardAction> { new ChangeMetricCount(RUNES, 5, game),
-//                                       new ChangeMetricCount(MECHRUNES, 2, game),
-//                                       new FirstTimeGet("fallen", "monster", HONOR, 5, game) });
 
-//            Card militia = new Card(this.game, "Militia", null, 0, 0, 0, null, "basic",
-//                new List<CardAction> { new ChangeMetricCount(POWER, 3, this.game),
-//                                       //new MoveFromTo(deck", hand, false, false),
-//                                      /* new ForEachCardType("lifebound","hero",false,HONOR,2,this.game)*/});
-//            for (int j = 0; j < 8; j++)
-//            deck.add(apprentice);
-//            deck.add(militia);
-//            deck.add(militia);
 
         }
 
@@ -147,6 +135,7 @@ namespace Ascension
             this.playerPower = 0;
             this.playerRunes = 0;
             this.playerMechRunes = 0;
+            
             this.hand.newHand();
         }
         public void purchase(Card crd, Boolean play, int Cost)

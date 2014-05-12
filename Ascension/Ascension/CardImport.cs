@@ -13,17 +13,15 @@ namespace Ascension
     {
         private Game game;
         
-        public CardCollection deck { get; private set; }
+        
         public CardImport(Game gme, string pth) {
             game = gme;
-            deck = cardImport(game, pth);
+            
         }
-        public CardCollection cardImport(Game gme, String path)
-        {   
-            if(path.Equals("\\Portal\\"))
-            deck = new PortalDeck();
-            if(path.Equals("\\PlayerHand\\"))
-            deck = new HandDeck();
+        public void cardImportP(Game gme, String path, PortalDeck deck)
+        {
+           
+            
             string currentDirName = @""+System.IO.Directory.GetCurrentDirectory().Substring(0,System.IO.Directory.GetCurrentDirectory().Length-10)+"\\CardSets" +path;
             
             string[] files = System.IO.Directory.GetFiles(currentDirName, "*.txt");
@@ -36,7 +34,25 @@ namespace Ascension
             
             
             
-            return deck;
+         
+        }
+        public void cardImportH(Game gme, String path, HandDeck deck)
+        {
+           
+                
+            string currentDirName = @"" + System.IO.Directory.GetCurrentDirectory().Substring(0, System.IO.Directory.GetCurrentDirectory().Length - 26) + "Ascension\\CardSets" + path;
+            System.Console.WriteLine(currentDirName);
+            string[] files = System.IO.Directory.GetFiles(currentDirName, "*.txt");
+
+            foreach (string cardFile in files)
+            {
+
+                deck.add(fileToCard(cardFile, path));
+            }
+
+
+
+           
         }
         private class imCard{
         
@@ -85,10 +101,10 @@ namespace Ascension
                 if(act.type.Equals("changeMetric")){
                     ret.Add(new ChangeMetricCount(act.metricID,act.incrementBy, game));
                 }
-                //if (act.type.Equals("firstTimeGet"))
-                //{
-                //    ret.Add(new FirstTimeGet(act.faction, act.cardType,act.metricID, act.incrementBy, game));
-                //}
+                if (act.type.Equals("firstTimeGet"))
+                {
+                    ret.Add(new FirstTimeGet(act.faction, act.cardType, act.metricID, act.incrementBy, game));
+                }
                  if (act.type.Equals("forEachCardType"))
                 {
                     ret.Add(new ForEachCardType(act.faction, act.cardType, act.playedOne, act.metricID, act.incrementBy, game));
@@ -108,7 +124,7 @@ namespace Ascension
            
             imCard card = new System.Web.Script.Serialization.JavaScriptSerializer().Deserialize<imCard>(json);
             System.Drawing.Bitmap image = null;
-            string currentDirName = @"" + System.IO.Directory.GetCurrentDirectory().Substring(0, System.IO.Directory.GetCurrentDirectory().Length - 10) + "\\CardSets\\" + path + card.cardImage;
+            string currentDirName = @"" + System.IO.Directory.GetCurrentDirectory().Substring(0, System.IO.Directory.GetCurrentDirectory().Length - 26) + "Ascension\\CardSets\\" + path + card.cardImage;
             if (card.cardImage != "")
             {
                 image = new System.Drawing.Bitmap(currentDirName);

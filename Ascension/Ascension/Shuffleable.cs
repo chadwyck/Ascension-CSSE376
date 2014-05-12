@@ -21,11 +21,13 @@ namespace Ascension
                 cards[n] = val;
             }
         }
-        public Card draw()
+        public virtual Card draw()
         {
-            Card card = cards[0];
+
+            Card card = this.getCard(0);
             remove(card);
             return card;
+            
         }
     }
 }
