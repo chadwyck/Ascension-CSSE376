@@ -35,7 +35,6 @@
             this.button3 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
             this.playHand = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.playPlay = new System.Windows.Forms.ComboBox();
@@ -74,9 +73,9 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(887, 159);
+            this.button1.Location = new System.Drawing.Point(863, 159);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(99, 23);
             this.button1.TabIndex = 1;
             this.button1.Text = "Buy Mystic";
             this.button1.UseVisualStyleBackColor = true;
@@ -84,9 +83,9 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(887, 277);
+            this.button2.Location = new System.Drawing.Point(863, 277);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.Size = new System.Drawing.Size(99, 23);
             this.button2.TabIndex = 2;
             this.button2.Text = "Buy HI";
             this.button2.UseVisualStyleBackColor = true;
@@ -94,9 +93,9 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(887, 390);
+            this.button3.Location = new System.Drawing.Point(863, 390);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.Size = new System.Drawing.Size(99, 23);
             this.button3.TabIndex = 3;
             this.button3.Text = "Kill Cultist";
             this.button3.UseVisualStyleBackColor = true;
@@ -113,23 +112,13 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(733, 277);
+            this.button4.Location = new System.Drawing.Point(699, 277);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.Size = new System.Drawing.Size(122, 23);
             this.button4.TabIndex = 5;
             this.button4.Text = "End Turn";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(182, 277);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 6;
-            this.button5.Text = "Play All";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // playHand
             // 
@@ -222,7 +211,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(648, 28);
+            this.label7.Location = new System.Drawing.Point(634, 28);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(38, 13);
             this.label7.TabIndex = 17;
@@ -232,7 +221,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(649, 57);
+            this.label8.Location = new System.Drawing.Point(634, 57);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(40, 13);
             this.label8.TabIndex = 18;
@@ -340,9 +329,9 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(49, 509);
+            this.button6.Location = new System.Drawing.Point(180, 277);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 23);
+            this.button6.Size = new System.Drawing.Size(107, 23);
             this.button6.TabIndex = 30;
             this.button6.Text = "Play All ";
             this.button6.UseVisualStyleBackColor = true;
@@ -390,7 +379,6 @@
             this.Controls.Add(this.playPlay);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.playHand);
-            this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button3);
@@ -412,7 +400,6 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
         private System.Windows.Forms.ComboBox playHand;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox playPlay;

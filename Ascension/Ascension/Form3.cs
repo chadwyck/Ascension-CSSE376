@@ -20,7 +20,17 @@ namespace Ascension
             
             InitializeComponent();
 
-            noneSelected = new Card(null, "Please Select a Card", null, 0, 0, 0, "", "basic", null);
+            cardName.Text = strings_form3.CardName;
+            label2.Text = strings_form3.RuneCost;
+            label3.Text = strings_form3.PowerCost;
+            label4.Text = strings_form3.Abilities;
+            button1.Text = strings_form3.UseSelectedAbility;
+            Purchase.Text = strings_form3.Purchase;
+            Kill.Text = strings_form3.Kill;
+            Play.Text = strings_form3.Play;
+            label5.Text = strings_form3.EndGameHonor;
+
+            noneSelected = new Card(null, strings_form3.PleaseSelectCard, null, 0, 0, 0, "", "basic", null);
         }
 
         public void changeVisibilityPlayButton(Boolean visible)
@@ -67,6 +77,7 @@ namespace Ascension
                 pCost.Text = currCard.powerCost.ToString();
                 
                 pictureBox1.Image = currCard.cardImage;
+                pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
                 pictureBox1.Show();
                 killOrPurchase();
         }

@@ -1,6 +1,6 @@
 ﻿{
 	"cardName": "Tormented Soul",
-	"cardImage": "",
+	"cardImage": "Tormented-Soul.jpg",
 	"runeCost": 0,
 	"powerCost": 3,
 	

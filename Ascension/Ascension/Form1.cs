@@ -29,11 +29,11 @@ namespace Ascension
         {
             if (!includeAI)
             {
-                Game game = new Game(Convert.ToInt32(comboBox1.Text.ToString()), false, false);
+                Game game = new Game(Convert.ToInt32(comboBox1.Text.ToString()), false, false, comboBox2.Text);
             }
             else
             {
-                Game game = new Game(Convert.ToInt32(comboBox1.Text.ToString()), true, false);
+                Game game = new Game(Convert.ToInt32(comboBox1.Text.ToString()), true, false, comboBox2.Text);
             }
             this.Visible = false;
         }

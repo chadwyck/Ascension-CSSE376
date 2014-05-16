@@ -1,6 +1,6 @@
 ﻿{
 	"cardName": "The Grand Design",
-	"cardImage": "",
+	"cardImage": "The-Grand-Design.jpg",
 	"runeCost": 6,
 	"powerCost": 0,
 	

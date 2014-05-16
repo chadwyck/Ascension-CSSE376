@@ -1,10 +1,10 @@
 ﻿{
 	"cardName": "Lifebound Initiate",
-	"cardImage": "",
-	"runeCost": 5,
+	"cardImage": "Lifebound-Initiate.jpg",
+	"runeCost": 1,
 	"powerCost": 0,
 	
-	"endGameHonorGain": 2,
+	"endGameHonorGain": 1,
 	"faction": "Lifebound",
 	"cardType": "hero",
 	"actions":[

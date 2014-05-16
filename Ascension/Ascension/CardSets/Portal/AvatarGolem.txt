@@ -1,6 +1,6 @@
 ﻿{
 	"cardName": "Avatar Golem",
-	"cardImage": "",
+	"cardImage": "AvatarGolem.jpg",
 	"runeCost": 4,
 	"powerCost": 0,
 	

@@ -1,6 +1,6 @@
 ﻿{
-	"cardName": "YggdrasilStaff",
-	"cardImage": "",
+	"cardName": "Yggdrasil Staff",
+	"cardImage": "Yggdrasil-Staff.jpg",
 	"runeCost": 4,
 	"powerCost": 0,
 	

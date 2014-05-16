@@ -140,7 +140,7 @@ namespace Ascension
         }
         public void purchase(Card crd, Boolean play, int Cost)
         {
-            if (crd.faction.Equals("mechana") && crd.cardType.Equals("construct"))
+            if (crd.faction != null && crd.cardType != null && crd.faction.Equals("mechana") && crd.cardType.Equals("construct"))
             {
                 if (Cost <= (this.playerRunes + this.playerMechRunes))
                 {
@@ -153,7 +153,8 @@ namespace Ascension
 
                     if (!play)
                     {
-                        this.game.cenRow.remove(crd);
+                        if (this.game.cenRow.cards.Contains(crd))
+                            this.game.cenRow.remove(crd);
                         discardPile.add(crd);
                     }
                     else
@@ -170,7 +171,8 @@ namespace Ascension
 
                     if (!play)
                     {
-                        this.game.cenRow.remove(crd);
+                        if(this.game.cenRow.cards.Contains(crd))
+                            this.game.cenRow.remove(crd);
                         discardPile.add(crd);
                     }
                     else

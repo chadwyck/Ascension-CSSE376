@@ -1,6 +1,6 @@
 ﻿{
 	"cardName": "Master Dhartha",
-	"cardImage": "",
+	"cardImage": "Master-Dhartha.jpg",
 	"runeCost": 7,
 	"powerCost": 0,
 	
