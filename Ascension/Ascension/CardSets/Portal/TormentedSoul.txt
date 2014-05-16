@@ -2,7 +2,7 @@
 	"cardName": "Tormented Soul",
 	"cardImage": "Tormented-Soul.jpg",
 	"runeCost": 0,
-	"powerCost": 3,
+	"powerCost": 0,
 	
 	"endGameHonorGain": 0,
 	"faction": "fallen",
@@ -13,7 +13,13 @@
 
 		{"type":"changeMetric",
 		"metricID": 0,
-		"incrementBy": 1}
+		"incrementBy": 1},
+		{"type": "moveFromTo",
+		"fromCC": "deck",
+		"toCC": "hand",
+		"userChoice": false,
+		"optional": false
+		}
 
 	]
 }

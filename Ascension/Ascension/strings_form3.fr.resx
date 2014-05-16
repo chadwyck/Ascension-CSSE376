@@ -151,4 +151,7 @@
   <data name="UseSelectedAbility" xml:space="preserve">
     <value>Utiliser la Capacité Choisie</value>
   </data>
+  <data name="Banish" xml:space="preserve">
+    <value>Bannir</value>
+  </data>
 </root>

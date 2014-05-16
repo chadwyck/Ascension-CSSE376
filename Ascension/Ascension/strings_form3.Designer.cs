@@ -70,6 +70,15 @@ namespace Ascension {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Banish.
+        /// </summary>
+        internal static string Banish {
+            get {
+                return ResourceManager.GetString("Banish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to DefaultCardName.
         /// </summary>
         internal static string CardName {

@@ -5,7 +5,7 @@
 	"powerCost": 0,
 	
 	"endGameHonorGain": 1,
-	"faction": "Lifebound",
+	"faction": "lifebound",
 	"cardType": "hero",
 	"actions":[
 		{"type":"changeMetric",

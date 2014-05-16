@@ -49,6 +49,9 @@ namespace Ascension
                 case "hand":
                     from = game.getCurrPlayer().hand;
                     break;
+                case "deck":
+                    from = game.getCurrPlayer().deck;
+                    break;
             }
             Card cardToMove = from.getCard(0);
             queryUser();

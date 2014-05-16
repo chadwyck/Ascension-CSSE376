@@ -1,0 +1,16 @@
+﻿{
+	"cardName": "Muramasa",
+	"cardImage": "Muramasa.jpg",
+	"runeCost": 7,
+	"powerCost": 0,
+	
+	"endGameHonorGain": 4,
+	"faction": "void",
+	"cardType": "construct",
+	"actions":[
+		{"type":"changeMetric",
+		"metricID": 2,
+		"incrementBy": 3}
+
+	]
+}

@@ -263,6 +263,7 @@ namespace Ascension
 
             CardImport card = new CardImport(this, "\\Portal\\");
             card.cardImportP(this, "\\Portal\\", pDeck);
+            pDeck.shuffle();
            foreach(Player p in plyrs){
                 
            }
@@ -362,16 +363,10 @@ namespace Ascension
         {
             if (!(hasAI && (0 == this.currTurn % this.numPlayers)))
             {
-                foreach (Card card in this.getCurrPlayer().hand.cards)
-                {
-                    card.playCard();
-                    this.boardView.updatePlayer();
-                }
-
+               
                 while (this.getCurrPlayer().hand.length > 0)
                 {
-                    this.getCurrPlayer().onBoard.add(this.getCurrPlayer().hand.getCard(0)); //adds first card to board
-                    this.getCurrPlayer().hand.remove(this.getCurrPlayer().hand.getCard(0)); //removes from hand
+                    this.getCurrPlayer().play(this.getCurrPlayer().hand.getCard(0));
                 }
 
                 this.boardView.updatePlayer();

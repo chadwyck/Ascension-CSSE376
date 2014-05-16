@@ -20,7 +20,7 @@ namespace Ascension
             
             InitializeComponent();
 
-            cardName.Text = strings_form3.CardName;
+            cardName.Text = strings_form3.PleaseSelectCard;
             label2.Text = strings_form3.RuneCost;
             label3.Text = strings_form3.PowerCost;
             label4.Text = strings_form3.Abilities;
@@ -28,6 +28,7 @@ namespace Ascension
             Purchase.Text = strings_form3.Purchase;
             Kill.Text = strings_form3.Kill;
             Play.Text = strings_form3.Play;
+            Banish.Text = strings_form3.Banish;
             label5.Text = strings_form3.EndGameHonor;
 
             noneSelected = new Card(null, strings_form3.PleaseSelectCard, null, 0, 0, 0, "", "basic", null);
