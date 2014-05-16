@@ -177,13 +177,13 @@ namespace Ascension
             boardView.setCanDoMoreButton();
         }
         public void generateCards(){
-            Card apprentice = new Card(this, "Apprentice", null, 0, 0, 0, null, "basic",
+            Card apprentice = new Card(this, "Apprentice", null, 0, 0, 0, "", "basic",
                 new List<CardAction> { new ChangeMetricCount(RUNES, 1, this) });
 
-            Card heavyInfantry = new Card(this, "Heavy Infantry", null, 2, 0, 1, null, "basic",
+            Card heavyInfantry = new Card(this, "Heavy Infantry", null, 2, 0, 1, "", "basic",
                 new List<CardAction> { new ChangeMetricCount(POWER, 2, this) });
 
-            Card mystic = new Card(this, "Mystic", null, 3, 0, 1, null, "basic",
+            Card mystic = new Card(this, "Mystic", null, 3, 0, 1, "", "basic",
                 new List<CardAction> { new ChangeMetricCount(RUNES, 2, this) });
 
             //Card voidthirster = new Card(this, "Voidthirster", null, 5, 0, 3, "void", "construct",
