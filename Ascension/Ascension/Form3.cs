@@ -139,5 +139,13 @@ namespace Ascension
         {
 
         }
+
+        private void Banish_Click(object sender, EventArgs e)
+        {
+            currCard.game.getCurrPlayer().banish(currCard);
+            currCard.game.boardView.updateVoidDeck(currCard.game.voidDeck);
+            currCard.game.boardView.updatePlayer();
+            update(noneSelected);
+        }
     }
 }

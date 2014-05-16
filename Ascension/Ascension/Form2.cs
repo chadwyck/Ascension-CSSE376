@@ -243,6 +243,7 @@ namespace Ascension
             cardView.changeVisibilityPurchaseButton(false);
             cardView.changeVisibilityAbilityButton(true);
             cardView.update(this.game.getCurrPlayer().onBoard.getCard(playPlay.SelectedIndex));
+            cardView.changeVisibilityPurchaseButton(false);
         }
 
         private void button5_Click(object sender, EventArgs e)  // Play All
@@ -271,6 +272,14 @@ namespace Ascension
             cardView.changeVisibilityAbilityButton(false);
             cardView.changeVisibilityKillButton(false);
 
+        }
+
+        private void playDisc_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cardView.changeVisibilityPlayButton(false);
+            cardView.changeVisibilityAbilityButton(false);
+            cardView.changeVisibilityKillButton(false);
+            cardView.update(this.game.getCurrPlayer().discardPile.getCard(playDisc.SelectedIndex));
         }
 
     }

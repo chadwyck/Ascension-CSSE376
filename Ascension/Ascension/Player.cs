@@ -204,6 +204,12 @@ namespace Ascension
             crd.playCard();
         }
 
+        public void banish(Card crd)
+        {
+            this.discardPile.remove(crd);
+            this.game.voidDeck.add(crd);
+        }
+
         public void kill(Card crd, int Cost)
         {
             if (Cost <= this.playerPower)

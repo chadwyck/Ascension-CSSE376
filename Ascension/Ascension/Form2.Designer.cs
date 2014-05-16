@@ -163,6 +163,7 @@
             this.playDisc.Name = "playDisc";
             this.playDisc.Size = new System.Drawing.Size(121, 21);
             this.playDisc.TabIndex = 11;
+            this.playDisc.SelectedIndexChanged += new System.EventHandler(this.playDisc_SelectedIndexChanged);
             // 
             // label4
             // 
