@@ -240,6 +240,7 @@ namespace Ascension
         private void playPlay_SelectedIndexChanged(object sender, EventArgs e)
         {
             cardView.changeVisibilityPlayButton(false);
+            cardView.changeVisibilityPurchaseButton(false);
             cardView.changeVisibilityAbilityButton(true);
             cardView.update(this.game.getCurrPlayer().onBoard.getCard(playPlay.SelectedIndex));
         }

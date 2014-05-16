@@ -153,7 +153,8 @@ namespace Ascension
 
                     if (!play)
                     {
-                        this.game.cenRow.remove(crd);
+                        if (this.game.cenRow.cards.Contains(crd))
+                            this.game.cenRow.remove(crd);
                         discardPile.add(crd);
                     }
                     else
@@ -170,7 +171,8 @@ namespace Ascension
 
                     if (!play)
                     {
-                        this.game.cenRow.remove(crd);
+                        if(this.game.cenRow.cards.Contains(crd))
+                            this.game.cenRow.remove(crd);
                         discardPile.add(crd);
                     }
                     else
