@@ -248,6 +248,7 @@ namespace Ascension
 
             CardImport card = new CardImport(this, "\\Portal\\");
             card.cardImportP(this, "\\Portal\\", pDeck);
+            pDeck.shuffle();
            foreach(Player p in plyrs){
                 
            }
