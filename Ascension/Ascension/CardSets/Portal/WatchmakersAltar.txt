@@ -1,16 +1,16 @@
 ﻿{
-	"cardName": "The Grand Design",
-	"cardImage": "The-Grand-Design.jpg",
-	"runeCost": 6,
+	"cardName": "Watchmaker's Altar",
+	"cardImage": "Watchmakers-Altar.jpg",
+	"runeCost": 5,
 	"powerCost": 0,
 	
-	"endGameHonorGain": 6,
+	"endGameHonorGain": 5,
 	"faction": "mechana",
 	"cardType": "construct",
 	"actions":[
 		{"type":"changeMetric",
 		"metricID": 3,
-		"incrementBy": 2}
+		"incrementBy": 1}
 
 	]
 }

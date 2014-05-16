@@ -42,6 +42,7 @@
             this.Purchase = new System.Windows.Forms.Button();
             this.Kill = new System.Windows.Forms.Button();
             this.Play = new System.Windows.Forms.Button();
+            this.Banish = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -158,8 +159,12 @@
             // 
             // Purchase
             // 
-            this.Purchase.Location = new System.Drawing.Point(372, 702);
-            this.Purchase.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+
+           
+
+            this.Purchase.Location = new System.Drawing.Point(279, 570);
+            this.Purchase.Margin = new System.Windows.Forms.Padding(2);
+
             this.Purchase.Name = "Purchase";
             this.Purchase.Size = new System.Drawing.Size(163, 28);
             this.Purchase.TabIndex = 11;
@@ -169,8 +174,12 @@
             // 
             // Kill
             // 
-            this.Kill.Location = new System.Drawing.Point(371, 757);
-            this.Kill.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+
+            
+
+            this.Kill.Location = new System.Drawing.Point(278, 615);
+            this.Kill.Margin = new System.Windows.Forms.Padding(2);
+
             this.Kill.Name = "Kill";
             this.Kill.Size = new System.Drawing.Size(164, 26);
             this.Kill.TabIndex = 12;
@@ -189,11 +198,26 @@
             this.Play.UseVisualStyleBackColor = true;
             this.Play.Click += new System.EventHandler(this.Play_Click);
             // 
+            // Banish
+            // 
+            this.Banish.Location = new System.Drawing.Point(40, 660);
+            this.Banish.Name = "Banish";
+            this.Banish.Size = new System.Drawing.Size(117, 23);
+            this.Banish.TabIndex = 14;
+            this.Banish.Text = "Banish";
+            this.Banish.UseVisualStyleBackColor = true;
+            this.Banish.Click += new System.EventHandler(this.Banish_Click);
+            // 
             // CardView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(551, 855);
+
+            
+
+            this.ClientSize = new System.Drawing.Size(413, 695);
+            this.Controls.Add(this.Banish);
+
             this.Controls.Add(this.Play);
             this.Controls.Add(this.Kill);
             this.Controls.Add(this.Purchase);
@@ -234,5 +258,6 @@
         private System.Windows.Forms.Button Purchase;
         private System.Windows.Forms.Button Kill;
         private System.Windows.Forms.Button Play;
+        private System.Windows.Forms.Button Banish;
     }
 }

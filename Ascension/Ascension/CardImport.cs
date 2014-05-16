@@ -125,11 +125,11 @@ namespace Ascension
                 {
                     ret.Add(new ForEachCardType(act.faction, act.cardType, act.playedOne, act.metricID, act.incrementBy, game));
                 }
-               //if (act.type.Equals("moveFromTo"))
-               // {
+               if (act.type.Equals("moveFromTo"))
+                {
                   
-               //     ret.Add(new MoveFromTo(act.fromCC, act.toCC,act.userChoice,act.optional,game));
-               // }
+                    ret.Add(new MoveFromTo(act.fromCC, act.toCC,act.userChoice,act.optional,game));
+                }
                
             }
         return ret;

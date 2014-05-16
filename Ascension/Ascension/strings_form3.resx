@@ -120,6 +120,9 @@
   <data name="Abilities" xml:space="preserve">
     <value>Abilities</value>
   </data>
+  <data name="Banish" xml:space="preserve">
+    <value>Banish</value>
+  </data>
   <data name="CardName" xml:space="preserve">
     <value>DefaultCardName</value>
   </data>

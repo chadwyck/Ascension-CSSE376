@@ -58,6 +58,9 @@ namespace Ascension
                 case "hand":
                     from = game.getCurrPlayer().hand;
                     break;
+                case "deck":
+                    from = game.getCurrPlayer().deck;
+                    break;
             }
             if(moving==null)
             moving = from.getCard(0);

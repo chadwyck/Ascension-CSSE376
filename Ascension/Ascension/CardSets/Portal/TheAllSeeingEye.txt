@@ -8,6 +8,10 @@
 	"faction": "enlightened",
 	"cardType": "construct",
 	"actions":[
-	{"type":""}
+	{"type": "moveFromTo",
+		"fromCC": "deck",
+		"toCC": "hand",
+		"userChoice": false,
+		"optional": true}
 	]
 }
