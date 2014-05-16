@@ -1,6 +1,6 @@
 ﻿{
 	"cardName": "The All Seeing Eye",
-	"cardImage": "",
+	"cardImage": "The-All-Seeing-Eye.jpg",
 	"runeCost": 6,
 	"powerCost": 0,
 	

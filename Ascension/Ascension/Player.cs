@@ -140,7 +140,7 @@ namespace Ascension
         }
         public void purchase(Card crd, Boolean play, int Cost)
         {
-            if (crd.faction.Equals("mechana") && crd.cardType.Equals("construct"))
+            if (crd.faction != null && crd.cardType != null && crd.faction.Equals("mechana") && crd.cardType.Equals("construct"))
             {
                 if (Cost <= (this.playerRunes + this.playerMechRunes))
                 {

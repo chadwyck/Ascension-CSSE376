@@ -32,6 +32,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // comboBox1
@@ -77,11 +79,34 @@
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(28, 196);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(102, 13);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Language Selection";
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "English",
+            "French"});
+            this.comboBox2.Location = new System.Drawing.Point(46, 224);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(121, 21);
+            this.comboBox2.TabIndex = 5;
+            this.comboBox2.Text = "English";
+            // 
             // StartView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(276, 196);
+            this.ClientSize = new System.Drawing.Size(276, 265);
+            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
@@ -100,6 +125,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox comboBox2;
     }
 }
 

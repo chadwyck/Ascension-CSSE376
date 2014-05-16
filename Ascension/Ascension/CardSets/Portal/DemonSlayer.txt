@@ -1,6 +1,6 @@
 ﻿{
 	"cardName": "Demon Slayer",
-	"cardImage": "",
+	"cardImage": "Demon-Slayer.jpg",
 	"runeCost": 4,
 	"powerCost": 0,
 	

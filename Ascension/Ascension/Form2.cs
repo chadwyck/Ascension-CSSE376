@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
+using System.Globalization;
 
 namespace Ascension
 {
@@ -34,6 +36,28 @@ namespace Ascension
         private void initialize(Game gm, bool f)
         {
             InitializeComponent();
+            //Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("fr-FR");
+            //Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
+
+            label9.Text = strings.Honor;
+            currentPlayNum.Text = strings.Player;
+            label7.Text = strings.Runes;
+            label8.Text = strings.Power;
+            button1.Text = strings.BuyMystic;
+            button2.Text = strings.BuyHI;
+            button3.Text = strings.KillCultist;
+            button4.Text = strings.EndTurn;
+            button6.Text = strings.PlayAll;
+            label1.Text = strings.CenterRow;
+            label2.Text = strings.CurrentHand;
+            label3.Text = strings.OnTable;
+            label4.Text = strings.DiscardPile;
+            label5.Text = strings.Deck;
+            label13.Text = strings.YourHonor;
+            label6.Text = strings.Constructs;
+            label15.Text = strings.TheVoid;
+            label16.Text = strings.Portal;
+
             cardView = new CardView();
             if (!f)
                 cardView.Show();
@@ -67,7 +91,7 @@ namespace Ascension
 
         private void label9_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         private void label7_Click(object sender, EventArgs e)
@@ -217,7 +241,7 @@ namespace Ascension
         {
             cardView.changeVisibilityPlayButton(false);
             cardView.changeVisibilityAbilityButton(true);
-            cardView.update(this.game.getCurrPlayer().onBoard.getCard(playHand.SelectedIndex));
+            cardView.update(this.game.getCurrPlayer().onBoard.getCard(playPlay.SelectedIndex));
         }
 
         private void button5_Click(object sender, EventArgs e)  // Play All

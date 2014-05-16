@@ -1,6 +1,6 @@
 ﻿{
-	"cardName": "Void Thirster",
-	"cardImage": "",
+	"cardName": "Voidthirster",
+	"cardImage": "Voidthirster.jpg",
 	"runeCost": 5,
 	"powerCost": 0,
 	"endGameHonorGain": 2,

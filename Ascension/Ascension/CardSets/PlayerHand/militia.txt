@@ -1,6 +1,6 @@
 ﻿{
 	"cardName": "Militia",
-	"cardImage": "",
+	"cardImage": "militia.jpg",
 	"runeCost": 2,
 	"powerCost": 0,
 	"cardsToDraw": 0,

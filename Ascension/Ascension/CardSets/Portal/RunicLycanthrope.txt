@@ -1,6 +1,6 @@
 ﻿{
 	"cardName": "Runic Lycanthrope",
-	"cardImage": "",
+	"cardImage": "Runic-Lycanthrope.jpg",
 	"runeCost": 3,
 	"powerCost": 0,
 	

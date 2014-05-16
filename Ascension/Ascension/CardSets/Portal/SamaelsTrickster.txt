@@ -1,6 +1,6 @@
 ﻿{
 	"cardName": "Samaels Trickster",
-	"cardImage": "",
+	"cardImage": "Samaels-Trickster.jpg",
 	"runeCost": 0,
 	"powerCost": 4,
 	

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
+using System.Globalization;
 
 namespace Ascension
 {
@@ -28,7 +30,6 @@ namespace Ascension
             get; private set;
         }
         
-
         public int honorOnBoard
         {
             get;
@@ -54,24 +55,38 @@ namespace Ascension
         private Player[] plyrs;
         public Game (int numPlayers)
 		{
-            gameInitialize(numPlayers, false);
             this.hasAI = false;
+            gameInitialize(numPlayers, false, "English");
         }
 
         public Game(int numPlayers, Boolean hasAI)
         {
             this.hasAI = hasAI;
-            gameInitialize(numPlayers, false);
+            gameInitialize(numPlayers, false, "English");
         }
 
         public Game(int numPlayers, Boolean hasAI, bool isTest)
         {
             this.hasAI = hasAI;
-            gameInitialize(numPlayers, isTest);
+            gameInitialize(numPlayers, isTest, "English");
         }
 
-        private void gameInitialize(int numPlayers, bool isTest)
+        public Game(int numPlayers, Boolean hasAI, bool isTest, string language)
         {
+            this.hasAI = hasAI;
+            gameInitialize(numPlayers, isTest, language);
+        }
+
+        private void gameInitialize(int numPlayers, bool isTest, string language)
+        {
+            if (language.Equals("French"))
+            {
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("fr-FR");
+            }
+            else
+            {
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
+            }
             endOfGame = false;
             currTurn = 1;
             if (!this.hasAI)
@@ -292,10 +307,7 @@ namespace Ascension
 
             if ((myst.length != 0) && (getCurrPlayer().playerRunes >= 3))
             {
-
                 temp = myst.getCard(0);
-                myst.remove(temp);
-                getCurrPlayer().addRunes(-3);
             }
             return temp;
         }
@@ -304,10 +316,7 @@ namespace Ascension
             Card temp = null;
             if ((heavyIn.length != 0) && (getCurrPlayer().playerRunes >= 2))
             {
-
                 temp = heavyIn.getCard(0);
-                heavyIn.remove(temp);
-                getCurrPlayer().addRunes(-2);
             }
             return temp;
         }
