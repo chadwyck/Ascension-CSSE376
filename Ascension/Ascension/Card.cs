@@ -59,7 +59,7 @@ namespace Ascension
                     }
                 }
             }
-            new OptionalPlay(this.game, this);
+            
             foreach (var action in this.actions)
             {
                 action.doAction();

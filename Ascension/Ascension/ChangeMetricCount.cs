@@ -15,7 +15,7 @@ namespace Ascension
             this.metricID = metricID;
             this.incrementBy = incrementBy;
             this.game = game;
-            this.required = false;
+            
         }
         override public void doAction()
         {

@@ -8,8 +8,8 @@ namespace Ascension
 {
     public class MoveFromTo : CardAction
     {
-        private String fromCC, toCC;
-        private bool userChoice, optional, willPerformAction;
+        public String fromCC, toCC;
+        public bool userChoice, optional, willPerformAction;
         //private Card cardToMove;
         private Game game;
         public MoveFromTo (String fromCC, String toCC, bool userChoice, bool optional, Game gme)
@@ -22,11 +22,19 @@ namespace Ascension
             this.willPerformAction = true;
             
         }
-
-        override public void doAction()
+        public override void doAction()
+        {
+            if (userChoice || optional)
+                queryUser();
+            else
+                doTheAction(null);
+        }
+        
+        public void doTheAction(Card moving)
         {
             CardCollection to =null;
             CardCollection from = null;
+
             switch (this.toCC)
             {
                 case "void":
@@ -51,21 +59,18 @@ namespace Ascension
                     from = game.getCurrPlayer().hand;
                     break;
             }
-            Card cardToMove = from.getCard(0);
-            queryUser();
-            if (willPerformAction)
-            {
-                from.remove(cardToMove);
-                to.add(cardToMove);
-            }
+            if(moving==null)
+            moving = from.getCard(0);
+            
+            
+                from.remove(moving);
+                to.add(moving);
+            
         }
 
         private void queryUser()
         {
-            //if (userChoice || optional)
-            //{
-            //    // generate form
-            //}
+            //new OptionalPlay(this);
         }
         public override string printAction()
         {
