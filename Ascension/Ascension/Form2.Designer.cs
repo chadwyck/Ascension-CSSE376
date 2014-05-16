@@ -59,8 +59,9 @@
             this.portalCombo = new System.Windows.Forms.ComboBox();
             this.label16 = new System.Windows.Forms.Label();
             this.currentPlayNum = new System.Windows.Forms.Label();
-			this.button6 = new System.Windows.Forms.Button();
-			this.mechRuneNum = new System.Windows.Forms.Label();            this.SuspendLayout();
+            this.button6 = new System.Windows.Forms.Button();
+            this.mechRuneNum = new System.Windows.Forms.Label();
+            this.SuspendLayout();
             // 
             // comboBox1
             // 
@@ -190,6 +191,7 @@
             this.playDeck.Name = "playDeck";
             this.playDeck.Size = new System.Drawing.Size(121, 21);
             this.playDeck.TabIndex = 13;
+            this.playDeck.SelectedIndexChanged += new System.EventHandler(this.playDeck_SelectedIndexChanged);
             // 
             // label5
             // 
@@ -346,7 +348,6 @@
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
-
             // mechRuneNum
             // 
             this.mechRuneNum.AutoSize = true;
@@ -357,14 +358,16 @@
             this.mechRuneNum.Size = new System.Drawing.Size(13, 13);
             this.mechRuneNum.TabIndex = 30;
             this.mechRuneNum.Text = "0";
-            //             // BoardView
+            // 
+            // BoardView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1004, 544);
             this.Controls.Add(this.button6);
-            this.Controls.Add(this.mechRuneNum);            this.Controls.Add(this.currentPlayNum);
+            this.Controls.Add(this.mechRuneNum);
+            this.Controls.Add(this.currentPlayNum);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.portalCombo);
             this.Controls.Add(this.label15);

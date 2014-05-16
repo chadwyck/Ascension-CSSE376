@@ -22,6 +22,27 @@ namespace Ascension
 
             noneSelected = new Card(null, "Please Select a Card", null, 0, 0, 0, "", "basic", null);
         }
+
+        public void changeVisibilityPlayButton(Boolean visible)
+        {
+            Play.Visible = visible;
+        }
+
+        public void changeVisibilityAbilityButton(Boolean visible)
+        {
+            button1.Visible = visible;
+        }
+
+        public void changeVisibilityKillButton(Boolean visible)
+        {
+            Kill.Visible = visible;
+        }
+
+        public void changeVisibilityPurchaseButton(Boolean visible)
+        {
+            Purchase.Visible = visible;
+        }
+
         public void update(Card card)
         {
             //currCard = (new CardImport()).cardImport(null).draw();

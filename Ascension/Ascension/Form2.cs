@@ -103,6 +103,8 @@ namespace Ascension
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            cardView.changeVisibilityPlayButton(false);
+            cardView.changeVisibilityAbilityButton(false);
             cardView.update(cenRow.getCard(comboBox1.SelectedIndex));
         }
 
@@ -202,6 +204,9 @@ namespace Ascension
 
         private void playHand_SelectedIndexChanged(object sender, EventArgs e)
         {
+
+            cardView.changeVisibilityPlayButton(true);
+            cardView.changeVisibilityAbilityButton(false);
             cardView.update(this.game.getCurrPlayer().hand.getCard(playHand.SelectedIndex));
 
 
@@ -210,6 +215,8 @@ namespace Ascension
 
         private void playPlay_SelectedIndexChanged(object sender, EventArgs e)
         {
+            cardView.changeVisibilityPlayButton(false);
+            cardView.changeVisibilityAbilityButton(true);
             cardView.update(this.game.getCurrPlayer().onBoard.getCard(playHand.SelectedIndex));
         }
 
@@ -231,6 +238,14 @@ namespace Ascension
         private void button6_Click(object sender, EventArgs e)
         {
             this.game.playAll();
+        }
+
+        private void playDeck_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cardView.changeVisibilityPlayButton(false);
+            cardView.changeVisibilityAbilityButton(false);
+            cardView.changeVisibilityKillButton(false);
+
         }
 
     }
