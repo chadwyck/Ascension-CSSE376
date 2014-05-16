@@ -20,6 +20,7 @@ namespace Ascension
             this.optional = optional;
             this.game = gme;
             this.willPerformAction = true;
+            
         }
 
         override public void doAction()
@@ -65,6 +66,10 @@ namespace Ascension
             //{
             //    // generate form
             //}
+        }
+        public override string printAction()
+        {
+            return "";
         }
 
     }

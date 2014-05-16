@@ -16,6 +16,7 @@ namespace Ascension
         private int POWER;
         private int p4;
         private Game testGame;
+
         public ForEachCardType(string faction, string cardType, bool playedOne, int metricID, int incrementBy, Game game)
             : base(metricID, incrementBy, game)
         {
@@ -42,6 +43,10 @@ namespace Ascension
                     base.doAction();
                 }
             }
+        }
+        public override string printAction()
+        {
+            return "";
         }
 
         //private int numOf()

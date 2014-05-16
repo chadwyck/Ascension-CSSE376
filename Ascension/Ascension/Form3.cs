@@ -79,7 +79,14 @@ namespace Ascension
                 pictureBox1.Image = currCard.cardImage;
                 pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
                 pictureBox1.Show();
+                
                 killOrPurchase();
+                comboBox1.Items.Clear();
+            if(!currCard.cardName.Equals(strings_form3.PleaseSelectCard))
+                foreach (CardAction c in currCard.actions)
+                {
+                    comboBox1.Items.Add(c.printAction());
+                }
         }
 
         

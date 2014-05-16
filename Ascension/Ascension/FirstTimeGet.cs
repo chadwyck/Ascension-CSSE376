@@ -29,5 +29,10 @@ namespace Ascension
         {
             base.doAction();
         }
+        public override string printAction()
+        {
+            return "";
+        }
+
     }
 }

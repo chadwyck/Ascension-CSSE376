@@ -8,8 +8,7 @@
 	"faction": "mechana",
 	"cardType": "construct",
 	"actions":[
-	{"type":"changeMetric","metricID": 1,"incrementBy": 20}
-	,
-	{"type":"changeMetric","metricID": 3,"incrementBy": 4}
+	{"type":"changeMetric","metricID": 1,"incrementBy": 1}
+	
 	]
 }

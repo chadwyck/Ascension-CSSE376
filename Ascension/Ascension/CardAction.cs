@@ -8,8 +8,11 @@ namespace Ascension
 {
     public abstract class CardAction
     {
+
         public CardAction()
         { }
+        
         abstract public void doAction();
+        abstract public String printAction();
     }
 }
