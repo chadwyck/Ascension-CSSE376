@@ -2,7 +2,7 @@
 	"cardName": "Tormented Soul",
 	"cardImage": "Tormented-Soul.jpg",
 	"runeCost": 0,
-	"powerCost": 0,
+	"powerCost": 3,
 	
 	"endGameHonorGain": 0,
 	"faction": "fallen",
