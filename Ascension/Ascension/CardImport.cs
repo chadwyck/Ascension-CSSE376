@@ -62,13 +62,10 @@ namespace Ascension
 
             foreach (string cardFile in files)
             {
-
-                deck.add(fileToCard(cardFile, path));
+                var card = fileToCard(cardFile, path);
+                deck.add(card);
             }
-
-
-
-           
+          
         }
         private class imCard{
         

@@ -9,9 +9,14 @@ namespace Ascension
     public class MoveFromTo : CardAction
     {
         public String fromCC, toCC;
-        public bool userChoice, optional, willPerformAction;
+        public bool userChoice, optional;
+        CardCollection to;
+        CardCollection from;
         //private Card cardToMove;
         private Game game;
+
+        public bool willPerformAction { get; set; }
+
         public MoveFromTo (String fromCC, String toCC, bool userChoice, bool optional, Game gme)
         {
             this.fromCC = fromCC;
@@ -25,15 +30,21 @@ namespace Ascension
         public override void doAction()
         {
             if (userChoice || optional)
+            {
                 queryUser();
+            }
             else
-                doTheAction(null);
+            {
+                doTheAction();
+                actuallyDoTheAction(null);
+            }
+                
         }
         
-        public void doTheAction(Card moving)
+        public void doTheAction()
         {
-            CardCollection to =null;
-            CardCollection from = null;
+            to = null;
+            from = null;
 
             switch (this.toCC)
             {
@@ -62,18 +73,35 @@ namespace Ascension
                     from = game.getCurrPlayer().deck;
                     break;
             }
-            if(moving==null)
-            moving = from.getCard(0);
-            
-            
-                from.remove(moving);
-                to.add(moving);
-            
+        }
+
+        public void actuallyDoTheAction(Card moving)
+        {
+            if (moving == null)
+            {
+                moving = from.getCard(0);
+            }
+
+
+            from.remove(moving);
+            to.add(moving);
+
+            this.game.boardView.updatePlayer();
+
         }
 
         private void queryUser()
         {
-            //new OptionalPlay(this);
+            this.doTheAction();
+            ChoiceForm cf = new ChoiceForm(this);
+            cf.Show();
+            cf.updateChoiceBox(this.from);
+
+            if(!this.userChoice)
+            {
+                cf.hideCombo();
+            }
+            
         }
         public override string printAction()
         {

@@ -237,9 +237,9 @@ namespace Ascension
             //Card tormentedSoul = new Card(this, "Tormented Soul", null, 0, 3, 0, "fallen", "monster",
             //    new List<CardAction> { new ChangeMetricCount(HONOR, 1, this) });
 
-            //Card runicLycanthrope = new Card(this, "Runic Lycanthrope", null, 3, 0, 1, "lifebound", "hero",
-            //    new List<CardAction> { new ChangeMetricCount(RUNES, 2, this),
-            //                            new ForEachCardType("lifebound","hero",true,POWER,2,this) });
+            //Card mystic = new Card(this, "Runic Lycanthrope", null, 0, 0, 1, "lifebound", "hero",
+             //   new List<CardAction> { new ChangeMetricCount(RUNES, 2, this),
+             //                           new ForEachCardType("lifebound","hero",true,POWER,2,this) });
 
             //Card mistakeOfCreation = new Card(this, "Mistake of Creation", null, 0, 4, 0, "fallen", "monster",
             //    new List<CardAction> { new ChangeMetricCount(HONOR, 4, this) });
@@ -263,7 +263,7 @@ namespace Ascension
 
             CardImport card = new CardImport(this, "\\Portal\\");
             card.cardImportP(this, "\\Portal\\", pDeck);
-            pDeck.shuffle();
+            //pDeck.shuffle();
            foreach(Player p in plyrs){
                 
            }

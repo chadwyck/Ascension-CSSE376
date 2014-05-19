@@ -31,7 +31,7 @@ namespace Ascension
             int numCorrCards = this.game.cardsPlayed.numberOf(faction, cardType);
             if (playedOne)
             {
-                if (numCorrCards > 0)
+                if (numCorrCards > 1)
                 {
                     base.doAction();
                 }

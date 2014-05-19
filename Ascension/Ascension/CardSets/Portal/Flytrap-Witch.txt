@@ -1,0 +1,21 @@
+﻿{
+	"cardName": "Flytrap Witch",
+	"cardImage": "Flytrap-Witch.jpg",
+	"runeCost": 5,
+	"powerCost": 0,
+	
+	"endGameHonorGain": 2,
+	"faction": "lifebound",
+	"cardType": "hero",
+	"actions":[
+		{"type":"changeMetric",
+		"metricID": 0,
+		"incrementBy": 2},
+		{"type": "moveFromTo",
+		"fromCC": "deck",
+		"toCC": "hand",
+		"userChoice": false,
+		"optional": false
+		}
+	]
+}

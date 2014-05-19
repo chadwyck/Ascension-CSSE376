@@ -9,7 +9,8 @@
 	"cardType": "hero",
 	"actions":[
 		{"type":"forEachCardType",
-		"faction": "",
+		"faction": "lifebound",
+		"cardType": "hero",
 		"playedOne": true,
 		"metricID": 2,
 		"incrementBy": 2},

@@ -1,0 +1,18 @@
+﻿{
+	"cardName": "Arha Initiate",
+	"cardImage": "Arha-Initiate.jpg",
+	"runeCost": 1,
+	"powerCost": 0,
+	
+	"endGameHonorGain": 1,
+	"faction": "enlightened",
+	"cardType": "hero",
+	"actions":[
+		{"type": "moveFromTo",
+		"fromCC": "deck",
+		"toCC": "hand",
+		"userChoice": false,
+		"optional": false
+		}
+	]
+}

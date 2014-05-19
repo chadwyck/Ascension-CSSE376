@@ -284,7 +284,7 @@ namespace Ascension
 
         private void playConstructs_SelectedIndexChanged(object sender, EventArgs e)
         {
-            cardView.changeVisibilityPlayButton(true);
+            cardView.changeVisibilityPlayButton(false);
             cardView.changeVisibilityPurchaseButton(false);
             cardView.changeVisibilityAbilityButton(false);
             cardView.changeVisibilityKillButton(false);
