@@ -1,0 +1,14 @@
+﻿{
+	"cardName": "Burrower Mark II",
+	"cardImage": "Burrower-Mark-II.jpg",
+	"runeCost": 3,
+	"powerCost": 0,
+	
+	"endGameHonorGain": 3,
+	"faction": "mechana",
+	"cardType": "construct",
+	"actions":[
+		{"type":"mechanaDraw"}
+		
+	]
+}

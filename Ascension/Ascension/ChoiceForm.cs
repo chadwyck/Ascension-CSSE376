@@ -73,5 +73,12 @@ namespace Ascension
         }
 
 
+
+        internal void hideOptions()
+        {
+            this.label1.Hide();
+            this.button1.Hide();
+            this.button2.Hide();
+        }
     }
 }

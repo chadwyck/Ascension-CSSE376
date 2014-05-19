@@ -1,21 +1,21 @@
 ﻿{
-	"cardName": "Runic Lycanthrope",
-	"cardImage": "Runic-Lycanthrope.jpg",
+	"cardName": "Kor, the Ferromancer",
+	"cardImage": "Kor-the-Ferromancer.jpg",
 	"runeCost": 3,
 	"powerCost": 0,
 	
-	"endGameHonorGain": 1,
-	"faction": "lifebound",
+	"endGameHonorGain": 2,
+	"faction": "mechana",
 	"cardType": "hero",
 	"actions":[
 		{"type":"forEachCardType",
 		"faction": "lifebound",
-		"cardType": "hero",
+		"cardType": "construct",
 		"playedOne": true,
 		"metricID": 2,
 		"incrementBy": 2},
 		{"type":"changeMetric",
-		"metricID": 1,
+		"metricID": 2,
 		"incrementBy": 2}
 		
 

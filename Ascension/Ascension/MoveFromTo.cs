@@ -31,6 +31,7 @@ namespace Ascension
         {
             if (userChoice || optional)
             {
+                this.game.boardView.updateCombos();
                 queryUser();
             }
             else
@@ -69,6 +70,9 @@ namespace Ascension
                 case "hand":
                     from = game.getCurrPlayer().hand;
                     break;
+                case "center":
+                    from = game.cenRow;
+                    break;
                 case "deck":
                     from = game.getCurrPlayer().deck;
                     break;
@@ -86,7 +90,7 @@ namespace Ascension
             from.remove(moving);
             to.add(moving);
 
-            this.game.boardView.updatePlayer();
+            this.game.boardView.updateCombos();
 
         }
 
@@ -100,6 +104,11 @@ namespace Ascension
             if(!this.userChoice)
             {
                 cf.hideCombo();
+            }
+
+            if (!this.optional)
+            {
+                cf.hideOptions();
             }
             
         }

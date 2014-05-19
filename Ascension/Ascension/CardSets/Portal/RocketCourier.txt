@@ -1,0 +1,14 @@
+﻿{
+	"cardName": "Rocket Courier X-99",
+	"cardImage": "Rocket-Courier-X-99.jpg",
+	"runeCost": 4,
+	"powerCost": 0,
+	
+	"endGameHonorGain": 4,
+	"faction": "mechana",
+	"cardType": "construct",
+	"actions":[
+		{"type":"mechanaDirectToPlay"}
+		
+	]
+}

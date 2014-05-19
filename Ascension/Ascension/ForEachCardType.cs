@@ -28,7 +28,12 @@ namespace Ascension
 
         override public void doAction()
         {
-            int numCorrCards = this.game.cardsPlayed.numberOf(faction, cardType);
+            int numCorrCards;
+            if (cardType.Equals("construct")) {
+                numCorrCards = this.game.getCurrPlayer().constructs.numberOf(faction);
+            } else {
+                numCorrCards = this.game.cardsPlayed.numberOf(faction, cardType);
+            }
             if (playedOne)
             {
                 if (numCorrCards > 1)

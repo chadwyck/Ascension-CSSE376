@@ -79,6 +79,7 @@
   <ItemGroup>
     <Compile Include="AI.cs" />
     <Compile Include="AILogic.cs" />
+    <Compile Include="AllConstructsMechana.cs" />
     <Compile Include="Card.cs" />
     <Compile Include="CardAction.cs" />
     <Compile Include="CardCollection.cs" />
@@ -106,6 +107,8 @@
     <Compile Include="HandDeck.cs" />
     <Compile Include="InHand.cs" />
     <Compile Include="InPlay.cs" />
+    <Compile Include="MechanaDirectToPlay.cs" />
+    <Compile Include="MechanaDraw.cs" />
     <Compile Include="MoveFromTo.cs" />
     <Compile Include="Shuffleable.cs" />
     <Compile Include="PortalDeck.cs" />
@@ -220,23 +223,39 @@
     <Content Include="CardSets\PlayerHand\militia.jpg" />
     <Content Include="CardSets\PlayerHand\militia.txt" />
     <Content Include="CardSets\PlayerHand\apprentice.txt" />
+    <Content Include="CardSets\Portal\ArbiterOfThePrecipice.txt" />
     <Content Include="CardSets\Portal\Arha-Initiate.jpg" />
     <Content Include="CardSets\Portal\ArhaInitiate.txt" />
     <Content Include="CardSets\Portal\Ascetic-of-the-Lidless-Eye.jpg" />
     <Content Include="CardSets\Portal\AsceticOfTheLidlessEye.txt" />
+    <Content Include="CardSets\Portal\Avatar-of-the-Fallen.jpg" />
     <Content Include="CardSets\Portal\AvatarGolem.jpg" />
+    <Content Include="CardSets\Portal\AvatarOfTheFallen.txt" />
+    <Content Include="CardSets\Portal\Burrower-Mark-II.jpg" />
+    <Content Include="CardSets\Portal\BurrowerMark.txt" />
     <Content Include="CardSets\Portal\Demon-Slayer.jpg" />
     <Content Include="CardSets\Portal\Earth-Tyrant.jpg" />
     <Content Include="CardSets\Portal\EarthTyrant.txt" />
     <Content Include="CardSets\Portal\Emri.txt" />
     <Content Include="CardSets\Portal\Flytrap-Witch.jpg" />
     <Content Include="CardSets\Portal\Flytrap-Witch.txt" />
+    <Content Include="CardSets\Portal\Hedron-Cannon.jpg" />
+    <Content Include="CardSets\Portal\HedronCannon.txt" />
+    <Content Include="CardSets\Portal\Hedron-Link-Device.jpg" />
+    <Content Include="CardSets\Portal\HedronLinkDevice.txt" />
+    <Content Include="CardSets\Portal\KorTheFerromancer.txt" />
     <Content Include="CardSets\Portal\Landtalker.jpg" />
     <Content Include="CardSets\Portal\Landtalker.txt" />
     <Content Include="CardSets\Portal\Lifebound-Initiate.jpg" />
     <Content Include="CardSets\Portal\Master-Dhartha.jpg" />
+    <Content Include="CardSets\Portal\Mephit.jpg" />
+    <Content Include="CardSets\Portal\aaMephit.txt" />
+    <Content Include="CardSets\Portal\Mistake-of-Creation.jpg" />
+    <Content Include="CardSets\Portal\aaMistakeOfCreation.txt" />
     <Content Include="CardSets\Portal\Muramasa.jpg" />
     <Content Include="CardSets\Portal\Muramasa.txt" />
+    <Content Include="CardSets\Portal\Rocket-Courier-X-99.jpg" />
+    <Content Include="CardSets\Portal\RocketCourier.txt" />
     <Content Include="CardSets\Portal\Runic-Lycanthrope.jpg" />
     <Content Include="CardSets\Portal\RunicLycanthrope.txt" />
     <Content Include="CardSets\Portal\Samaels-Trickster.jpg" />
@@ -263,7 +282,7 @@
     <Content Include="CardSets\Portal\Yggdrasil-Staff.jpg" />
     <Content Include="CardSets\Portal\YggdrasilStaff.txt" />
     <Content Include="CardSets\Portal\TheGrandDesign.txt" />
-    <Content Include="CardSets\Portal\AllSeeingEye.txt" />
+    <Content Include="CardSets\Portal\TheAllSeeingEye.txt" />
     <Content Include="CardSets\Portal\VoidThirster.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,0 +1,30 @@
+﻿{
+	"cardName": "Temple Librarian",
+	"cardImage": "Temple-Librarian.jpg",
+	"runeCost": 2,
+	"powerCost": 0,
+	
+	"endGameHonorGain": 1,
+	"faction": "enlightened",
+	"cardType": "hero",
+	"actions":[
+		{"type": "moveFromTo",
+		"fromCC": "hand",
+		"toCC": "discard",
+		"userChoice": true,
+		"optional": false
+		},
+		{"type": "moveFromTo",
+		"fromCC": "deck",
+		"toCC": "hand",
+		"userChoice": false,
+		"optional": false
+		},
+		{"type": "moveFromTo",
+		"fromCC": "deck",
+		"toCC": "deck",
+		"userChoice": false,
+		"optional": false
+		}
+	]
+}

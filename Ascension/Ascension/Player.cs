@@ -56,7 +56,7 @@ namespace Ascension
 
             this.discardPile = new DiscardDeck(this.deck);
             this.deck.setDiscard(this.discardPile);
-            this.constructs = new ConstructDeck(this.discardPile);
+            this.constructs = new ConstructDeck(this.discardPile, this.game);
             this.onBoard = new InPlay(this.discardPile);
             this.hand = new InHand(this.discardPile, this.onBoard, this.deck);
             
@@ -140,7 +140,7 @@ namespace Ascension
         }
         public void purchase(Card crd, Boolean play, int Cost)
         {
-            if (crd.faction != null && crd.cardType != null && crd.faction.Equals("mechana") && crd.cardType.Equals("construct"))
+            if (crd.faction != null && crd.cardType != null && (crd.faction.Equals("mechana") || this.game.allMechanaConstructs) && crd.cardType.Equals("construct"))
             {
                 if (Cost <= (this.playerRunes + this.playerMechRunes))
                 {
@@ -151,7 +151,7 @@ namespace Ascension
                         this.playerMechRunes = 0;
                     }
 
-                    if (!play)
+                    if (!this.game.mechanaDirectToPlay)
                     {
                         if (this.game.cenRow.cards.Contains(crd))
                             this.game.cenRow.remove(crd);
@@ -159,7 +159,15 @@ namespace Ascension
                     }
                     else
                     {
-                        this.play(crd);
+                        if (this.game.cenRow.cards.Contains(crd))
+                            this.game.cenRow.remove(crd);
+                        constructs.add(crd);
+                        crd.playCard();
+                        if (this.game.mechanaDraw)
+                        {
+                            drawACard();
+                            this.game.mechanaDraw = false;
+                        }
                     }
                 }
             }
@@ -183,6 +191,12 @@ namespace Ascension
             }
         }
 
+        public void drawACard()
+        {
+            Card card = this.deck.draw();
+            this.hand.add(card);
+        }
+
         public int getEndGameHonor()
         {
             return this.playerHonor;
@@ -194,6 +208,11 @@ namespace Ascension
             {
                 hand.remove(crd);
                 constructs.add(crd);
+                if (this.game.mechanaDraw && (crd.faction.Equals("mechana") || this.game.allMechanaConstructs))
+                {
+                    drawACard();
+                    this.game.mechanaDraw = false;
+                }
             }
             else
             {
@@ -213,12 +232,11 @@ namespace Ascension
         public void kill(Card crd, int Cost)
         {
             if (Cost <= this.playerPower)
-            {                                                                                             
-                crd.playCard();
-                this.playerPower = this.playerPower - Cost;
+            {
                 this.game.cenRow.remove(crd);
-                this.game.voidDeck.add(crd);
-            }
+                this.game.voidDeck.add(crd);                                                                     
+                crd.playCard();
+                this.playerPower = this.playerPower - Cost;            }
         }
                 
 

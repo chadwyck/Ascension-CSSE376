@@ -1,0 +1,27 @@
+﻿{
+	"cardName": "Mistake of Creation",
+	"cardImage": "Mistake-of-Creation.jpg",
+	"runeCost": 0,
+	"powerCost": 4,
+	
+	"endGameHonorGain": 0,
+	"faction": "fallen",
+	"cardType": "monster",
+	"actions":[
+		{"type":"changeMetric",
+		"metricID": 0,
+		"incrementBy": 4},
+		{"type": "moveFromTo",
+		"fromCC": "center",
+		"toCC": "void",
+		"userChoice": true,
+		"optional": true
+		},
+		{"type": "moveFromTo",
+		"fromCC": "discard",
+		"toCC": "void",
+		"userChoice": true,
+		"optional": true
+		}
+	]
+}

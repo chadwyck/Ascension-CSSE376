@@ -1,0 +1,27 @@
+﻿{
+	"cardName": "Void Initiate",
+	"cardImage": "Void-Initiate.jpg",
+	"runeCost": 1,
+	"powerCost": 0,
+	
+	"endGameHonorGain": 1,
+	"faction": "void",
+	"cardType": "hero",
+	"actions":[
+		{"type":"changeMetric",
+		"metricID": 1,
+		"incrementBy": 1},
+		{"type": "moveFromTo",
+		"fromCC": "hand",
+		"toCC": "void",
+		"userChoice": true,
+		"optional": true
+		},
+		{"type": "moveFromTo",
+		"fromCC": "discard",
+		"toCC": "void",
+		"userChoice": true,
+		"optional": true
+		}
+	]
+}

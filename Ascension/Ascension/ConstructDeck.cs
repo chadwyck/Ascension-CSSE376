@@ -8,7 +8,10 @@ namespace Ascension
 {
     public class ConstructDeck : DiscardsToDeck
     {
-        public ConstructDeck (DiscardDeck discrd) : base(discrd) { }
+        private Game game;
+        public ConstructDeck (DiscardDeck discrd, Game game) : base(discrd) {
+            this.game = game;
+        }
 
         public void destroyOneConstruct (Card card)
         {
@@ -24,6 +27,25 @@ namespace Ascension
                     remove(cards[i]);   // needs to be fixed.  Index will mess it up.
                 }
             }
+        }
+
+        public int numberOf(string faction)
+        {
+            if (faction.Equals("mechana") && this.game.allMechanaConstructs)
+            {
+                return this.cards.Count;
+            }
+            int count = 0;
+
+            foreach (Card card in cards)
+            {
+                if ((card.faction == faction))
+                {
+                    count++;
+                }
+            }
+
+            return count;
         }
 
         public void playAll()

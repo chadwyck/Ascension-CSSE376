@@ -19,6 +19,10 @@ namespace Ascension
         public CardsPlayed cardsPlayed { get; set; }
         public Boolean hasAI;
 
+        public bool allMechanaConstructs { get; set; }
+        public bool mechanaDirectToPlay { get; set; }
+        public bool mechanaDraw { get; set; }
+
         public int currTurn
         {
             get;
@@ -190,6 +194,9 @@ namespace Ascension
                 boardView.updatePlayer();
             }
             boardView.setCanDoMoreButton();
+            this.allMechanaConstructs = false;
+            this.mechanaDirectToPlay = false;
+            this.mechanaDraw = false;
         }
         public void generateCards(){
             Card apprentice = new Card(this, "Apprentice", null, 0, 0, 0, "", "basic",
@@ -300,7 +307,9 @@ namespace Ascension
             this.getCurrPlayer().endTurn();
             this.currTurn++;
             this.getCurrPlayer().constructs.playAll();
-            
+            this.allMechanaConstructs = false;
+            this.mechanaDirectToPlay = false;
+            this.mechanaDraw = false;
         }
         public Card buyMyst()
         {

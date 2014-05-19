@@ -36,6 +36,7 @@ namespace Ascension
         private void initialize(Game gm, bool f)
         {
             InitializeComponent();
+            this.voidDeck = new CardCollection();
             //Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("fr-FR");
             //Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
 
@@ -146,6 +147,14 @@ namespace Ascension
                 this.currentPlayNum.Text = "Player " + game.getCurrPlayer().playerNumber;
                 this.updatePlayer();
             }
+        }
+
+        public void updateCombos()
+        {
+            this.updatePlayer();
+            this.updateVoidDeck(this.game.voidDeck);
+            this.updateCenRow(this.game.cenRow,this.game.pDeck);
+            this.updatePortal(this.game.pDeck);
         }
         public void updatePlayer()
         {

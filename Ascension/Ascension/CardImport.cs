@@ -127,6 +127,18 @@ namespace Ascension
                   
                     ret.Add(new MoveFromTo(act.fromCC, act.toCC,act.userChoice,act.optional,game));
                 }
+                if(act.type.Equals("allConstructsMechana"))
+                {
+                    ret.Add(new AllConstructsMechana(game));
+                }
+                if (act.type.Equals("mechanaDirectToPlay"))
+                {
+                    ret.Add(new MechanaDirectToPlay(game));
+                }
+                if (act.type.Equals("mechanaDraw"))
+                {
+                    ret.Add(new MechanaDraw(game));
+                }
                
             }
         return ret;
