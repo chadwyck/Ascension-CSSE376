@@ -48,6 +48,19 @@ namespace Ascension
             return count;
         }
 
+        public Card getTabletOfTimesDawn(CardAction act)
+        {
+            Card ret = null;
+            foreach (var card in cards)
+            {
+                if (card.actions.Count == 1 && card.actions[0].Equals(act))
+                {
+                    ret = card;
+                }
+            }
+            return ret;
+        }
+
         public void playAll()
         {
             foreach (var card in cards)

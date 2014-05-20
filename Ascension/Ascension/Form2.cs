@@ -67,7 +67,7 @@ namespace Ascension
             this.updatePlayer();
             this.currentPlayNum.Text = "Player " + this.game.getCurrPlayer().playerNumber;
         }
-
+        
         private void button1_Click(object sender, EventArgs e)
         {
             Card temp;
@@ -220,6 +220,7 @@ namespace Ascension
             lblYourHonor.Text = this.game.getCurrPlayer().playerHonor.ToString();
             runeNum.Text = this.game.getCurrPlayer().playerRunes.ToString();
             mechRuneNum.Text = this.game.getCurrPlayer().playerMechRunes.ToString();
+            constRuneNum.Text = this.game.getCurrPlayer().playerConstRunes.ToString();
             powNum.Text = this.game.getCurrPlayer().playerPower.ToString();
             if (!this.game.canDoMore())
             {

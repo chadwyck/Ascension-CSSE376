@@ -1,0 +1,14 @@
+﻿{
+	"cardName": "Mechana Initiate",
+	"cardImage": "Mechana-Initiate.jpg",
+	"runeCost": 1,
+	"powerCost": 0,
+	
+	"endGameHonorGain": 1,
+	"faction": "mechana",
+	"cardType": "hero",
+	"actions":[
+		{"type":"chooseMetricToChange"}
+		
+	]
+}

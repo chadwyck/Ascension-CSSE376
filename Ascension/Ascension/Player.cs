@@ -10,7 +10,7 @@ namespace Ascension
     public class Player
     {
 
-        private const int HONOR = 0, RUNES = 1, POWER = 2, MECHRUNES = 3; // metricIDs
+        private const int HONOR = 0, RUNES = 1, POWER = 2, MECHRUNES = 3,  CONSTRUNES = 4; // metricIDs
         
         public Game game { get; protected set; }
 
@@ -21,6 +21,8 @@ namespace Ascension
         public int playerRunes { get; protected set; }
 
         public int playerMechRunes { get; protected set; }
+
+        public int playerConstRunes { get; protected set; }
         
         public int playerHonor { get; protected set; }
         
@@ -124,6 +126,9 @@ namespace Ascension
                 case MECHRUNES:
                     this.playerMechRunes = this.playerMechRunes + incrementBy;
                     break;
+                case CONSTRUNES:
+                    this.playerConstRunes = this.playerConstRunes + incrementBy;
+                    break;
                 default:
                     throw new System.ArgumentException("MetricID must be between 0 and 2", "metricID");
             }
@@ -135,6 +140,7 @@ namespace Ascension
             this.playerPower = 0;
             this.playerRunes = 0;
             this.playerMechRunes = 0;
+            this.playerConstRunes = 0;
             
             this.hand.newHand();
         }
@@ -142,12 +148,17 @@ namespace Ascension
         {
             if (crd.faction != null && crd.cardType != null && (crd.faction.Equals("mechana") || this.game.allMechanaConstructs) && crd.cardType.Equals("construct"))
             {
-                if (Cost <= (this.playerRunes + this.playerMechRunes))
+                if (Cost <= (this.playerRunes + this.playerMechRunes + this.playerConstRunes))
                 {
                     this.playerMechRunes = this.playerMechRunes - Cost;
                     if (this.playerMechRunes < 0)
                     {
-                        this.playerRunes = this.playerRunes + this.playerMechRunes;
+                        this.playerConstRunes = this.playerConstRunes + this.playerMechRunes;
+                        if (this.playerConstRunes < 0)
+                        {
+                            this.playerRunes = this.playerRunes + this.playerConstRunes;
+                            this.playerConstRunes = 0;
+                        }
                         this.playerMechRunes = 0;
                     }
 
@@ -173,19 +184,38 @@ namespace Ascension
             }
             else
             {
-                if (Cost <= this.playerRunes)
+                if (crd.cardType != null && crd.cardType.Equals("construct"))
                 {
-                    this.playerRunes = this.playerRunes - Cost;
-
-                    if (!play)
+                    if (Cost <= (this.playerRunes + this.playerConstRunes))
                     {
-                        if(this.game.cenRow.cards.Contains(crd))
+                        this.playerConstRunes = this.playerConstRunes - Cost;
+                        if (this.playerConstRunes < 0)
+                        {
+                            this.playerRunes = this.playerRunes + this.playerConstRunes;
+                            this.playerConstRunes = 0;
+                        }
+
+                        if (this.game.cenRow.cards.Contains(crd))
                             this.game.cenRow.remove(crd);
                         discardPile.add(crd);
                     }
-                    else
+                }
+                else
+                {
+                    if (Cost <= this.playerRunes)
                     {
-                        this.play(crd);
+                        this.playerRunes = this.playerRunes - Cost;
+
+                        if (!play)
+                        {
+                            if (this.game.cenRow.cards.Contains(crd))
+                                this.game.cenRow.remove(crd);
+                            discardPile.add(crd);
+                        }
+                        else
+                        {
+                            this.play(crd);
+                        }
                     }
                 }
             }

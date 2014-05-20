@@ -1,0 +1,16 @@
+﻿{
+	"cardName": "Xeron, Duke of Lies",
+	"cardImage": "Xeron-Duke-of-Lies.jpg",
+	"runeCost": 0,
+	"powerCost": 6,
+	
+	"endGameHonorGain": 0,
+	"faction": "fallen",
+	"cardType": "monster",
+	"actions":[
+		{"type":"changeMetric",
+		"metricID": 0,
+		"incrementBy": 3},
+		{"type": "takeFromOpponent"}
+	]
+}

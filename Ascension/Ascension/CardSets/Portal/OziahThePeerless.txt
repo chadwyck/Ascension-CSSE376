@@ -1,0 +1,17 @@
+﻿{
+	"cardName": "Oziah the Peerless",
+	"cardImage": "Oziah-the-Peerless.jpg",
+	"runeCost": 6,
+	"powerCost": 0,
+	
+	"endGameHonorGain": 3,
+	"faction": "enlightened",
+	"cardType": "hero",
+	"actions":[
+		{"type":"moveBlahOrLess",
+		 "fromCC":"center",
+		 "cardType":"monster",
+		 "metricID":"2",
+		 "atMost":"6"}
+	]
+}

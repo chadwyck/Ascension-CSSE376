@@ -22,7 +22,7 @@ namespace Ascension
         {
             Card temp = null;
 
-            if ((this.game.myst.length != 0) && (aiPlayer.playerRunes >= 3))
+            if ((this.game.myst.cards.Count != 0) && (aiPlayer.playerRunes >= 3))
             {
                 aiPlayer.addRunes(3);
                 temp = this.game.myst.getCard(0);

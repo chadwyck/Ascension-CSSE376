@@ -79,16 +79,16 @@ namespace AscensionTest
         [Test()]
         public void TestMoveFromTo()
         {
-            int discardNum = testGame.getCurrPlayer().discardPile.length;
+            int discardNum = testGame.getCurrPlayer().discardPile.cards.Count;
             lifebound.playCard();
             moverToVoid.playCard();
-            Assert.AreEqual(1, testGame.voidDeck.length);
+            Assert.AreEqual(1, testGame.voidDeck.cards.Count);
                 //.getCurrPlayer().discardPile.cards[testGame.getCurrPlayer().discardPile.length - 1].cardName);
             moverToDiscard.playCard();
-            Assert.AreEqual(discardNum + 1, testGame.getCurrPlayer().discardPile.length);
+            Assert.AreEqual(discardNum + 1, testGame.getCurrPlayer().discardPile.cards.Count);
             moverToHand.playCard();
-            Assert.AreEqual(0, testGame.voidDeck.length);
-            Assert.AreEqual(discardNum, testGame.getCurrPlayer().discardPile.length);
+            Assert.AreEqual(0, testGame.voidDeck.cards.Count);
+            Assert.AreEqual(discardNum, testGame.getCurrPlayer().discardPile.cards.Count);
         }
     }
 }

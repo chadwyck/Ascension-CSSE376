@@ -1,6 +1,6 @@
 ﻿{
-	"cardName": "Avatar Golem",
-	"cardImage": "AvatarGolem.jpg",
+	"cardName": "Reactor Monk",
+	"cardImage": "Reactor-Monk.jpg",
 	"runeCost": 4,
 	"powerCost": 0,
 	
@@ -9,9 +9,10 @@
 	"cardType": "hero",
 	"actions":[
 		{"type":"changeMetric",
-		"metricID": 2,
+		"metricID": 1,
 		"incrementBy": 2},
-		{"type":"gainForEachFaction"}
-		
+		{"type":"changeMetric",
+		"metricID": 4,
+		"incrementBy": 1}
 	]
 }

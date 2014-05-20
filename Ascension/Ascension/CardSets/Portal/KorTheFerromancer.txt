@@ -8,16 +8,10 @@
 	"faction": "mechana",
 	"cardType": "hero",
 	"actions":[
-		{"type":"forEachCardType",
-		"faction": "lifebound",
-		"cardType": "construct",
-		"playedOne": true,
-		"metricID": 2,
-		"incrementBy": 2},
 		{"type":"changeMetric",
 		"metricID": 2,
-		"incrementBy": 2}
-		
+		"incrementBy": 2},
+		{"type":"drawIfConstructs"}
 
 	]
 }

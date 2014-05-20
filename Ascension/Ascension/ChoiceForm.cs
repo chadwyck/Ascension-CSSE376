@@ -12,10 +12,10 @@ namespace Ascension
 {
     public partial class ChoiceForm : Form
     {
-        MoveFromTo action;
+        CopyActions action;
         CardCollection col;
 
-        public ChoiceForm(MoveFromTo action)
+        public ChoiceForm(CopyActions action)
         {
             InitializeComponent();
             this.action = action;
@@ -74,7 +74,7 @@ namespace Ascension
 
 
 
-        internal void hideOptions()
+        public void hideOptions()
         {
             this.label1.Hide();
             this.button1.Hide();

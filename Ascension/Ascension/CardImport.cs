@@ -102,6 +102,7 @@ namespace Ascension
                public bool playedOne { get; set; }
                public string fromCC { get; set; }
                public string toCC { get; set; }
+               public int atMost { get; set; }
                
 
 
@@ -139,6 +140,34 @@ namespace Ascension
                 {
                     ret.Add(new MechanaDraw(game));
                 }
+                if (act.type.Equals("copyActions"))
+                {
+                    ret.Add(new CopyActions(game));
+                }
+                if (act.type.Equals("moveBlahOrLess"))
+                {
+                    ret.Add(new MoveBlahOrLess(act.fromCC,act.cardType,act.metricID,act.atMost,game));
+                }
+                if (act.type.Equals("banishToTakeTurn"))
+                {
+                    ret.Add(new BanishToTakeTurn(game));
+                }
+                if (act.type.Equals("takeFromOpponent"))
+                {
+                    ret.Add(new TakeFromOpponent(game));
+                }
+                if (act.type.Equals("chooseMetricToChange"))
+                {
+                    ret.Add(new ChooseMetricToChange(game));
+                }
+                if (act.type.Equals("drawIfConstructs"))
+                {
+                    ret.Add(new DrawIfConstructs(game));
+                }
+                if (act.type.Equals("gainForEachFaction"))
+                {
+                    ret.Add(new GainForEachFaction(game));
+                }
                
             }
         return ret;
@@ -161,9 +190,11 @@ namespace Ascension
             {
                 image = new System.Drawing.Bitmap(currentDirName+ card.cardImage);
             }
-            
-            return new Card(game, card.cardName, image, card.runeCost, card.powerCost, card.endGameHonorGain, card.faction, card.cardType,
+
+            Card newCard = new Card(game, card.cardName, image, card.runeCost, card.powerCost, card.endGameHonorGain, card.faction, card.cardType,
                  cardActionGen(card.actions));
+
+            return newCard;
             
         }
     }

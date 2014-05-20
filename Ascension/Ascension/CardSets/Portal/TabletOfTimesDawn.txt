@@ -1,0 +1,14 @@
+﻿{
+	"cardName": "Tablet of Time's Dawn",
+	"cardImage": "Tablet-of-Times-Dawn.jpg",
+	"runeCost": 5,
+	"powerCost": 0,
+	
+	"endGameHonorGain": 2,
+	"faction": "enlightened",
+	"cardType": "construct",
+	"actions":[
+		{"type":"banishToTakeTurn"}
+		
+	]
+}

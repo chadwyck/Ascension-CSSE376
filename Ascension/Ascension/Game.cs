@@ -10,7 +10,7 @@ namespace Ascension
 {
     public class Game
     {
-        private const int HONOR = 0, RUNES = 1, POWER = 2, MECHRUNES = 3; // metricIDs
+        private const int HONOR = 0, RUNES = 1, POWER = 2, MECHRUNES = 3, CONSTRUNES = 4; // metricIDs
         public int numPlayers;
         public BoardView boardView;
         public bool endOfGame { get; private set; }
@@ -22,6 +22,7 @@ namespace Ascension
         public bool allMechanaConstructs { get; set; }
         public bool mechanaDirectToPlay { get; set; }
         public bool mechanaDraw { get; set; }
+        public bool extraTurn { get; set; }
 
         public int currTurn
         {
@@ -56,7 +57,7 @@ namespace Ascension
         }
         public CardCollection myst; //made this public so AI could access it. Should really AI functions it so it can be private.
         private CardCollection heavyIn;
-        private Player[] plyrs;
+        public Player[] plyrs { get; set; }
         public Game (int numPlayers)
 		{
             this.hasAI = false;
@@ -197,6 +198,7 @@ namespace Ascension
             this.allMechanaConstructs = false;
             this.mechanaDirectToPlay = false;
             this.mechanaDraw = false;
+            this.extraTurn = false;
         }
         public void generateCards(){
             Card apprentice = new Card(this, "Apprentice", null, 0, 0, 0, "", "basic",
@@ -266,11 +268,11 @@ namespace Ascension
             //pDeck.add(runicLycanthrope);
             //pDeck.add(mistakeOfCreation);
 
-            //pDeck.shuffle();
+           
 
             CardImport card = new CardImport(this, "\\Portal\\");
             card.cardImportP(this, "\\Portal\\", pDeck);
-            //pDeck.shuffle();
+            pDeck.shuffle();
            foreach(Player p in plyrs){
                 
            }
@@ -305,7 +307,14 @@ namespace Ascension
             this.firstTimeList.Clear();
             this.cardsPlayed.Clear();
             this.getCurrPlayer().endTurn();
-            this.currTurn++;
+            if (!this.extraTurn)
+            {
+                this.currTurn++;
+            }
+            else
+            {
+                this.extraTurn = false;
+            }
             this.getCurrPlayer().constructs.playAll();
             this.allMechanaConstructs = false;
             this.mechanaDirectToPlay = false;
@@ -315,7 +324,7 @@ namespace Ascension
         {
             Card temp = null;
 
-            if ((myst.length != 0) && (getCurrPlayer().playerRunes >= 3))
+            if ((myst.cards.Count != 0) && (getCurrPlayer().playerRunes >= 3))
             {
                 temp = myst.getCard(0);
             }
@@ -324,7 +333,7 @@ namespace Ascension
         public Card buyHI()
         {
             Card temp = null;
-            if ((heavyIn.length != 0) && (getCurrPlayer().playerRunes >= 2))
+            if ((heavyIn.cards.Count != 0) && (getCurrPlayer().playerRunes >= 2))
             {
                 temp = heavyIn.getCard(0);
             }
@@ -373,7 +382,7 @@ namespace Ascension
             if (!(hasAI && (0 == this.currTurn % this.numPlayers)))
             {
                
-                while (this.getCurrPlayer().hand.length > 0)
+                while (this.getCurrPlayer().hand.cards.Count > 0)
                 {
                     this.getCurrPlayer().play(this.getCurrPlayer().hand.getCard(0));
                 }

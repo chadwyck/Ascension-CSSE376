@@ -20,7 +20,7 @@ namespace Ascension
         }
         public void discardAllCards()
         {
-            while(this.length>0)
+            while(this.cards.Count>0)
                 discardCard(this.getCard(0));
             
         }

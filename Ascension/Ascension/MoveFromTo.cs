@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 
 namespace Ascension
 {
-    public class MoveFromTo : CardAction
+    public class MoveFromTo : CopyActions
     {
         public String fromCC, toCC;
-        public bool userChoice, optional;
-        CardCollection to;
-        CardCollection from;
+        public bool optional;
+        public CardCollection to;
+        public CardCollection from;
         //private Card cardToMove;
-        private Game game;
+        public Game game;
 
         public bool willPerformAction { get; set; }
 
-        public MoveFromTo (String fromCC, String toCC, bool userChoice, bool optional, Game gme)
+        public MoveFromTo (String fromCC, String toCC, bool userChoice, bool optional, Game gme) : base(gme)
         {
             this.fromCC = fromCC;
             this.toCC = toCC;
@@ -79,7 +79,7 @@ namespace Ascension
             }
         }
 
-        public void actuallyDoTheAction(Card moving)
+        public override void actuallyDoTheAction(Card moving)
         {
             if (moving == null)
             {

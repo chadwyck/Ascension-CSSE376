@@ -29,20 +29,41 @@ namespace Ascension
             this.discardAllCards();
             this.draw(5);
         }
+
+        public Card takeOneAtRandom()
+        {
+            int n = this.cards.Count;
+            if (n == 0)
+            {
+                return null;
+            }
+            Random rnd = new Random();
+            while (n > 1)
+            {
+                int k = rnd.Next(0, n);
+                n--;
+                Card val = cards[k];
+                cards[k] = cards[n];
+                cards[n] = val;
+            }
+            Card ret = cards[0];
+            this.remove(ret);
+            return ret;
+        }
         
         public void draw(int n)
         {
             for (int i = 0; i < n; i++)
             {
                 
-                if (this.deck.length == 0)
+                if (this.deck.cards.Count == 0)
                 {
                     this.discard.emptyDiscard();
 
                 }
-                System.Console.WriteLine(this.deck.length);
+                System.Console.WriteLine(this.deck.cards.Count);
                this.add(this.deck.draw());
-               System.Console.WriteLine(this.deck.length);
+               System.Console.WriteLine(this.deck.cards.Count);
             }
         }
     }

@@ -80,6 +80,13 @@
     <Compile Include="AI.cs" />
     <Compile Include="AILogic.cs" />
     <Compile Include="AllConstructsMechana.cs" />
+    <Compile Include="BanishConstruct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BanishConstruct.Designer.cs">
+      <DependentUpon>BanishConstruct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BanishToTakeTurn.cs" />
     <Compile Include="Card.cs" />
     <Compile Include="CardAction.cs" />
     <Compile Include="CardCollection.cs" />
@@ -93,9 +100,12 @@
     <Compile Include="ChoiceForm.Designer.cs">
       <DependentUpon>ChoiceForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ChooseMetricToChange.cs" />
     <Compile Include="ConstructDeck.cs" />
+    <Compile Include="CopyActions.cs" />
     <Compile Include="DiscardDeck.cs" />
     <Compile Include="DiscardsToDeck.cs" />
+    <Compile Include="DrawIfConstructs.cs" />
     <Compile Include="EndGameForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,11 +114,19 @@
     </Compile>
     <Compile Include="FirstTimeGet.cs" />
     <Compile Include="ForEachCardType.cs" />
+    <Compile Include="GainForEachFaction.cs" />
     <Compile Include="HandDeck.cs" />
     <Compile Include="InHand.cs" />
     <Compile Include="InPlay.cs" />
     <Compile Include="MechanaDirectToPlay.cs" />
     <Compile Include="MechanaDraw.cs" />
+    <Compile Include="MechanaInitiateChoose.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MechanaInitiateChoose.Designer.cs">
+      <DependentUpon>MechanaInitiateChoose.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MoveBlahOrLess.cs" />
     <Compile Include="MoveFromTo.cs" />
     <Compile Include="Shuffleable.cs" />
     <Compile Include="PortalDeck.cs" />
@@ -144,6 +162,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>strings_form3.resx</DependentUpon>
     </Compile>
+    <Compile Include="TakeFromOpponent.cs" />
+    <EmbeddedResource Include="BanishConstruct.resx">
+      <DependentUpon>BanishConstruct.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ChoiceForm.resx">
       <DependentUpon>ChoiceForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -158,6 +180,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form3.resx">
       <DependentUpon>Form3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MechanaInitiateChoose.resx">
+      <DependentUpon>MechanaInitiateChoose.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -223,9 +248,12 @@
     <Content Include="CardSets\PlayerHand\militia.jpg" />
     <Content Include="CardSets\PlayerHand\militia.txt" />
     <Content Include="CardSets\PlayerHand\apprentice.txt" />
+    <Content Include="CardSets\Portal\Arbiter-of-the-Precipice.jpg" />
     <Content Include="CardSets\Portal\ArbiterOfThePrecipice.txt" />
     <Content Include="CardSets\Portal\Arha-Initiate.jpg" />
+    <Content Include="CardSets\Portal\Arha-Templar.jpg" />
     <Content Include="CardSets\Portal\ArhaInitiate.txt" />
+    <Content Include="CardSets\Portal\ArhaTemplar.txt" />
     <Content Include="CardSets\Portal\Ascetic-of-the-Lidless-Eye.jpg" />
     <Content Include="CardSets\Portal\AsceticOfTheLidlessEye.txt" />
     <Content Include="CardSets\Portal\Avatar-of-the-Fallen.jpg" />
@@ -233,7 +261,11 @@
     <Content Include="CardSets\Portal\AvatarOfTheFallen.txt" />
     <Content Include="CardSets\Portal\Burrower-Mark-II.jpg" />
     <Content Include="CardSets\Portal\BurrowerMark.txt" />
+    <Content Include="CardSets\Portal\Cetra-Weaver-of-Stars.jpg" />
+    <Content Include="CardSets\Portal\CetraWeaverOfStars.txt" />
     <Content Include="CardSets\Portal\Demon-Slayer.jpg" />
+    <Content Include="CardSets\Portal\Druids-of-the-Stone-Circle.jpg" />
+    <Content Include="CardSets\Portal\DruidsOfTheStoneCircle.txt" />
     <Content Include="CardSets\Portal\Earth-Tyrant.jpg" />
     <Content Include="CardSets\Portal\EarthTyrant.txt" />
     <Content Include="CardSets\Portal\Emri.txt" />
@@ -243,29 +275,44 @@
     <Content Include="CardSets\Portal\HedronCannon.txt" />
     <Content Include="CardSets\Portal\Hedron-Link-Device.jpg" />
     <Content Include="CardSets\Portal\HedronLinkDevice.txt" />
+    <Content Include="CardSets\Portal\Kor-the-Ferromancer.jpg" />
     <Content Include="CardSets\Portal\KorTheFerromancer.txt" />
     <Content Include="CardSets\Portal\Landtalker.jpg" />
     <Content Include="CardSets\Portal\Landtalker.txt" />
     <Content Include="CardSets\Portal\Lifebound-Initiate.jpg" />
     <Content Include="CardSets\Portal\Master-Dhartha.jpg" />
+    <Content Include="CardSets\Portal\Mechana-Initiate.jpg" />
+    <Content Include="CardSets\Portal\MechanaInitiate.txt" />
     <Content Include="CardSets\Portal\Mephit.jpg" />
-    <Content Include="CardSets\Portal\aaMephit.txt" />
+    <Content Include="CardSets\Portal\Mephit.txt" />
     <Content Include="CardSets\Portal\Mistake-of-Creation.jpg" />
-    <Content Include="CardSets\Portal\aaMistakeOfCreation.txt" />
+    <Content Include="CardSets\Portal\MistakeOfCreation.txt" />
     <Content Include="CardSets\Portal\Muramasa.jpg" />
     <Content Include="CardSets\Portal\Muramasa.txt" />
+    <Content Include="CardSets\Portal\Oziah-the-Peerless.jpg" />
+    <Content Include="CardSets\Portal\OziahThePeerless.txt" />
+    <Content Include="CardSets\Portal\Reactor-Monk.jpg" />
+    <Content Include="CardSets\Portal\ReactorMonk.txt" />
     <Content Include="CardSets\Portal\Rocket-Courier-X-99.jpg" />
     <Content Include="CardSets\Portal\RocketCourier.txt" />
     <Content Include="CardSets\Portal\Runic-Lycanthrope.jpg" />
     <Content Include="CardSets\Portal\RunicLycanthrope.txt" />
     <Content Include="CardSets\Portal\Samaels-Trickster.jpg" />
     <Content Include="CardSets\Portal\SamaelsTrickster.txt" />
+    <Content Include="CardSets\Portal\Seer-of-the-Forked-Path.jpg" />
+    <Content Include="CardSets\Portal\SeerOfTheForkedPath.txt" />
+    <Content Include="CardSets\Portal\Shade-of-the-Black-Watch.jpg" />
+    <Content Include="CardSets\Portal\ShadeOfTheBlackWatch.txt" />
     <Content Include="CardSets\Portal\Shadow-Star.jpg" />
     <Content Include="CardSets\Portal\ShadowStar.txt" />
     <Content Include="CardSets\Portal\Snapdragon.jpg" />
     <Content Include="CardSets\Portal\Snapdragon.txt" />
     <Content Include="CardSets\Portal\Spike-Vixen.jpg" />
     <Content Include="CardSets\Portal\SpikeVixen.txt" />
+    <Content Include="CardSets\Portal\Tablet-of-Times-Dawn.jpg" />
+    <Content Include="CardSets\Portal\TabletOfTimesDawn.txt" />
+    <Content Include="CardSets\Portal\Temple-Librarian.jpg" />
+    <Content Include="CardSets\Portal\TempleLibrarian.txt" />
     <Content Include="CardSets\Portal\The-All-Seeing-Eye.jpg" />
     <Content Include="CardSets\Portal\The-Grand-Design.jpg" />
     <Content Include="CardSets\Portal\Tormented-Soul.jpg" />
@@ -274,11 +321,19 @@
     <Content Include="CardSets\Portal\LifeboundInitiate.txt" />
     <Content Include="CardSets\Portal\DemonSlayer.txt" />
     <Content Include="CardSets\Portal\MasterDhartha.txt" />
+    <Content Include="CardSets\Portal\Twofold-Askara.jpg" />
+    <Content Include="CardSets\Portal\TwofoldAskara.txt" />
+    <Content Include="CardSets\Portal\Void-Initiate.jpg" />
+    <Content Include="CardSets\Portal\VoidInitiate.txt" />
     <Content Include="CardSets\Portal\Voidthirster.jpg" />
     <Content Include="CardSets\Portal\Watchmakers-Altar.jpg" />
     <Content Include="CardSets\Portal\WatchmakersAltar.txt" />
+    <Content Include="CardSets\Portal\Wind-Tyrant.jpg" />
+    <Content Include="CardSets\Portal\WindTyrant.txt" />
     <Content Include="CardSets\Portal\Wolf-Shaman.jpg" />
     <Content Include="CardSets\Portal\WolfShaman.txt" />
+    <Content Include="CardSets\Portal\Xeron-Duke-of-Lies.jpg" />
+    <Content Include="CardSets\Portal\XeronDukeOfLies.txt" />
     <Content Include="CardSets\Portal\Yggdrasil-Staff.jpg" />
     <Content Include="CardSets\Portal\YggdrasilStaff.txt" />
     <Content Include="CardSets\Portal\TheGrandDesign.txt" />

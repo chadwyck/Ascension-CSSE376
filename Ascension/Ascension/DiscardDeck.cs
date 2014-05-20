@@ -16,7 +16,7 @@ namespace Ascension
 
         public void emptyDiscard()
         {
-            while(this.length>0)
+            while(this.cards.Count>0)
             {
                 handDeck.add(this.getCard(0));
                 remove(this.getCard(0));

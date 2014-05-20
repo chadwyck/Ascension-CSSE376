@@ -1,0 +1,13 @@
+﻿{
+	"cardName": "Twofold Askara",
+	"cardImage": "Twofold-Askara.jpg",
+	"runeCost": 4,
+	"powerCost": 0,
+	
+	"endGameHonorGain": 2,
+	"faction": "enlightened",
+	"cardType": "hero",
+	"actions":[
+		{"type":"copyActions"}
+	]
+}
