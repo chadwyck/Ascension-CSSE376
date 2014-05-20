@@ -253,7 +253,11 @@
             // runeNum
             // 
             this.runeNum.AutoSize = true;
+//<<<<<<< HEAD
             this.runeNum.Location = new System.Drawing.Point(679, 28);
+
+          //  this.runeNum.Location = new System.Drawing.Point(693, 28);
+
             this.runeNum.Name = "runeNum";
             this.runeNum.Size = new System.Drawing.Size(13, 13);
             this.runeNum.TabIndex = 21;
@@ -262,7 +266,10 @@
             // powNum
             // 
             this.powNum.AutoSize = true;
+//<<<<<<< HEAD
             this.powNum.Location = new System.Drawing.Point(682, 57);
+
+           // this.powNum.Location = new System.Drawing.Point(696, 57);
             this.powNum.Name = "powNum";
             this.powNum.Size = new System.Drawing.Size(13, 13);
             this.powNum.TabIndex = 22;
@@ -345,7 +352,10 @@
             this.mechRuneNum.AutoSize = true;
             this.mechRuneNum.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.mechRuneNum.ForeColor = System.Drawing.SystemColors.Control;
+//<<<<<<< HEAD
             this.mechRuneNum.Location = new System.Drawing.Point(716, 28);
+            //this.mechRuneNum.Location = new System.Drawing.Point(730, 28);
+
             this.mechRuneNum.Name = "mechRuneNum";
             this.mechRuneNum.Size = new System.Drawing.Size(13, 13);
             this.mechRuneNum.TabIndex = 30;
@@ -368,6 +378,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1004, 544);
+//<<<<<<< HEAD
             this.Controls.Add(this.constRuneNum);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.mechRuneNum);
@@ -402,6 +413,7 @@
             this.Controls.Add(this.comboBox1);
             this.Name = "BoardView";
             this.Text = "Board";
+            this.Load += new System.EventHandler(this.BoardView_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

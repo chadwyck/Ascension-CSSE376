@@ -319,6 +319,41 @@ namespace Ascension
             this.allMechanaConstructs = false;
             this.mechanaDirectToPlay = false;
             this.mechanaDraw = false;
+
+            if ((this.hasAI) && (this.currTurn % this.numPlayers == 0))
+            {
+                //add method to hide all buttons for AI
+                try
+                {
+                    this.boardView.clickPlayAll();
+                    int indexOfHighestRuneCostCardAffordable = this.getHighestCost();
+                    this.boardView.selectCard(getHighestCost());
+                    this.boardView.cardView.clickPurchaseButton();
+                    System.Windows.Forms.MessageBox.Show("AI's turn is over; feel free to examine what it did, then click End Turn");
+                }
+                catch
+                {
+                    System.Windows.Forms.MessageBox.Show("AI's turn is over; feel free to examine what it did, then click End Turn");
+                }
+            }
+        }
+
+        private int getHighestCost()
+        {
+            int totalRunes = this.getCurrPlayer().playerRunes;
+            Card currBest = this.cenRow.cards[0];
+            foreach (Card card in this.cenRow.cards)
+            {
+                if ((currBest.runeCost < card.runeCost) && (totalRunes >= card.runeCost))
+                {
+                    currBest = card;
+                }
+            }
+            if (currBest.runeCost <= totalRunes)
+            {
+                return this.cenRow.cards.IndexOf(currBest);
+            }
+            else return -1;
         }
         public Card buyMyst()
         {
@@ -379,8 +414,6 @@ namespace Ascension
 
         public void playAll()
         {
-            if (!(hasAI && (0 == this.currTurn % this.numPlayers)))
-            {
                
                 while (this.getCurrPlayer().hand.cards.Count > 0)
                 {
@@ -388,8 +421,7 @@ namespace Ascension
                 }
 
                 this.boardView.updatePlayer();
-            }
-        }
+       }
 
         public void endGame()
         {

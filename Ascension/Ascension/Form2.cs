@@ -17,7 +17,7 @@ namespace Ascension
         private PortalDeck pDeck;
         private CardCollection voidDeck;
         private CenterRow cenRow;
-        private CardView cardView;
+        public CardView cardView;
         private InHand inHand;
         private ConstructDeck constDeck;
         private Game game;
@@ -165,53 +165,6 @@ namespace Ascension
             playDisc.Items.Clear();
             playConstructs.Items.Clear();
             playDeck.Items.AddRange(game.getCurrPlayer().deck.toStringArray());
-
-            if ((game.hasAI) && (game.currTurn % game.numPlayers == 0))
-            {
-                Boolean isMonster = game.cenRow.cards[0].cardType == "monster";
-                Card currCard = game.cenRow.cards[0];
-                Random randCard = new Random();
-                int randNum = randCard.Next();
-                game.getCurrPlayer().play(game.getCurrPlayer().hand.cards[randNum % 5]);
-                int cardCost;
-                if (isMonster)
-                {
-                    cardCost = game.cenRow.cards[0].powerCost;
-                }
-                else 
-                {
-                    cardCost = game.cenRow.cards[0].runeCost;
-                }
-                game.getCurrPlayer().addRunes(10);
-                game.getCurrPlayer().addPower(10);
-                //game.getCurrPlayer().play(game.getCurrPlayer().hand.cards[0]);
-
-                //Randomly chooses between buying a mystic and taking a card from the center row.
-                Random rand = new Random();
-                int thisRand = rand.Next();
-                if (thisRand % 2 == 0)
-                {
-                    Card temp = this.game.myst.getCard(0);
-                    this.game.myst.remove(temp);
-                    game.getCurrPlayer().addRunes(-3); //these references to aiPlayer really ought to be abstracted
-                    game.getCurrPlayer().discardPile.add(temp);
-                }
-                else
-                {
-                    if (isMonster)
-                    {
-                        game.getCurrPlayer().kill(game.cenRow.cards[0], cardCost);
-                        currCard.game.boardView.updateVoidDeck(currCard.game.voidDeck);
-                    }
-                    else
-                    {
-                        game.getCurrPlayer().purchase(game.cenRow.cards[0], false, cardCost);
-                    }
-                }
-
-                game.boardView.updateCenRow(game.cenRow, game.pDeck);
-            }
-
             playHand.Items.AddRange(game.getCurrPlayer().hand.toStringArray());
             playPlay.Items.AddRange(game.getCurrPlayer().onBoard.toStringArray());
             playDisc.Items.AddRange(game.getCurrPlayer().discardPile.toStringArray());
@@ -228,6 +181,18 @@ namespace Ascension
             }
 
 
+        }
+
+        public void clickPlayAll()
+        {
+            button6.PerformClick();
+        }
+
+        public void selectCard(int indexOfCard)
+        {
+            comboBox1.SelectedIndex = indexOfCard;
+            cardView.Update();
+            Thread.Sleep(1000);
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -299,6 +264,11 @@ namespace Ascension
             cardView.changeVisibilityAbilityButton(false);
             cardView.changeVisibilityKillButton(false);
             cardView.update(this.game.getCurrPlayer().constructs.getCard(playConstructs.SelectedIndex));
+        }
+
+        private void BoardView_Load(object sender, EventArgs e)
+        {
+
         }
 
     }

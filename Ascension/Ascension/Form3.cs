@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Ascension;
@@ -120,6 +121,11 @@ namespace Ascension
         private void CardView_Load(object sender, EventArgs e)
         {
 
+        }
+
+        public void clickPurchaseButton()
+        {
+            Purchase.PerformClick();
         }
 
         private void Play_Click(object sender, EventArgs e)
