@@ -3,6 +3,7 @@
 	"cardImage": "Arha-Initiate.jpg",
 	"runeCost": 1,
 	"powerCost": 0,
+	"rarity": 3,
 	
 	"endGameHonorGain": 1,
 	"faction": "enlightened",

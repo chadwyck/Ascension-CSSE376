@@ -3,6 +3,7 @@
 	"cardImage": "Arbiter-of-the-Precipice.jpg",
 	"runeCost": 4,
 	"powerCost": 0,
+	"rarity": 2,
 	
 	"endGameHonorGain": 1,
 	"faction": "void",

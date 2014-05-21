@@ -3,6 +3,7 @@
 	"cardImage": "Earth-Tyrant.jpg",
 	"runeCost": 0,
 	"powerCost": 6,
+	"rarity": 2,
 	
 	"endGameHonorGain": 0,
 	"faction": "fallen",

@@ -3,6 +3,7 @@
 	"cardImage": "The-All-Seeing-Eye.jpg",
 	"runeCost": 6,
 	"powerCost": 0,
+	"rarity": 1,
 	
 	"endGameHonorGain": 2,
 	"faction": "enlightened",

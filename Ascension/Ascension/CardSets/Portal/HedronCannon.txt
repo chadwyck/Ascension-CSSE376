@@ -3,6 +3,7 @@
 	"cardImage": "Hedron-Cannon.jpg",
 	"runeCost": 8,
 	"powerCost": 0,
+	"rarity": 1,
 	
 	"endGameHonorGain": 8,
 	"faction": "mechana",

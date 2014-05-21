@@ -3,6 +3,7 @@
 	"cardImage": "Emri-One-with-the-Void.jpg",
 	"runeCost": 6,
 	"powerCost": 0,
+	"rarity": 1,
 	
 	"endGameHonorGain": 3,
 	"faction": "void",

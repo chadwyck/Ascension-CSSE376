@@ -3,6 +3,7 @@
 	"cardImage": "Hedron-Link-Device.jpg",
 	"runeCost": 7,
 	"powerCost": 0,
+	"rarity": 1,
 	
 	"endGameHonorGain": 7,
 	"faction": "mechana",

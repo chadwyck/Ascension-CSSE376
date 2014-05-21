@@ -3,6 +3,7 @@
 	"cardImage": "Shade-of-the-Black-Watch.jpg",
 	"runeCost": 3,
 	"powerCost": 0,
+	"rarity": 3,
 	
 	"endGameHonorGain": 1,
 	"faction": "void",

@@ -3,13 +3,12 @@
 	"cardImage": "Tormented-Soul.jpg",
 	"runeCost": 0,
 	"powerCost": 3,
+	"rarity": 3,
 	
 	"endGameHonorGain": 0,
 	"faction": "fallen",
 	"cardType": "monster",
 	"actions":[
-
-		
 
 		{"type":"changeMetric",
 		"metricID": 0,

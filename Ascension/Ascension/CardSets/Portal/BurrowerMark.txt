@@ -3,6 +3,7 @@
 	"cardImage": "Burrower-Mark-II.jpg",
 	"runeCost": 3,
 	"powerCost": 0,
+	"rarity": 2,
 	
 	"endGameHonorGain": 3,
 	"faction": "mechana",

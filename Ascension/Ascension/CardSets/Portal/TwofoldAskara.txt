@@ -3,6 +3,7 @@
 	"cardImage": "Twofold-Askara.jpg",
 	"runeCost": 4,
 	"powerCost": 0,
+	"rarity": 1,
 	
 	"endGameHonorGain": 2,
 	"faction": "enlightened",

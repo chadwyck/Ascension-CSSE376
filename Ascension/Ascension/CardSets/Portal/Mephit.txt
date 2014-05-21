@@ -2,7 +2,8 @@
 	"cardName": "Mephit",
 	"cardImage": "Mephit.jpg",
 	"runeCost": 0,
-	"powerCost": 1,
+	"powerCost": 3,
+	"rarity": 3,
 	
 	"endGameHonorGain": 0,
 	"faction": "fallen",

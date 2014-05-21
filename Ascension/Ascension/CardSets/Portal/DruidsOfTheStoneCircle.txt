@@ -3,6 +3,7 @@
 	"cardImage": "Druids-of-the-Stone-Circle.jpg",
 	"runeCost": 4,
 	"powerCost": 0,
+	"rarity": 2,
 	
 	"endGameHonorGain": 3,
 	"faction": "lifebound",

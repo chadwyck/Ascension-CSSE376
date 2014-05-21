@@ -203,8 +203,8 @@ namespace Ascension
             this.firstTimeMonster = false;
         }
         public void generateCards(){
-            Card apprentice = new Card(this, "Apprentice", null, 0, 0, 0, "", "basic",
-                new List<CardAction> { new ChangeMetricCount(RUNES, 1, this) });
+            //Card apprentice = new Card(this, "Apprentice", null, 0, 0, 0, "", "basic",
+            //    new List<CardAction> { new ChangeMetricCount(RUNES, 1, this) });
 
             Card heavyInfantry = new Card(this, "Heavy Infantry", null, 2, 0, 1, "", "basic",
                 new List<CardAction> { new ChangeMetricCount(POWER, 2, this) });
@@ -274,7 +274,7 @@ namespace Ascension
 
             CardImport card = new CardImport(this, "\\Portal\\");
             card.cardImportP(this, "\\Portal\\", pDeck);
-            //pDeck.shuffle();                              // shuffleCode
+            pDeck.shuffle();                              // shuffleCode
            foreach(Player p in plyrs){
                 
            }

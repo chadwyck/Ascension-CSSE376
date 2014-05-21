@@ -3,6 +3,7 @@
 	"cardImage": "Avatar-of-the-Fallen.jpg",
 	"runeCost": 0,
 	"powerCost": 7,
+	"rarity": 1,
 	
 	"endGameHonorGain": 0,
 	"faction": "fallen",

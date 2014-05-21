@@ -3,6 +3,7 @@
 	"cardImage": "Wind-Tyrant.jpg",
 	"runeCost": 0,
 	"powerCost": 5,
+	"rarity": 3,
 	
 	"endGameHonorGain": 0,
 	"faction": "fallen",

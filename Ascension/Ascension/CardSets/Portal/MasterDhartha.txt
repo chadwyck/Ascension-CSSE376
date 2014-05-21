@@ -3,6 +3,7 @@
 	"cardImage": "Master-Dhartha.jpg",
 	"runeCost": 7,
 	"powerCost": 0,
+	"rarity": 1,
 	
 	"endGameHonorGain": 3,
 	"faction": "enlightened",

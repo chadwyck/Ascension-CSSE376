@@ -36,11 +36,11 @@ namespace AscensionTest
                 new List<CardAction> { new ChangeMetricCount(RUNES, 2, testGame),
                                        new ForEachCardType("lifebound","hero",false,POWER,2,testGame) });
             moverToVoid = new Card(testGame, "Mover Man", null, 7, 0, 3, "void", "hero",
-                new List<CardAction> { new MoveFromTo("hand","void",false,false,testGame) });
+                new List<CardAction> { new MoveFromTo("hand","void",false,false,true,testGame) });
             moverToDiscard = new Card(testGame, "Mover Man 2", null, 7, 0, 3, "void", "hero",
-                new List<CardAction> { new MoveFromTo("void", "discard", false, false, testGame) });
+                new List<CardAction> { new MoveFromTo("void", "discard", false, false,false, testGame) });
             moverToHand = new Card(testGame, "Mover Man 2", null, 7, 0, 3, "void", "hero",
-                new List<CardAction> { new MoveFromTo("discard", "hand", false, false, testGame) });
+                new List<CardAction> { new MoveFromTo("discard", "hand", false, false, false, testGame) });
             
         }
 

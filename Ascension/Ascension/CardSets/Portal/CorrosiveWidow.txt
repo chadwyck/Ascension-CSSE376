@@ -3,6 +3,7 @@
 	"cardImage": "Corrosive-Widow.jpg",
 	"runeCost": 0,
 	"powerCost": 4,
+	"rarity": 4,
 	
 	"endGameHonorGain": 0,
 	"faction": "fallen",

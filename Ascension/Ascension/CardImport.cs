@@ -38,7 +38,7 @@ namespace Ascension
             foreach (string cardFile in files)
             {
                 
-                deck.add(fileToCard(cardFile,path));
+                deck.cards.AddRange(fileToCard(cardFile,path));
             }
             
             
@@ -62,8 +62,8 @@ namespace Ascension
 
             foreach (string cardFile in files)
             {
-                var card = fileToCard(cardFile, path);
-                deck.add(card);
+                var cards = fileToCard(cardFile, path);
+                deck.cards.AddRange(cards);
             }
           
         }
@@ -71,6 +71,8 @@ namespace Ascension
         
 
             public string cardName { get; set; }
+
+            public int rarity { get; set; }
 
             public string cardImage { get; set; }
 
@@ -186,8 +188,9 @@ namespace Ascension
             }
         return ret;
         }
-        private Card fileToCard(String file, String path)
+        private List<Card> fileToCard(String file, String path)
         {
+            List<Card> ret = new List<Card>();
             var json = System.IO.File.ReadAllText(file);
            
             imCard card = new System.Web.Script.Serialization.JavaScriptSerializer().Deserialize<imCard>(json);
@@ -195,7 +198,7 @@ namespace Ascension
              string currentDirName = @"" + System.IO.Directory.GetCurrentDirectory();
             if(currentDirName.Contains("UnitTestProject1")){
                 currentDirName = currentDirName.Substring(0, System.IO.Directory.GetCurrentDirectory().Length - 26) + "Ascension\\CardSets\\" + path;
-            }else {
+            } else {
                 currentDirName = currentDirName.Substring(0, System.IO.Directory.GetCurrentDirectory().Length - 19) + "Ascension\\CardSets\\" + path;
             }
         
@@ -208,7 +211,12 @@ namespace Ascension
             Card newCard = new Card(game, card.cardName, image, card.runeCost, card.powerCost, card.endGameHonorGain, card.faction, card.cardType,
                  cardActionGen(card.actions));
 
-            return newCard;
+            for (int i = 0; i < card.rarity; i++)
+            {
+                ret.Add(newCard);
+            }
+
+            return ret;
             
         }
     }

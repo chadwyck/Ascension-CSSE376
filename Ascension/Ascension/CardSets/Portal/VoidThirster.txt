@@ -3,6 +3,8 @@
 	"cardImage": "Voidthirster.jpg",
 	"runeCost": 5,
 	"powerCost": 0,
+	"rarity": 2,
+
 	"endGameHonorGain": 3,
 	"faction": "void",
 	"cardType": "construct",

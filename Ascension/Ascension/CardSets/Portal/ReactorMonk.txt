@@ -3,6 +3,7 @@
 	"cardImage": "Reactor-Monk.jpg",
 	"runeCost": 4,
 	"powerCost": 0,
+	"rarity": 2,
 	
 	"endGameHonorGain": 2,
 	"faction": "mechana",

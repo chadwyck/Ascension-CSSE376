@@ -3,6 +3,7 @@
 	"cardImage": "Watchmakers-Altar.jpg",
 	"runeCost": 5,
 	"powerCost": 0,
+	"rarity": 2,
 	
 	"endGameHonorGain": 5,
 	"faction": "mechana",

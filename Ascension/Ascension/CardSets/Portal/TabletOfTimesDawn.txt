@@ -3,6 +3,7 @@
 	"cardImage": "Tablet-of-Times-Dawn.jpg",
 	"runeCost": 5,
 	"powerCost": 0,
+	"rarity": 1,
 	
 	"endGameHonorGain": 2,
 	"faction": "enlightened",

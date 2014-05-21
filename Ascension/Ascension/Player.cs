@@ -60,6 +60,9 @@ namespace Ascension
             CardImport card = new CardImport(this.game, "\\PlayerHand\\");
             card.cardImportH(this.game, "\\PlayerHand\\", deck);
 
+            deck.shuffle();                              // shuffleCode
+
+
             this.discardPile = new DiscardDeck(this.deck);
             this.deck.setDiscard(this.discardPile);
             this.constructs = new ConstructDeck(this.discardPile, this.game);

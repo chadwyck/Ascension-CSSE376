@@ -270,7 +270,7 @@
     <Content Include="CardSets\Portal\AsceticOfTheLidlessEye.txt" />
     <Content Include="CardSets\Portal\Avatar-of-the-Fallen.jpg" />
     <Content Include="CardSets\Portal\AvatarGolem.jpg" />
-    <Content Include="CardSets\Portal\aaAvatarOfTheFallen.txt" />
+    <Content Include="CardSets\Portal\AvatarOfTheFallen.txt" />
     <Content Include="CardSets\Portal\Burrower-Mark-II.jpg" />
     <Content Include="CardSets\Portal\BurrowerMark.txt" />
     <Content Include="CardSets\Portal\Cetra-Weaver-of-Stars.jpg" />
@@ -282,6 +282,7 @@
     <Content Include="CardSets\Portal\DruidsOfTheStoneCircle.txt" />
     <Content Include="CardSets\Portal\Earth-Tyrant.jpg" />
     <Content Include="CardSets\Portal\EarthTyrant.txt" />
+    <Content Include="CardSets\Portal\Emri-One-with-the-Void.jpg" />
     <Content Include="CardSets\Portal\Emri.txt" />
     <Content Include="CardSets\Portal\Flytrap-Witch.jpg" />
     <Content Include="CardSets\Portal\Flytrap-Witch.txt" />
@@ -298,7 +299,7 @@
     <Content Include="CardSets\Portal\Mechana-Initiate.jpg" />
     <Content Include="CardSets\Portal\MechanaInitiate.txt" />
     <Content Include="CardSets\Portal\Mephit.jpg" />
-    <Content Include="CardSets\Portal\aaMephit.txt" />
+    <Content Include="CardSets\Portal\Mephit.txt" />
     <Content Include="CardSets\Portal\Mistake-of-Creation.jpg" />
     <Content Include="CardSets\Portal\MistakeOfCreation.txt" />
     <Content Include="CardSets\Portal\Muramasa.jpg" />

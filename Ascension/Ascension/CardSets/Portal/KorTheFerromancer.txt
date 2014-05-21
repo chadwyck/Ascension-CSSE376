@@ -3,6 +3,7 @@
 	"cardImage": "Kor-the-Ferromancer.jpg",
 	"runeCost": 3,
 	"powerCost": 0,
+	"rarity": 1,
 	
 	"endGameHonorGain": 2,
 	"faction": "mechana",

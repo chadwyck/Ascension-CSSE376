@@ -3,6 +3,7 @@
 	"cardImage": "Runic-Lycanthrope.jpg",
 	"runeCost": 3,
 	"powerCost": 0,
+	"rarity": 2,
 	
 	"endGameHonorGain": 1,
 	"faction": "lifebound",

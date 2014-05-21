@@ -3,6 +3,7 @@
 	"cardImage": "Muramasa.jpg",
 	"runeCost": 7,
 	"powerCost": 0,
+	"rarity": 1,
 	
 	"endGameHonorGain": 4,
 	"faction": "void",

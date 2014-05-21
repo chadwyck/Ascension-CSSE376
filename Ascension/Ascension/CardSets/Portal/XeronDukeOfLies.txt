@@ -3,6 +3,7 @@
 	"cardImage": "Xeron-Duke-of-Lies.jpg",
 	"runeCost": 0,
 	"powerCost": 6,
+	"rarity": 1,
 	
 	"endGameHonorGain": 0,
 	"faction": "fallen",

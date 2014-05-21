@@ -3,6 +3,7 @@
 	"cardImage": "Temple-Librarian.jpg",
 	"runeCost": 2,
 	"powerCost": 0,
+	"rarity": 3,
 	
 	"endGameHonorGain": 1,
 	"faction": "enlightened",
