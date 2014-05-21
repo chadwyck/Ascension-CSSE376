@@ -73,7 +73,7 @@ namespace AscensionTest
             game.getCurrPlayer().play(game.getCurrPlayer().hand.getCard(0));
             game.getCurrPlayer().purchase(game.cenRow.cards[0], true, 0);
             game.getCurrPlayer().purchase(game.cenRow.cards[0], false, 0);
-            Assert.AreEqual(game.getCurrPlayer().discardPile.cards.Count, 1);
+            Assert.AreEqual(1, game.getCurrPlayer().discardPile.cards.Count);
         }
         [Test()]
         public void TestEndGame()

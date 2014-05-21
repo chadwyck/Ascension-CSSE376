@@ -395,6 +395,10 @@ namespace Ascension
             int availableRunes = getCurrPlayer().playerRunes;
             int availablePower = getCurrPlayer().playerPower;
 
+            if (availablePower >= 2 || availableRunes >= 2)
+            {
+                return true;
+            }
 
             if (this.cenRow != null)
             {
@@ -407,8 +411,25 @@ namespace Ascension
                     }
                     else
                     {
-                        if (card.runeCost <= availableRunes)
-                            return true;
+                        if (card.cardType.Equals("construct"))
+                        {
+                            if (card.faction.Equals("mechana"))
+                            {
+                                if (card.runeCost <= (availableRunes + getCurrPlayer().playerMechRunes + getCurrPlayer().playerConstRunes))
+                                    return true;
+                            }
+                            else
+                            {
+                                if (card.runeCost <= (availableRunes + getCurrPlayer().playerConstRunes))
+                                    return true;
+                            }
+                        }
+                        else
+                        {
+                            if (card.runeCost <= availableRunes)
+                                return true;
+                        }
+                        
                     }
                 }
                 return this.getCurrPlayer().hand.cards.Count > 0;
