@@ -77,7 +77,7 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(125, 532);
+            this.comboBox1.Location = new System.Drawing.Point(125, 565);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 21);
             this.comboBox1.TabIndex = 3;
@@ -85,7 +85,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(48, 532);
+            this.label4.Location = new System.Drawing.Point(48, 565);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(42, 13);
             this.label4.TabIndex = 4;
@@ -93,7 +93,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(279, 529);
+            this.button1.Location = new System.Drawing.Point(279, 562);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(122, 22);
             this.button1.TabIndex = 5;
@@ -103,7 +103,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(37, 631);
+            this.label5.Location = new System.Drawing.Point(37, 664);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(89, 13);
             this.label5.TabIndex = 6;
@@ -112,7 +112,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(153, 631);
+            this.label6.Location = new System.Drawing.Point(153, 664);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(13, 13);
             this.label6.TabIndex = 7;
@@ -139,16 +139,16 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(32, 72);
+            this.pictureBox1.Location = new System.Drawing.Point(32, 69);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(341, 439);
+            this.pictureBox1.Size = new System.Drawing.Size(341, 475);
             this.pictureBox1.TabIndex = 10;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // Purchase
             // 
-            this.Purchase.Location = new System.Drawing.Point(279, 570);
+            this.Purchase.Location = new System.Drawing.Point(279, 603);
             this.Purchase.Margin = new System.Windows.Forms.Padding(2);
             this.Purchase.Name = "Purchase";
             this.Purchase.Size = new System.Drawing.Size(122, 23);
@@ -159,7 +159,7 @@
             // 
             // Kill
             // 
-            this.Kill.Location = new System.Drawing.Point(278, 615);
+            this.Kill.Location = new System.Drawing.Point(278, 648);
             this.Kill.Margin = new System.Windows.Forms.Padding(2);
             this.Kill.Name = "Kill";
             this.Kill.Size = new System.Drawing.Size(123, 21);
@@ -170,7 +170,7 @@
             // 
             // Play
             // 
-            this.Play.Location = new System.Drawing.Point(279, 660);
+            this.Play.Location = new System.Drawing.Point(279, 693);
             this.Play.Name = "Play";
             this.Play.Size = new System.Drawing.Size(122, 23);
             this.Play.TabIndex = 13;
@@ -180,7 +180,7 @@
             // 
             // Banish
             // 
-            this.Banish.Location = new System.Drawing.Point(40, 660);
+            this.Banish.Location = new System.Drawing.Point(40, 693);
             this.Banish.Name = "Banish";
             this.Banish.Size = new System.Drawing.Size(117, 23);
             this.Banish.TabIndex = 14;
@@ -192,7 +192,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(413, 695);
+            this.ClientSize = new System.Drawing.Size(413, 740);
             this.Controls.Add(this.Banish);
             this.Controls.Add(this.Play);
             this.Controls.Add(this.Kill);
@@ -209,7 +209,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.cardName);
             this.Name = "CardView";
-            this.Text = "Form3";
+            this.Text = "4";
             this.Load += new System.EventHandler(this.CardView_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
@@ -230,9 +230,9 @@
         private System.Windows.Forms.Label rCost;
         private System.Windows.Forms.Label pCost;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button Purchase;
-        private System.Windows.Forms.Button Kill;
-        private System.Windows.Forms.Button Play;
+        public System.Windows.Forms.Button Purchase;
+        public System.Windows.Forms.Button Kill;
+        public System.Windows.Forms.Button Play;
         private System.Windows.Forms.Button Banish;
     }
 }

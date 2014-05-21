@@ -117,41 +117,46 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Abilities" xml:space="preserve">
-    <value>Apacités</value>
+  <data name="BanishConstruct" xml:space="preserve">
+    <value>Do you want to banish this Construct to take an additional turn?</value>
   </data>
-  <data name="CardName" xml:space="preserve">
-    <value>Nom par défaut de la carte</value>
+  <data name="DoAction" xml:space="preserve">
+    <value>Do Action</value>
   </data>
-  <data name="EndGameHonor" xml:space="preserve">
-    <value>Honneur de Fin de Jeu</value>
+  <data name="GameOver" xml:space="preserve">
+    <value>Game Over!</value>
   </data>
-  <data name="Kill" xml:space="preserve">
-    <value>Tuer</value>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="packages" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>packages.config;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  <data name="OnePower" xml:space="preserve">
+    <value>1 Power</value>
   </data>
-  <data name="Play" xml:space="preserve">
-    <value>Jouer</value>
+  <data name="OneRune" xml:space="preserve">
+    <value>1 Rune</value>
   </data>
-  <data name="PleaseSelectCard" xml:space="preserve">
-    <value>S'il vous plaît Choisir une carte</value>
+  <data name="PickCard" xml:space="preserve">
+    <value>Pick card</value>
   </data>
-  <data name="PowerCost" xml:space="preserve">
-    <value>Coût Puissance</value>
+  <data name="Player1" xml:space="preserve">
+    <value>Player 1</value>
   </data>
-  <data name="Purchase" xml:space="preserve">
-    <value>Acheter</value>
+  <data name="Player2" xml:space="preserve">
+    <value>Player 2</value>
   </data>
-  <data name="RuneCost" xml:space="preserve">
-    <value>Coût Rune</value>
+  <data name="WantToDo" xml:space="preserve">
+    <value>Do you want to do this?</value>
   </data>
-  <data name="UseSelectedAbility" xml:space="preserve">
-    <value>Utiliser la Capacité Choisie</value>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
   </data>
-  <data name="Banish" xml:space="preserve">
-    <value>Bannir</value>
+  <data name="YggdrasilLabel" xml:space="preserve">
+    <value>You may spend 4 runes to gain 3 honor</value>
+  </data>
+  <data name="YggdrasilNo" xml:space="preserve">
+    <value>No thanks</value>
+  </data>
+  <data name="YggdrasilSpend" xml:space="preserve">
+    <value>Spend 4 runes</value>
   </data>
 </root>

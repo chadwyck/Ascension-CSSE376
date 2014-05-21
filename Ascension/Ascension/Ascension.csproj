@@ -113,6 +113,11 @@
     <Compile Include="EndGameForm.Designer.cs">
       <DependentUpon>EndGameForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="extraForms.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>extraForms.resx</DependentUpon>
+    </Compile>
     <Compile Include="FirstTimeGet.cs" />
     <Compile Include="FirstTimeKillMonster.cs" />
     <Compile Include="ForEachCardType.cs" />
@@ -180,6 +185,11 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EndGameForm.resx">
       <DependentUpon>EndGameForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="extraForms.fr.resx" />
+    <EmbeddedResource Include="extraForms.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>extraForms.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

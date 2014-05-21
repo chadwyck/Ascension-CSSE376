@@ -17,6 +17,10 @@ namespace Ascension
         {
             InitializeComponent();
             this.act = act;
+
+            this.label1.Text = extraForms.BanishConstruct;
+            this.button1.Text = extraForms.Yes;
+            this.button2.Text = extraForms.No;
         }
 
         private void button1_Click(object sender, EventArgs e)

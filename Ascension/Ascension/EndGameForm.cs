@@ -18,6 +18,10 @@ namespace Ascension
             this.game = game;
             InitializeComponent();
 
+            label1.Text = extraForms.GameOver;
+            label2.Text = extraForms.Player1;
+            label3.Text = extraForms.Player2;
+
             int plr1 = int.Parse(game.getPlayer(0).playerHonor.ToString());
             int plr2 = int.Parse(game.getPlayer(1).playerHonor.ToString());
 

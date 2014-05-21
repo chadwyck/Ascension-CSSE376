@@ -39,6 +39,9 @@ namespace Ascension
             this.voidDeck = new CardCollection();
             //Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("fr-FR");
             //Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
+            this.KeyPreview = true;
+            this.KeyPress +=
+                new KeyPressEventHandler(BoardView_KeyPress);
 
             label9.Text = strings.Honor;
             currentPlayNum.Text = strings.Player;
@@ -66,6 +69,80 @@ namespace Ascension
 
             this.updatePlayer();
             this.currentPlayNum.Text = "Player " + this.game.getCurrPlayer().playerNumber;
+        }
+
+        private void BoardView_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            
+                
+                System.Console.WriteLine("key pressed: " + e.KeyChar.ToString());
+
+                switch (e.KeyChar)
+                {
+                    case 'a':
+                        this.button6.PerformClick();
+                        SendKeys.Send("{BS}");
+                        this.comboBox1.DroppedDown = false;
+                        this.playHand.DroppedDown = false;
+                        break;
+                    case 'e':
+                        this.button4.PerformClick();
+                        SendKeys.Send("{BS}");
+                        this.comboBox1.DroppedDown = false;
+                        this.playHand.DroppedDown = false;
+                        break;
+                    case 'm':
+                        this.button1.PerformClick();
+                        SendKeys.Send("{BS}");
+                        this.comboBox1.DroppedDown = false;
+                        this.playHand.DroppedDown = false;
+                        break;
+                    case 'i':
+                        this.button2.PerformClick();
+                        SendKeys.Send("{BS}");
+                        this.comboBox1.DroppedDown = false;
+                        this.playHand.DroppedDown = false;
+                        break;
+                    case 'k':
+                        this.button3.PerformClick();
+                        SendKeys.Send("{BS}");
+                        this.comboBox1.DroppedDown = false;
+                        this.playHand.DroppedDown = false;
+                        break;
+                    case 'c':
+                        SendKeys.Send("{BS}");
+                        this.comboBox1.Select();
+                        this.comboBox1.DroppedDown = true;
+                        this.playHand.DroppedDown = false;
+                        this.playHand.SelectedItem = "";
+                        break;
+                    case 'h':
+                        SendKeys.Send("{BS}");
+                        this.playHand.Select();
+                        this.playHand.DroppedDown = true;
+                        this.comboBox1.DroppedDown = false;
+                        this.comboBox1.SelectedItem = "";
+                        break;
+                    case 'p':
+                        this.cardView.Play.PerformClick();
+                        SendKeys.Send("{BS}");
+                        this.comboBox1.DroppedDown = false;
+                        this.playHand.DroppedDown = false;
+                        break;
+                    case '4':
+                        this.cardView.Purchase.PerformClick();
+                        SendKeys.Send("{BS}");
+                        this.comboBox1.DroppedDown = false;
+                        this.playHand.DroppedDown = false;
+                        break;
+                    case '`':
+                        this.cardView.Kill.PerformClick();
+                        SendKeys.Send("{BS}");
+                        this.comboBox1.DroppedDown = false;
+                        this.playHand.DroppedDown = false;
+                        break;
+                    
+                }
         }
         
         private void button1_Click(object sender, EventArgs e)

@@ -17,11 +17,29 @@ namespace Ascension
         public StartView()
         {
             InitializeComponent();
+            this.KeyPreview = true;
+            this.KeyPress +=
+                new KeyPressEventHandler(StartView_KeyPress);
         }
 
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void StartView_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+
+            System.Console.WriteLine("key pressed: " + e.KeyChar.ToString());
+
+            switch (e.KeyChar)
+            {
+                case (char)Keys.Return:
+                    this.button1.PerformClick();
+                    break;
+                
+            }
         }
 
 

@@ -17,6 +17,9 @@ namespace Ascension
         {
             this.act = act;
             InitializeComponent();
+
+            this.button1.Text = extraForms.OneRune;
+            this.button2.Text = extraForms.OnePower;
         }
 
         private void button1_Click(object sender, EventArgs e)

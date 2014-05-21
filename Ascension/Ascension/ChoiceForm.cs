@@ -19,6 +19,14 @@ namespace Ascension
         {
             InitializeComponent();
             this.action = action;
+
+            this.label1.Text = extraForms.WantToDo;
+            this.label2.Text = extraForms.PickCard;
+            this.button1.Text = extraForms.Yes;
+            this.button2.Text = extraForms.No;
+            this.button3.Text = extraForms.DoAction;
+
+
         }
 
         public void updateChoiceBox(CardCollection col)

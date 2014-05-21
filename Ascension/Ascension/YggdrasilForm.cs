@@ -17,6 +17,10 @@ namespace Ascension
         {
             InitializeComponent();
             this.game = game;
+
+            this.label1.Text = extraForms.YggdrasilLabel;
+            this.button1.Text = extraForms.YggdrasilSpend;
+            this.button2.Text = extraForms.YggdrasilNo;
         }
 
         private void button1_Click(object sender, EventArgs e)
