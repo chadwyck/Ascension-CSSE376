@@ -325,7 +325,14 @@ namespace Ascension
             this.getCurrPlayer().constructs.playAll();
                         
 
-            if ((this.hasAI) && (this.currTurn % this.numPlayers == 0))
+            checkForAI();
+
+        }
+
+        public void checkForAI()
+        {
+
+             if ((this.hasAI) && (this.currTurn % this.numPlayers == 0))
             {
                 //add method to hide all buttons for AI
                 try
@@ -334,31 +341,68 @@ namespace Ascension
                     int indexOfHighestRuneCostCardAffordable = this.getHighestCost();
                     this.boardView.selectCard(getHighestCost());
                     this.boardView.cardView.clickPurchaseButton();
-                    System.Windows.Forms.MessageBox.Show("AI's turn is over; feel free to examine what it did, then click End Turn");
                 }
                 catch
                 {
+                    try
+                    {
+                        this.boardView.clickBuyMystic();
+                    }
+
+                    catch
+                    {
+                        try
+                        {
+                            this.boardView.clickBuyHI();
+                        }
+
+                        catch
+                        {
+                            //System.Windows.Forms.MessageBox.Show("Wow, the AI couldn't do ANYTHING.");
+                        }
+                    }
+                }
+
+                try
+                {
+                    this.boardView.selectCard(getHighestPower());
+                    this.boardView.cardView.clickKillButton(); //this... kind of isn't working? I'm scared of all of this.
                     System.Windows.Forms.MessageBox.Show("AI's turn is over; feel free to examine what it did, then click End Turn");
+                }
+
+                catch
+                {
+                    try
+                    {
+                        this.killCultist();
+                        System.Windows.Forms.MessageBox.Show("Killed the Cultist.");
+                    }
+
+                    catch
+                    {
+                        System.Windows.Forms.MessageBox.Show("Couldn't do anything.");
+                    }
                 }
             }
         }
 
+           
         private int getHighestCost()
         {
             int totalRunes = this.getCurrPlayer().playerRunes;
             Card currBest = this.cenRow.cards[0];
             foreach (Card card in this.cenRow.cards)
             {
-                if ((currBest.runeCost < card.runeCost) && (totalRunes >= card.runeCost))
+                if ((currBest.runeCost < card.runeCost) && (totalRunes >= card.runeCost) && (card.runeCost > 0))
                 {
                     currBest = card;
                 }
             }
-            if (currBest.runeCost <= totalRunes)
+            if ((currBest.runeCost <= totalRunes) && (currBest.runeCost > 0))
             {
                 return this.cenRow.cards.IndexOf(currBest);
             }
-            else return -1;
+            else throw nullReferenceException;
         }
         public Card buyMyst()
         {
@@ -380,6 +424,25 @@ namespace Ascension
             return temp;
         }
 
+        private int getHighestPower()
+        {
+            int totalPower = this.getCurrPlayer().playerPower;
+            Card currBest = this.cenRow.cards[0];
+            foreach (Card card in this.cenRow.cards)
+            {
+                if ((currBest.powerCost < card.powerCost) && (totalPower >= card.powerCost) && (card.powerCost > 0))
+                {
+                    currBest = card;
+                }
+            }
+            if ((currBest.powerCost <= totalPower) && (currBest.powerCost > 0))
+            {
+                return this.cenRow.cards.IndexOf(currBest);
+            }
+            else throw nullReferenceException;
+        }
+       
+
         public void killCultist()
         {
             if (getCurrPlayer().playerPower >= 2)
@@ -388,6 +451,7 @@ namespace Ascension
                 getCurrPlayer().addPower(-2);
                 boardView.updatePlayer();
             }
+            else throw nullReferenceException;
         }
 
         public Boolean canDoMore()
@@ -453,6 +517,8 @@ namespace Ascension
         {
             this.endOfGame = true;
         }
-        
+
+
+        public Exception nullReferenceException { get; set; }
     }
 }

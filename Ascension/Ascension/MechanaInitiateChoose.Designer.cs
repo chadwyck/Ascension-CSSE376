@@ -61,6 +61,7 @@
             this.Controls.Add(this.button1);
             this.Name = "MechanaInitiateChoose";
             this.Text = "MechanaInitiateChoose";
+            this.Load += new System.EventHandler(this.MechanaInitiateChoose_Load);
             this.ResumeLayout(false);
 
         }

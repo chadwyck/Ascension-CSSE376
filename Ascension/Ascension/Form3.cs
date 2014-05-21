@@ -148,6 +148,11 @@ namespace Ascension
             Purchase.PerformClick();
         }
 
+        public void clickKillButton()
+        {
+            Kill.PerformClick();
+        }
+
         private void Play_Click(object sender, EventArgs e)
         {
             if (!currCard.cardName.Equals("Please Select a Card"))

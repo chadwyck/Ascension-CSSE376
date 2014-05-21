@@ -72,6 +72,7 @@
             this.Controls.Add(this.label1);
             this.Name = "BanishConstruct";
             this.Text = "BanishConstruct";
+            this.Load += new System.EventHandler(this.BanishConstruct_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

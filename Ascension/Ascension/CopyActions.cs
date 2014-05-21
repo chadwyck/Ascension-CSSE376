@@ -8,7 +8,7 @@ namespace Ascension
 {
     public class CopyActions : CardAction
     {
-        private Game game;
+        public Game game;
         public bool userChoice { get; set; }
         public bool optional { get; set; }
         public CardCollection cc { get; set; }

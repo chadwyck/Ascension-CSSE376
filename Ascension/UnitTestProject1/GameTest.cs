@@ -60,7 +60,7 @@ namespace AscensionTest
         public void TestNotEnoughPowerToKillCultist()
         {
             var target = new Game(2, false, true);
-            target.killCultist();
+            target.killCultist(); 
             Assert.True(target.getCurrPlayer().playerHonor == 0);
         }
 

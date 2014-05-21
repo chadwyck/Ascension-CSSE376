@@ -43,7 +43,8 @@ namespace Ascension
 
         private void ChoiceForm_Load(object sender, EventArgs e)
         {
-
+            if ((this.action.game.hasAI) && (this.action.game.currTurn % this.action.game.numPlayers == 0))
+                button2.PerformClick();
         }
 
         private void button1_Click(object sender, EventArgs e)

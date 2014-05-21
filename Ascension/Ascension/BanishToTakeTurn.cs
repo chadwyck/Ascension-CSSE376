@@ -8,7 +8,7 @@ namespace Ascension
 {
     public class BanishToTakeTurn : CardAction
     {
-        private Game game;
+        public Game game;
         private Card card;
         public BanishToTakeTurn(Game gme)
             : base()

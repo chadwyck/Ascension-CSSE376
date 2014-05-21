@@ -35,5 +35,13 @@ namespace Ascension
             this.act.actuallyDoTheAction();
             this.Close();
         }
+
+        private void MechanaInitiateChoose_Load(object sender, EventArgs e)
+        {
+            if ((this.act.game.hasAI) && (this.act.game.currTurn % this.act.game.numPlayers == 0))
+            {
+                button1.PerformClick(); //For now, the AI will always choose runes.
+            }
+        }
     }
 }

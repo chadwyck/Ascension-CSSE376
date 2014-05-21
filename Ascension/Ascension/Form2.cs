@@ -265,6 +265,21 @@ namespace Ascension
             button6.PerformClick();
         }
 
+        public void clickBuyMystic()
+        {
+            button1.PerformClick();
+        }
+
+        public void clickBuyHI()
+        {
+            button2.PerformClick();
+        }
+
+        public void clickKillCultist()
+        {
+            button3.PerformClick();
+        }
+
         public void selectCard(int indexOfCard)
         {
             comboBox1.SelectedIndex = indexOfCard;
@@ -274,7 +289,14 @@ namespace Ascension
 
         private void button3_Click(object sender, EventArgs e)
         {
-            game.killCultist();
+            try
+            {
+                game.killCultist();
+            }
+            catch
+            {
+                MessageBox.Show("Not enough power to kill the cultist.");
+            }
             
         }
 
