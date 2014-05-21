@@ -97,12 +97,14 @@ namespace Ascension
                public int incrementBy { get; set; }
                public bool userChoice{get;set;}
                public bool optional { get; set; }
+               public bool isABanish { get; set; }
                public string faction {get; set;}
                public string cardType { get; set;}
                public bool playedOne { get; set; }
                public string fromCC { get; set; }
                public string toCC { get; set; }
                public int atMost { get; set; }
+               public bool destroyAll { get; set; }
                
 
 
@@ -126,7 +128,7 @@ namespace Ascension
                if (act.type.Equals("moveFromTo"))
                 {
                   
-                    ret.Add(new MoveFromTo(act.fromCC, act.toCC,act.userChoice,act.optional,game));
+                    ret.Add(new MoveFromTo(act.fromCC, act.toCC,act.userChoice,act.optional,act.isABanish,game));
                 }
                 if(act.type.Equals("allConstructsMechana"))
                 {
@@ -167,6 +169,18 @@ namespace Ascension
                 if (act.type.Equals("gainForEachFaction"))
                 {
                     ret.Add(new GainForEachFaction(game));
+                }
+                if (act.type.Equals("firstTimeKillMonster"))
+                {
+                    ret.Add(new FirstTimeKillMonster(game));
+                }
+                if (act.type.Equals("spendRunesForHonor"))
+                {
+                    ret.Add(new SpendRunesForHonor(game));
+                }
+                if (act.type.Equals("destroyConstructs"))
+                {
+                    ret.Add(new DestroyConstructs(game, act.destroyAll));
                 }
                
             }

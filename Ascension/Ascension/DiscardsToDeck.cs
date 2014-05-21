@@ -8,7 +8,7 @@ namespace Ascension
 {
     public class DiscardsToDeck : CardCollection
     {
-        private DiscardDeck discard;
+        protected DiscardDeck discard;
         public DiscardsToDeck(DiscardDeck discrd) : base()
         {
             discard = discrd;

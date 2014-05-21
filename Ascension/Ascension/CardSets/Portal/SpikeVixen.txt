@@ -12,6 +12,7 @@
 		"metricID": 2,
 		"incrementBy": 1},
 		{"type": "moveFromTo",
+		"isABanish": "false",
 		"fromCC": "deck",
 		"toCC": "hand",
 		"userChoice": false,

@@ -10,10 +10,13 @@ namespace Ascension
     {
         private Game game;
         public bool userChoice { get; set; }
+        public bool optional { get; set; }
+        public CardCollection cc { get; set; }
         public CopyActions(Game gme) : base()
         {
             this.game = gme;
             userChoice = true;
+            optional = true;
         }
         public override string printAction()
         {
@@ -24,18 +27,28 @@ namespace Ascension
         public override void doAction()
         {
             this.game.boardView.updateCombos();
+            this.setTheBox(this.game.getCurrPlayer().onBoard);
             queryUser();
         }
 
-        private void queryUser()
+        public void setTheBox(CardCollection cc)
+        {
+            this.cc = cc;
+        }
+
+        protected void queryUser()
         {
             ChoiceForm cf = new ChoiceForm(this);
             cf.Show();
-            cf.updateChoiceBox(this.game.getCurrPlayer().onBoard);
+            cf.updateChoiceBox(this.cc);
 
             if (!this.userChoice)
             {
                 cf.hideCombo();
+            }
+            if (!this.optional)
+            {
+                cf.hideOptions();
             }
 
         }

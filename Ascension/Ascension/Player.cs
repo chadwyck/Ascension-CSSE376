@@ -18,13 +18,13 @@ namespace Ascension
         
         public int playerPower { get; protected set; }
 
-        public int playerRunes { get; protected set; }
+        public int playerRunes { get; set; }
 
         public int playerMechRunes { get; protected set; }
 
         public int playerConstRunes { get; protected set; }
         
-        public int playerHonor { get; protected set; }
+        public int playerHonor { get; set; }
         
         public int currentRunes { get; protected set; }
         
@@ -37,6 +37,8 @@ namespace Ascension
         public InHand hand { get; protected set; }
 
         public InPlay onBoard { get; protected set; }
+
+        public List<DestroyConstructs> destroyConstructs { get; set; }
 
         public DiscardDeck discardPile { get; protected set; }
 
@@ -53,6 +55,8 @@ namespace Ascension
             this.currentPower = 0;
             this.deck = new HandDeck();
             this.game = game;
+            this.destroyConstructs = new List<DestroyConstructs>();
+
             CardImport card = new CardImport(this.game, "\\PlayerHand\\");
             card.cardImportH(this.game, "\\PlayerHand\\", deck);
 
@@ -84,6 +88,15 @@ namespace Ascension
             
 
 
+        }
+
+        public void queryAllDestroyConstructs()
+        {
+            foreach (var dc in this.destroyConstructs)
+            {
+                dc.queryTheUser();
+            }
+            this.destroyConstructs.Clear();
         }
 
 
@@ -264,9 +277,15 @@ namespace Ascension
             if (Cost <= this.playerPower)
             {
                 this.game.cenRow.remove(crd);
-                this.game.voidDeck.add(crd);                                                                     
+                this.game.voidDeck.add(crd);
+                if (this.game.firstTimeMonster)
+                {
+                    this.game.firstTimeMonster = false;
+                    this.changeMetricCount(0, 1);
+                }
                 crd.playCard();
-                this.playerPower = this.playerPower - Cost;            }
+                this.playerPower = this.playerPower - Cost;            
+            }
         }
                 
 

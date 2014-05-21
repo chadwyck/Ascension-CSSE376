@@ -9,6 +9,7 @@
 	"cardType": "hero",
 	"actions":[
 		{"type": "moveFromTo",
+		"isABanish": "false",
 		"fromCC": "deck",
 		"toCC": "hand",
 		"userChoice": false,
@@ -17,6 +18,7 @@
 		{"type": "moveFromTo",
 		"fromCC": "center",
 		"toCC": "void",
+		"isABanish": "true",
 		"userChoice": true,
 		"optional": true
 		}

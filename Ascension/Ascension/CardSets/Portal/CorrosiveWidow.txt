@@ -1,0 +1,17 @@
+﻿{
+	"cardName": "Corrosive Widow",
+	"cardImage": "Corrosive-Widow.jpg",
+	"runeCost": 0,
+	"powerCost": 4,
+	
+	"endGameHonorGain": 0,
+	"faction": "fallen",
+	"cardType": "monster",
+	"actions":[
+		{"type":"changeMetric",
+		"metricID": 0,
+		"incrementBy": 3},
+		{"type": "destroyConstructs",
+		"destroyAll": false}
+	]
+}

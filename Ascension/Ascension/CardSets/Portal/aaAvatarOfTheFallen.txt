@@ -12,6 +12,7 @@
 		"metricID": 0,
 		"incrementBy": 4},
 	{"type": "moveFromTo",
+		"isABanish": "false",
 		"fromCC": "center",
 		"toCC": "discard",
 		"userChoice": true,

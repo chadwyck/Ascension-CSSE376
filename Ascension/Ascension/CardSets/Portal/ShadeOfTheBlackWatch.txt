@@ -14,12 +14,14 @@
 		{"type": "moveFromTo",
 		"fromCC": "hand",
 		"toCC": "void",
+		"isABanish": "true",
 		"userChoice": false,
 		"optional": false
 		},
 		{"type": "moveFromTo",
 		"fromCC": "discard",
 		"toCC": "void",
+		"isABanish": "true",
 		"userChoice": true,
 		"optional": true
 		}

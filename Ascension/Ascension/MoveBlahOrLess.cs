@@ -11,14 +11,14 @@ namespace Ascension
         public int metric, atMost;
         public string type;
         public MoveBlahOrLess(String fromCC, string type, int metric, int atMost, Game gme)
-            : base(fromCC, fromCC, true, false, gme)
+            : base(fromCC, fromCC, true, false, false, gme)
         {
             this.metric = metric;
             this.atMost = atMost;
             this.type = type;
         }
 
-        private void queryUser()
+        new private void queryUser()
         {
             this.doTheAction();
             ChoiceForm cf = new ChoiceForm(this);

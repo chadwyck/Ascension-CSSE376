@@ -28,6 +28,37 @@ namespace Ascension
         {
             cards.Clear();
         }
+
+        public bool containsAvatarOfFallen()
+        {
+            bool ret = false;
+
+            foreach (var card in cards)
+            {
+                if (card.cardName.Equals("Avatar of the Fallen"))
+                {
+                    ret = true;
+                }
+            }
+
+            return ret;
+        }
+
+        public Card getAvatarOfFallen()
+        {
+            Card ret = null;
+
+            foreach (var card in cards)
+            {
+                if (card.cardName.Equals("Avatar of the Fallen"))
+                {
+                    ret = card;
+                }
+            }
+
+            return ret;
+        }
+
         public String[] toStringArray()
         {
             List<String> names = new List<String>();

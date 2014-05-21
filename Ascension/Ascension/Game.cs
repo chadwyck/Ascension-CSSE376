@@ -23,6 +23,7 @@ namespace Ascension
         public bool mechanaDirectToPlay { get; set; }
         public bool mechanaDraw { get; set; }
         public bool extraTurn { get; set; }
+        public bool firstTimeMonster { get; set; }
 
         public int currTurn
         {
@@ -199,6 +200,7 @@ namespace Ascension
             this.mechanaDirectToPlay = false;
             this.mechanaDraw = false;
             this.extraTurn = false;
+            this.firstTimeMonster = false;
         }
         public void generateCards(){
             Card apprentice = new Card(this, "Apprentice", null, 0, 0, 0, "", "basic",
@@ -272,7 +274,7 @@ namespace Ascension
 
             CardImport card = new CardImport(this, "\\Portal\\");
             card.cardImportP(this, "\\Portal\\", pDeck);
-            pDeck.shuffle();
+            //pDeck.shuffle();                              // shuffleCode
            foreach(Player p in plyrs){
                 
            }
@@ -315,10 +317,13 @@ namespace Ascension
             {
                 this.extraTurn = false;
             }
-            this.getCurrPlayer().constructs.playAll();
+            this.firstTimeMonster = false;
             this.allMechanaConstructs = false;
             this.mechanaDirectToPlay = false;
             this.mechanaDraw = false;
+            this.getCurrPlayer().queryAllDestroyConstructs();
+            this.getCurrPlayer().constructs.playAll();
+                        
 
             if ((this.hasAI) && (this.currTurn % this.numPlayers == 0))
             {

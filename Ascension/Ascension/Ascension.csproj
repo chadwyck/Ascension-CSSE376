@@ -103,6 +103,7 @@
     <Compile Include="ChooseMetricToChange.cs" />
     <Compile Include="ConstructDeck.cs" />
     <Compile Include="CopyActions.cs" />
+    <Compile Include="DestroyConstructs.cs" />
     <Compile Include="DiscardDeck.cs" />
     <Compile Include="DiscardsToDeck.cs" />
     <Compile Include="DrawIfConstructs.cs" />
@@ -113,6 +114,7 @@
       <DependentUpon>EndGameForm.cs</DependentUpon>
     </Compile>
     <Compile Include="FirstTimeGet.cs" />
+    <Compile Include="FirstTimeKillMonster.cs" />
     <Compile Include="ForEachCardType.cs" />
     <Compile Include="GainForEachFaction.cs" />
     <Compile Include="HandDeck.cs" />
@@ -152,6 +154,7 @@
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SpendRunesForHonor.cs" />
     <Compile Include="strings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -163,6 +166,12 @@
       <DependentUpon>strings_form3.resx</DependentUpon>
     </Compile>
     <Compile Include="TakeFromOpponent.cs" />
+    <Compile Include="YggdrasilForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="YggdrasilForm.Designer.cs">
+      <DependentUpon>YggdrasilForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="BanishConstruct.resx">
       <DependentUpon>BanishConstruct.cs</DependentUpon>
     </EmbeddedResource>
@@ -202,6 +211,9 @@
     <EmbeddedResource Include="strings_form3.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>strings_form3.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="YggdrasilForm.resx">
+      <DependentUpon>YggdrasilForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -258,11 +270,13 @@
     <Content Include="CardSets\Portal\AsceticOfTheLidlessEye.txt" />
     <Content Include="CardSets\Portal\Avatar-of-the-Fallen.jpg" />
     <Content Include="CardSets\Portal\AvatarGolem.jpg" />
-    <Content Include="CardSets\Portal\AvatarOfTheFallen.txt" />
+    <Content Include="CardSets\Portal\aaAvatarOfTheFallen.txt" />
     <Content Include="CardSets\Portal\Burrower-Mark-II.jpg" />
     <Content Include="CardSets\Portal\BurrowerMark.txt" />
     <Content Include="CardSets\Portal\Cetra-Weaver-of-Stars.jpg" />
     <Content Include="CardSets\Portal\CetraWeaverOfStars.txt" />
+    <Content Include="CardSets\Portal\Corrosive-Widow.jpg" />
+    <Content Include="CardSets\Portal\CorrosiveWidow.txt" />
     <Content Include="CardSets\Portal\Demon-Slayer.jpg" />
     <Content Include="CardSets\Portal\Druids-of-the-Stone-Circle.jpg" />
     <Content Include="CardSets\Portal\DruidsOfTheStoneCircle.txt" />
@@ -284,7 +298,7 @@
     <Content Include="CardSets\Portal\Mechana-Initiate.jpg" />
     <Content Include="CardSets\Portal\MechanaInitiate.txt" />
     <Content Include="CardSets\Portal\Mephit.jpg" />
-    <Content Include="CardSets\Portal\Mephit.txt" />
+    <Content Include="CardSets\Portal\aaMephit.txt" />
     <Content Include="CardSets\Portal\Mistake-of-Creation.jpg" />
     <Content Include="CardSets\Portal\MistakeOfCreation.txt" />
     <Content Include="CardSets\Portal\Muramasa.jpg" />
@@ -299,6 +313,8 @@
     <Content Include="CardSets\Portal\RunicLycanthrope.txt" />
     <Content Include="CardSets\Portal\Samaels-Trickster.jpg" />
     <Content Include="CardSets\Portal\SamaelsTrickster.txt" />
+    <Content Include="CardSets\Portal\Sea-Tyrant.jpg" />
+    <Content Include="CardSets\Portal\SeaTyrant.txt" />
     <Content Include="CardSets\Portal\Seer-of-the-Forked-Path.jpg" />
     <Content Include="CardSets\Portal\SeerOfTheForkedPath.txt" />
     <Content Include="CardSets\Portal\Shade-of-the-Black-Watch.jpg" />

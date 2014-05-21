@@ -2,7 +2,7 @@
 	"cardName": "Mephit",
 	"cardImage": "Mephit.jpg",
 	"runeCost": 0,
-	"powerCost": 3,
+	"powerCost": 1,
 	
 	"endGameHonorGain": 0,
 	"faction": "fallen",
@@ -14,6 +14,7 @@
 		{"type": "moveFromTo",
 		"fromCC": "center",
 		"toCC": "void",
+		"isABanish": "true",
 		"userChoice": true,
 		"optional": true
 		}

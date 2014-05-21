@@ -14,12 +14,14 @@
 		{"type": "moveFromTo",
 		"fromCC": "center",
 		"toCC": "void",
+		"isABanish": "true",
 		"userChoice": true,
 		"optional": true
 		},
 		{"type": "moveFromTo",
 		"fromCC": "discard",
 		"toCC": "void",
+		"isABanish": "true",
 		"userChoice": true,
 		"optional": true
 		}

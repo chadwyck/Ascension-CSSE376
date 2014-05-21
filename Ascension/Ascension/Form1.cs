@@ -47,5 +47,10 @@ namespace Ascension
         {
             includeAI = true;
         }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

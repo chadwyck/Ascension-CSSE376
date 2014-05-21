@@ -20,13 +20,16 @@ namespace Ascension
 
         public void destroyAllButOneConstruct (Card card)
         {
-            for (int i = 0; i < cards.Count; i++ )
+            while (cards.Count > 0)
             {
-                if (cards[i] != card)
+                Card temp = cards[0];
+                if (!temp.Equals(card))
                 {
-                    remove(cards[i]);   // needs to be fixed.  Index will mess it up.
+                    discard.add(temp);
                 }
+                remove(temp);
             }
+            this.add(card);
         }
 
         public int numberOf(string faction)

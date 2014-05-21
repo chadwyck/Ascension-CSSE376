@@ -9,20 +9,21 @@ namespace Ascension
     public class MoveFromTo : CopyActions
     {
         public String fromCC, toCC;
-        public bool optional;
         public CardCollection to;
         public CardCollection from;
+        public bool isABanish;
         //private Card cardToMove;
         public Game game;
 
         public bool willPerformAction { get; set; }
 
-        public MoveFromTo (String fromCC, String toCC, bool userChoice, bool optional, Game gme) : base(gme)
+        public MoveFromTo (String fromCC, String toCC, bool userChoice, bool optional, bool isABanish, Game gme) : base(gme)
         {
             this.fromCC = fromCC;
             this.toCC = toCC;
             this.userChoice = userChoice;
             this.optional = optional;
+            this.isABanish = isABanish;
             this.game = gme;
             this.willPerformAction = true;
             
@@ -94,12 +95,22 @@ namespace Ascension
 
         }
 
-        private void queryUser()
+        new private void queryUser()
         {
             this.doTheAction();
             ChoiceForm cf = new ChoiceForm(this);
             cf.Show();
-            cf.updateChoiceBox(this.from);
+
+            CardCollection cc = new CardCollection();
+            cc.cards.AddRange(this.from.cards);
+
+            if (cc.containsAvatarOfFallen() && this.isABanish)
+            {
+                cc.remove(cc.getAvatarOfFallen());
+            }
+
+
+            cf.updateChoiceBox(cc);
 
             if(!this.userChoice)
             {
