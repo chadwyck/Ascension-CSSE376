@@ -44,7 +44,19 @@ namespace Ascension
         private void ChoiceForm_Load(object sender, EventArgs e)
         {
             if ((this.action.game.hasAI) && (this.action.game.currTurn % this.action.game.numPlayers == 0))
-                button2.PerformClick();
+            {
+                try
+                {
+                    comboBox1.SelectedIndex = 0;
+                    button3.PerformClick();
+                    System.Windows.Forms.MessageBox.Show("Performed an action from a card.");
+                }
+                catch
+                {
+                    this.Close();
+                    System.Windows.Forms.MessageBox.Show("Chose not to perform any card actions.");
+                }
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)

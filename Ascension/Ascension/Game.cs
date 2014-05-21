@@ -331,60 +331,84 @@ namespace Ascension
 
         public void checkForAI()
         {
-
-             if ((this.hasAI) && (this.currTurn % this.numPlayers == 0))
+            if ((this.hasAI) && (this.currTurn % this.numPlayers == 0))
             {
-                //add method to hide all buttons for AI
-                try
+                this.boardView.updatePlayer();
+                this.boardView.clickPlayAll();
+                if (this.getCurrPlayer().playerRunes >= 2)
                 {
-                    this.boardView.clickPlayAll();
-                    int indexOfHighestRuneCostCardAffordable = this.getHighestCost();
-                    this.boardView.selectCard(getHighestCost());
-                    this.boardView.cardView.clickPurchaseButton();
-                }
-                catch
-                {
-                    try
+                    while (this.getCurrPlayer().playerRunes >= 2)
                     {
-                        this.boardView.clickBuyMystic();
-                    }
+                        //add method to hide all buttons for AI
+                        try
+                        {
+                            this.boardView.clickPlayAll();
+                            int indexOfHighestRuneCostCardAffordable = this.getHighestCost();
+                            this.boardView.selectCard(getHighestCost());
+                            this.boardView.cardView.clickPurchaseButton();
+                            System.Windows.Forms.MessageBox.Show("Bought something from the center row.");
+                        }
+                        catch
+                        {
+                            try
+                            {
+                                if (this.getCurrPlayer().playerRunes >= 3)
+                                {
+                                    this.boardView.clickBuyMystic();
+                                    System.Windows.Forms.MessageBox.Show("Bought a mystic.");
+                                }
+                                else throw nullReferenceException;
+                            }
 
-                    catch
+                            catch
+                            {
+                                try
+                                {
+                                    this.boardView.clickBuyHI();
+                                    System.Windows.Forms.MessageBox.Show("Bought a heavy infantry.");
+                                }
+
+                                catch
+                                {
+                                    System.Windows.Forms.MessageBox.Show("Did not buy anything.");
+                                }
+                            }
+                        }
+                    }
+                }
+                else System.Windows.Forms.MessageBox.Show("Did not buy anything.");
+
+                if (this.getCurrPlayer().playerPower >= 2)
+                {
+                    while (this.getCurrPlayer().playerPower >= 2)
                     {
                         try
                         {
-                            this.boardView.clickBuyHI();
+                            this.boardView.selectCard(getHighestPower());
+                            this.boardView.cardView.clickKillButton(); //this... kind of isn't working? I'm scared of all of this.
+                            System.Windows.Forms.MessageBox.Show("Killed a monster in the center row.");
                         }
 
                         catch
                         {
-                            //System.Windows.Forms.MessageBox.Show("Wow, the AI couldn't do ANYTHING.");
+                            try
+                            {
+                                this.killCultist();
+                                System.Windows.Forms.MessageBox.Show("Killed the Cultist.");
+                            }
+
+                            catch
+                            {
+                                System.Windows.Forms.MessageBox.Show("Did not kill anything.");
+                            }
                         }
                     }
                 }
-
-                try
-                {
-                    this.boardView.selectCard(getHighestPower());
-                    this.boardView.cardView.clickKillButton(); //this... kind of isn't working? I'm scared of all of this.
-                    System.Windows.Forms.MessageBox.Show("AI's turn is over; feel free to examine what it did, then click End Turn");
-                }
-
-                catch
-                {
-                    try
-                    {
-                        this.killCultist();
-                        System.Windows.Forms.MessageBox.Show("Killed the Cultist.");
-                    }
-
-                    catch
-                    {
-                        System.Windows.Forms.MessageBox.Show("Couldn't do anything.");
-                    }
-                }
+                else System.Windows.Forms.MessageBox.Show("Did not kill anything.");
             }
         }
+        
+
 
            
         private int getHighestCost()

@@ -38,5 +38,13 @@ namespace Ascension
         {
             this.Close();
         }
+
+        private void YggdrasilForm_Load(object sender, EventArgs e)
+        {
+            if ((this.game.hasAI) && (this.game.currTurn % this.game.numPlayers == 0))
+            {
+                button2.PerformClick(); //For now, the AI will always choose runes
+            }
+        }
     }
 }

@@ -37,7 +37,7 @@ namespace Ascension
         private void BanishConstruct_Load(object sender, EventArgs e)
         {
             if ((this.act.game.hasAI) && (this.act.game.currTurn % this.act.game.numPlayers == 0))
-                button2.PerformClick();
+                button1.PerformClick();
         }
     }
 }

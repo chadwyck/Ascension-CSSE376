@@ -68,7 +68,6 @@ namespace Ascension
             game = gm;
 
             this.updatePlayer();
-            this.currentPlayNum.Text = "Player " + this.game.getCurrPlayer().playerNumber;
         }
 
         private void BoardView_KeyPress(object sender, KeyPressEventArgs e)
@@ -226,6 +225,11 @@ namespace Ascension
             }
         }
 
+        public void clickEndTurn()
+        {
+            button4.PerformClick();
+        }
+
         public void updateCombos()
         {
             this.updatePlayer();
@@ -248,6 +252,7 @@ namespace Ascension
             playConstructs.Items.AddRange(game.getCurrPlayer().constructs.toStringArray());
             lblHonorCount.Text = this.game.honorOnBoard.ToString();
             lblYourHonor.Text = this.game.getCurrPlayer().playerHonor.ToString();
+            this.currentPlayNum.Text = "Player " + this.game.getCurrPlayer().playerNumber;
             runeNum.Text = this.game.getCurrPlayer().playerRunes.ToString();
             mechRuneNum.Text = this.game.getCurrPlayer().playerMechRunes.ToString();
             constRuneNum.Text = this.game.getCurrPlayer().playerConstRunes.ToString();
