@@ -72,5 +72,15 @@ namespace Ascension
         {
             return cards.ElementAt<Card>(index);
         }
+
+        public int getEndGameHonor()
+        {
+            int ret = 0;
+            foreach (var card in cards)
+            {
+                ret += card.endGameHonorGain;
+            }
+            return ret;
+        }
     }
 }

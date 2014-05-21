@@ -26,7 +26,7 @@
 		{"type": "moveFromTo",
 		"isABanish": "false",
 		"fromCC": "deck",
-		"toCC": "deck",
+		"toCC": "hand",
 		"userChoice": false,
 		"optional": false
 		}

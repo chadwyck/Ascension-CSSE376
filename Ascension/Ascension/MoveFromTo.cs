@@ -59,6 +59,9 @@ namespace Ascension
                 case "hand":
                     to = game.getCurrPlayer().hand;
                     break;
+                //case "deck":
+                //    to = game.getCurrPlayer().deck;
+                //    break;
             }
             switch (this.fromCC)
             {
