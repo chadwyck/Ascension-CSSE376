@@ -14,6 +14,7 @@ namespace Ascension
         {
             this.game = game;
             this.destroyAll = destroyAll;
+          
         }
 
         override public void doAction()

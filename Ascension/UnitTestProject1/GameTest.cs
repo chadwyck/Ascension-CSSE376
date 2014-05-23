@@ -60,8 +60,8 @@ namespace AscensionTest
         public void TestNotEnoughPowerToKillCultist()
         {
             var target = new Game(2, false, true);
-            target.killCultist(); 
-            Assert.True(target.getCurrPlayer().playerHonor == 0);
+
+            Assert.Throws<NullReferenceException>(() => target.killCultist());
         }
 
         [Test()]
@@ -175,6 +175,22 @@ namespace AscensionTest
             var target = new Game(3, true, true);
             AI aiTest = new AI(new Game(4, false, true), 3); // just made ot get an instance of something that is an AI.
             Assert.True(target.getPlayer(3).GetType() == aiTest.GetType());
+        }
+        [Test()]
+        public void BoughtSomethingAI()
+        {
+            var target = new Game(1, true, false);
+            target.advanceTurn();
+            Assert.True(target.getCurrPlayer().discardPile.cards.Count > 0);
+        }
+
+        [Test()]
+        public void KillsSomethingAI()
+        {
+            var target = new Game(1, true, false);
+            target.getPlayer(1).changeMetricCount(2, 4);
+            target.advanceTurn();
+            Assert.True(target.getCurrPlayer().playerHonor > 0 || target.voidDeck.cards.Count > 0);
         }
 
     }

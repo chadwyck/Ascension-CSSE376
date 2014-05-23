@@ -219,7 +219,7 @@
             this.label7.Size = new System.Drawing.Size(38, 13);
             this.label7.TabIndex = 17;
             this.label7.Text = "Runes";
-            this.label7.Click += new System.EventHandler(this.label7_Click);
+            
             // 
             // label8
             // 
@@ -238,7 +238,7 @@
             this.label9.Size = new System.Drawing.Size(36, 13);
             this.label9.TabIndex = 19;
             this.label9.Text = "Honor";
-            this.label9.Click += new System.EventHandler(this.label9_Click);
+            
             // 
             // lblHonorCount
             // 
@@ -248,7 +248,7 @@
             this.lblHonorCount.Size = new System.Drawing.Size(13, 13);
             this.lblHonorCount.TabIndex = 20;
             this.lblHonorCount.Text = "0";
-            this.lblHonorCount.Click += new System.EventHandler(this.label10_Click);
+            
             // 
             // runeNum
             // 

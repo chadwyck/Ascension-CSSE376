@@ -60,6 +60,7 @@
     <Compile Include="CardTest.cs" />
     <Compile Include="CardImprortTest.cs" />
     <Compile Include="AITest.cs" />
+    <Compile Include="Class2.cs" />
     <Compile Include="ConstructTest.cs" />
     <Compile Include="PlayerTest.cs" />
     <Compile Include="GameTest.cs" />

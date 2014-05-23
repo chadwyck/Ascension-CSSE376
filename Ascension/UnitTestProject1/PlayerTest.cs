@@ -58,7 +58,8 @@ namespace AscensionTest
             Assert.AreEqual(0, target.playerPower);
         }
         [Test()]
-        public void TestKill(){
+        public void TestKill()
+        {
             Game game = new Game(2, false, true);
             game.advanceTurn();
             game.getCurrPlayer().play(game.getCurrPlayer().hand.getCard(0));

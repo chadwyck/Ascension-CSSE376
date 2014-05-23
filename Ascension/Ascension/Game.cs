@@ -59,17 +59,17 @@ namespace Ascension
         public CardCollection myst; //made this public so AI could access it. Should really AI functions it so it can be private.
         private CardCollection heavyIn;
         public Player[] plyrs { get; set; }
-        public Game (int numPlayers)
-		{
-            this.hasAI = false;
-            gameInitialize(numPlayers, false, "English");
-        }
+        //public Game (int numPlayers)
+        //{
+        //    this.hasAI = false;
+        //    gameInitialize(numPlayers, false, "English");
+        //}
 
-        public Game(int numPlayers, Boolean hasAI)
-        {
-            this.hasAI = hasAI;
-            gameInitialize(numPlayers, false, "English");
-        }
+        //public Game(int numPlayers, Boolean hasAI)
+        //{
+        //    this.hasAI = hasAI;
+        //    gameInitialize(numPlayers, false, "English");
+        //}
 
         public Game(int numPlayers, Boolean hasAI, bool isTest)
         {
@@ -463,7 +463,7 @@ namespace Ascension
             {
                 return this.cenRow.cards.IndexOf(currBest);
             }
-            else throw nullReferenceException;
+            else throw new NullReferenceException();
         }
        
 
@@ -475,7 +475,7 @@ namespace Ascension
                 getCurrPlayer().addPower(-2);
                 boardView.updatePlayer();
             }
-            else throw nullReferenceException;
+            else throw new NullReferenceException();
         }
 
         public Boolean canDoMore()
