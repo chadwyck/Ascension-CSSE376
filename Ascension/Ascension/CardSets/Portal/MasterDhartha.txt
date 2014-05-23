@@ -3,14 +3,33 @@
 	"cardImage": "Master-Dhartha.jpg",
 	"runeCost": 7,
 	"powerCost": 0,
+	"rarity": 1,
 	
 	"endGameHonorGain": 3,
 	"faction": "enlightened",
 	"cardType": "hero",
 	"actions":[
-		{"type":"changeMetric",
-		"metricID": 2,
-		"incrementBy": 100}
+		{"type": "moveFromTo",
+		"isABanish": "false",
+		"fromCC": "deck",
+		"toCC": "hand",
+		"userChoice": false,
+		"optional": false
+		},
+		{"type": "moveFromTo",
+		"isABanish": "false",
+		"fromCC": "deck",
+		"toCC": "hand",
+		"userChoice": false,
+		"optional": false
+		},
+		{"type": "moveFromTo",
+		"isABanish": "false",
+		"fromCC": "deck",
+		"toCC": "hand",
+		"userChoice": false,
+		"optional": false
+		}
 
 	]
 }

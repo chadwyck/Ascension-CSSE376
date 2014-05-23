@@ -3,6 +3,7 @@
 	"cardImage": "militia.jpg",
 	"runeCost": 2,
 	"powerCost": 0,
+	"rarity": 1,
 	"cardsToDraw": 0,
 	"endGameHonorGain": 0,
 	"faction": "",

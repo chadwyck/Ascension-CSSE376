@@ -140,7 +140,7 @@
     <value>S'il vous plaît Choisir une carte</value>
   </data>
   <data name="PowerCost" xml:space="preserve">
-    <value>Puissance Coût</value>
+    <value>Coût Puissance</value>
   </data>
   <data name="Purchase" xml:space="preserve">
     <value>Acheter</value>

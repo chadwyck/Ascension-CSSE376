@@ -3,6 +3,7 @@
 	"cardImage": "AvatarGolem.jpg",
 	"runeCost": 4,
 	"powerCost": 0,
+	"rarity": 2,
 	
 	"endGameHonorGain": 2,
 	"faction": "mechana",
@@ -11,11 +12,7 @@
 		{"type":"changeMetric",
 		"metricID": 2,
 		"incrementBy": 2},
-		{"type":"forEachCardType",
-		"faction": "",
-		"playedOne": false,
-		"metricID": 0,
-		"incrementBy": 1}
+		{"type":"gainForEachFaction"}
 		
 	]
 }

@@ -8,7 +8,7 @@ namespace Ascension
 {
     public class DiscardsToDeck : CardCollection
     {
-        private DiscardDeck discard;
+        protected DiscardDeck discard;
         public DiscardsToDeck(DiscardDeck discrd) : base()
         {
             discard = discrd;
@@ -20,7 +20,7 @@ namespace Ascension
         }
         public void discardAllCards()
         {
-            while(this.length>0)
+            while(this.cards.Count>0)
                 discardCard(this.getCard(0));
             
         }

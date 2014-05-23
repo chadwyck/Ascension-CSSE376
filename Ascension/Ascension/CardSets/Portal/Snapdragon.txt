@@ -3,6 +3,7 @@
 	"cardImage": "Snapdragon.jpg",
 	"runeCost": 5,
 	"powerCost": 0,
+	"rarity": 2,
 	
 	"endGameHonorGain": 2,
 	"faction": "lifebound",

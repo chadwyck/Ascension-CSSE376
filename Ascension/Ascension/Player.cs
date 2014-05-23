@@ -10,7 +10,7 @@ namespace Ascension
     public class Player
     {
 
-        private const int HONOR = 0, RUNES = 1, POWER = 2, MECHRUNES = 3; // metricIDs
+        private const int HONOR = 0, RUNES = 1, POWER = 2, MECHRUNES = 3,  CONSTRUNES = 4; // metricIDs
         
         public Game game { get; protected set; }
 
@@ -18,11 +18,13 @@ namespace Ascension
         
         public int playerPower { get; protected set; }
 
-        public int playerRunes { get; protected set; }
+        public int playerRunes { get; set; }
 
         public int playerMechRunes { get; protected set; }
+
+        public int playerConstRunes { get; protected set; }
         
-        public int playerHonor { get; protected set; }
+        public int playerHonor { get; set; }
         
         public int currentRunes { get; protected set; }
         
@@ -35,6 +37,8 @@ namespace Ascension
         public InHand hand { get; protected set; }
 
         public InPlay onBoard { get; protected set; }
+
+        public List<DestroyConstructs> destroyConstructs { get; set; }
 
         public DiscardDeck discardPile { get; protected set; }
 
@@ -51,12 +55,17 @@ namespace Ascension
             this.currentPower = 0;
             this.deck = new HandDeck();
             this.game = game;
+            this.destroyConstructs = new List<DestroyConstructs>();
+
             CardImport card = new CardImport(this.game, "\\PlayerHand\\");
             card.cardImportH(this.game, "\\PlayerHand\\", deck);
 
+            deck.shuffle();                              // shuffleCode
+
+
             this.discardPile = new DiscardDeck(this.deck);
             this.deck.setDiscard(this.discardPile);
-            this.constructs = new ConstructDeck(this.discardPile);
+            this.constructs = new ConstructDeck(this.discardPile, this.game);
             this.onBoard = new InPlay(this.discardPile);
             this.hand = new InHand(this.discardPile, this.onBoard, this.deck);
             
@@ -82,6 +91,15 @@ namespace Ascension
             
 
 
+        }
+
+        public void queryAllDestroyConstructs()
+        {
+            foreach (var dc in this.destroyConstructs)
+            {
+                dc.queryTheUser();
+            }
+            this.destroyConstructs.Clear();
         }
 
 
@@ -124,6 +142,9 @@ namespace Ascension
                 case MECHRUNES:
                     this.playerMechRunes = this.playerMechRunes + incrementBy;
                     break;
+                case CONSTRUNES:
+                    this.playerConstRunes = this.playerConstRunes + incrementBy;
+                    break;
                 default:
                     throw new System.ArgumentException("MetricID must be between 0 and 2", "metricID");
             }
@@ -135,23 +156,29 @@ namespace Ascension
             this.playerPower = 0;
             this.playerRunes = 0;
             this.playerMechRunes = 0;
+            this.playerConstRunes = 0;
             
             this.hand.newHand();
         }
         public void purchase(Card crd, Boolean play, int Cost)
         {
-            if (crd.faction != null && crd.cardType != null && crd.faction.Equals("mechana") && crd.cardType.Equals("construct"))
+            if (crd.faction != null && crd.cardType != null && (crd.faction.Equals("mechana") || this.game.allMechanaConstructs) && crd.cardType.Equals("construct"))
             {
-                if (Cost <= (this.playerRunes + this.playerMechRunes))
+                if (Cost <= (this.playerRunes + this.playerMechRunes + this.playerConstRunes))
                 {
                     this.playerMechRunes = this.playerMechRunes - Cost;
                     if (this.playerMechRunes < 0)
                     {
-                        this.playerRunes = this.playerRunes + this.playerMechRunes;
+                        this.playerConstRunes = this.playerConstRunes + this.playerMechRunes;
+                        if (this.playerConstRunes < 0)
+                        {
+                            this.playerRunes = this.playerRunes + this.playerConstRunes;
+                            this.playerConstRunes = 0;
+                        }
                         this.playerMechRunes = 0;
                     }
 
-                    if (!play)
+                    if (!this.game.mechanaDirectToPlay)
                     {
                         if (this.game.cenRow.cards.Contains(crd))
                             this.game.cenRow.remove(crd);
@@ -159,28 +186,61 @@ namespace Ascension
                     }
                     else
                     {
-                        this.play(crd);
+                        if (this.game.cenRow.cards.Contains(crd))
+                            this.game.cenRow.remove(crd);
+                        constructs.add(crd);
+                        crd.playCard();
+                        if (this.game.mechanaDraw)
+                        {
+                            drawACard();
+                            this.game.mechanaDraw = false;
+                        }
                     }
                 }
             }
             else
             {
-                if (Cost <= this.playerRunes)
+                if (crd.cardType != null && crd.cardType.Equals("construct"))
                 {
-                    this.playerRunes = this.playerRunes - Cost;
-
-                    if (!play)
+                    if (Cost <= (this.playerRunes + this.playerConstRunes))
                     {
-                        if(this.game.cenRow.cards.Contains(crd))
+                        this.playerConstRunes = this.playerConstRunes - Cost;
+                        if (this.playerConstRunes < 0)
+                        {
+                            this.playerRunes = this.playerRunes + this.playerConstRunes;
+                            this.playerConstRunes = 0;
+                        }
+
+                        if (this.game.cenRow.cards.Contains(crd))
                             this.game.cenRow.remove(crd);
                         discardPile.add(crd);
                     }
-                    else
+                }
+                else
+                {
+                    if (Cost <= this.playerRunes)
                     {
-                        this.play(crd);
+                        this.playerRunes = this.playerRunes - Cost;
+
+                        if (!play)
+                        {
+                            if (this.game.cenRow.cards.Contains(crd))
+                                this.game.cenRow.remove(crd);
+                            discardPile.add(crd);
+                        }
+                        else
+                        {
+                            this.play(crd);
+                        }
                     }
                 }
             }
+        }
+
+        public void drawACard()
+        {
+            Card card = this.deck.draw();
+            this.hand.add(card);
         }
 
         public int getEndGameHonor()
@@ -194,6 +254,11 @@ namespace Ascension
             {
                 hand.remove(crd);
                 constructs.add(crd);
+                if (this.game.mechanaDraw && (crd.faction.Equals("mechana") || this.game.allMechanaConstructs))
+                {
+                    drawACard();
+                    this.game.mechanaDraw = false;
+                }
             }
             else
             {
@@ -213,11 +278,16 @@ namespace Ascension
         public void kill(Card crd, int Cost)
         {
             if (Cost <= this.playerPower)
-            {                                                                                             
-                crd.playCard();
-                this.playerPower = this.playerPower - Cost;
+            {
                 this.game.cenRow.remove(crd);
                 this.game.voidDeck.add(crd);
+                if (this.game.firstTimeMonster)
+                {
+                    this.game.firstTimeMonster = false;
+                    this.changeMetricCount(0, 1);
+                }
+                crd.playCard();
+                this.playerPower = this.playerPower - Cost;            
             }
         }
                 

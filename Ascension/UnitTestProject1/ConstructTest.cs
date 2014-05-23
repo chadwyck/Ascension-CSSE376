@@ -33,13 +33,13 @@ namespace AscensionTest
         public void TestAddAndDestroyConstructs()
         {
             testGame.getCurrPlayer().constructs.add(voidthirster);
-            Assert.AreEqual(1, testGame.getCurrPlayer().constructs.length);
+            Assert.AreEqual(1, testGame.getCurrPlayer().constructs.cards.Count);
             testGame.getCurrPlayer().constructs.add(lifebound);
-            Assert.AreEqual(2, testGame.getCurrPlayer().constructs.length);
+            Assert.AreEqual(2, testGame.getCurrPlayer().constructs.cards.Count);
             testGame.getCurrPlayer().constructs.destroyAllButOneConstruct(voidthirster);
-            Assert.AreEqual(1, testGame.getCurrPlayer().constructs.length);
+            Assert.AreEqual(1, testGame.getCurrPlayer().constructs.cards.Count);
             testGame.getCurrPlayer().constructs.destroyOneConstruct(voidthirster);
-            Assert.AreEqual(0, testGame.getCurrPlayer().constructs.length);
+            Assert.AreEqual(0, testGame.getCurrPlayer().constructs.cards.Count);
         }
     }
 }

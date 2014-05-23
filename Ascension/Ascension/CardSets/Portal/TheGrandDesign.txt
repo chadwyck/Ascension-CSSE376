@@ -3,6 +3,7 @@
 	"cardImage": "The-Grand-Design.jpg",
 	"runeCost": 6,
 	"powerCost": 0,
+	"rarity": 2,
 	
 	"endGameHonorGain": 6,
 	"faction": "mechana",

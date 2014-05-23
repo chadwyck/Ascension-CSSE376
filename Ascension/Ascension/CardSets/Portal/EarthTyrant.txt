@@ -1,0 +1,30 @@
+﻿{
+	"cardName": "Earth Tyrant",
+	"cardImage": "Earth-Tyrant.jpg",
+	"runeCost": 0,
+	"powerCost": 6,
+	"rarity": 2,
+	
+	"endGameHonorGain": 0,
+	"faction": "fallen",
+	"cardType": "monster",
+	"actions":[
+		{"type":"changeMetric",
+		"metricID": 0,
+		"incrementBy": 5},
+		{"type": "moveFromTo",
+		"isABanish": "false",
+		"fromCC": "deck",
+		"toCC": "hand",
+		"userChoice": false,
+		"optional": false
+		},
+		{"type": "moveFromTo",
+		"isABanish": "false",
+		"fromCC": "deck",
+		"toCC": "hand",
+		"userChoice": false,
+		"optional": false
+		}
+	]
+}

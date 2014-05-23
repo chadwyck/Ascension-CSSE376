@@ -2,19 +2,19 @@
 	"cardName": "Tormented Soul",
 	"cardImage": "Tormented-Soul.jpg",
 	"runeCost": 0,
-	"powerCost": 0,
+	"powerCost": 3,
+	"rarity": 3,
 	
 	"endGameHonorGain": 0,
 	"faction": "fallen",
 	"cardType": "monster",
 	"actions":[
 
-		
-
 		{"type":"changeMetric",
 		"metricID": 0,
 		"incrementBy": 1},
 		{"type": "moveFromTo",
+		"isABanish": "false",
 		"fromCC": "deck",
 		"toCC": "hand",
 		"userChoice": false,

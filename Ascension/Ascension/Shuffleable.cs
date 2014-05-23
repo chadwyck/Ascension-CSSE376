@@ -10,7 +10,7 @@ namespace Ascension
     {
         public void shuffle()
         {
-            int n = length;
+            int n = this.cards.Count;
             Random rnd = new Random();
             while (n > 1)
             {

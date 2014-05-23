@@ -10,7 +10,7 @@ namespace Ascension
 {
     public class Game
     {
-        private const int HONOR = 0, RUNES = 1, POWER = 2, MECHRUNES = 3; // metricIDs
+        private const int HONOR = 0, RUNES = 1, POWER = 2, MECHRUNES = 3, CONSTRUNES = 4; // metricIDs
         public int numPlayers;
         public BoardView boardView;
         public bool endOfGame { get; private set; }
@@ -18,6 +18,12 @@ namespace Ascension
         public List<FirstTimeGet> firstTimeList { get; set; }
         public CardsPlayed cardsPlayed { get; set; }
         public Boolean hasAI;
+
+        public bool allMechanaConstructs { get; set; }
+        public bool mechanaDirectToPlay { get; set; }
+        public bool mechanaDraw { get; set; }
+        public bool extraTurn { get; set; }
+        public bool firstTimeMonster { get; set; }
 
         public int currTurn
         {
@@ -52,7 +58,7 @@ namespace Ascension
         }
         public CardCollection myst; //made this public so AI could access it. Should really AI functions it so it can be private.
         private CardCollection heavyIn;
-        private Player[] plyrs;
+        public Player[] plyrs { get; set; }
         public Game (int numPlayers)
 		{
             this.hasAI = false;
@@ -190,10 +196,15 @@ namespace Ascension
                 boardView.updatePlayer();
             }
             boardView.setCanDoMoreButton();
+            this.allMechanaConstructs = false;
+            this.mechanaDirectToPlay = false;
+            this.mechanaDraw = false;
+            this.extraTurn = false;
+            this.firstTimeMonster = false;
         }
         public void generateCards(){
-            Card apprentice = new Card(this, "Apprentice", null, 0, 0, 0, "", "basic",
-                new List<CardAction> { new ChangeMetricCount(RUNES, 1, this) });
+            //Card apprentice = new Card(this, "Apprentice", null, 0, 0, 0, "", "basic",
+            //    new List<CardAction> { new ChangeMetricCount(RUNES, 1, this) });
 
             Card heavyInfantry = new Card(this, "Heavy Infantry", null, 2, 0, 1, "", "basic",
                 new List<CardAction> { new ChangeMetricCount(POWER, 2, this) });
@@ -237,9 +248,9 @@ namespace Ascension
             //Card tormentedSoul = new Card(this, "Tormented Soul", null, 0, 3, 0, "fallen", "monster",
             //    new List<CardAction> { new ChangeMetricCount(HONOR, 1, this) });
 
-            //Card runicLycanthrope = new Card(this, "Runic Lycanthrope", null, 3, 0, 1, "lifebound", "hero",
-            //    new List<CardAction> { new ChangeMetricCount(RUNES, 2, this),
-            //                            new ForEachCardType("lifebound","hero",true,POWER,2,this) });
+            //Card mystic = new Card(this, "Runic Lycanthrope", null, 0, 0, 1, "lifebound", "hero",
+             //   new List<CardAction> { new ChangeMetricCount(RUNES, 2, this),
+             //                           new ForEachCardType("lifebound","hero",true,POWER,2,this) });
 
             //Card mistakeOfCreation = new Card(this, "Mistake of Creation", null, 0, 4, 0, "fallen", "monster",
             //    new List<CardAction> { new ChangeMetricCount(HONOR, 4, this) });
@@ -259,11 +270,11 @@ namespace Ascension
             //pDeck.add(runicLycanthrope);
             //pDeck.add(mistakeOfCreation);
 
-            //pDeck.shuffle();
+           
 
             CardImport card = new CardImport(this, "\\Portal\\");
             card.cardImportP(this, "\\Portal\\", pDeck);
-            pDeck.shuffle();
+            pDeck.shuffle();                              // shuffleCode
            foreach(Player p in plyrs){
                 
            }
@@ -298,15 +309,130 @@ namespace Ascension
             this.firstTimeList.Clear();
             this.cardsPlayed.Clear();
             this.getCurrPlayer().endTurn();
-            this.currTurn++;
+            if (!this.extraTurn)
+            {
+                this.currTurn++;
+            }
+            else
+            {
+                this.extraTurn = false;
+            }
+            this.firstTimeMonster = false;
+            this.allMechanaConstructs = false;
+            this.mechanaDirectToPlay = false;
+            this.mechanaDraw = false;
+            this.getCurrPlayer().queryAllDestroyConstructs();
             this.getCurrPlayer().constructs.playAll();
-            
+                        
+
+            checkForAI();
+
+        }
+
+        public void checkForAI()
+        {
+            if ((this.hasAI) && (this.currTurn % this.numPlayers == 0))
+            {
+                this.boardView.updatePlayer();
+                this.boardView.clickPlayAll();
+                if (this.getCurrPlayer().playerRunes >= 2)
+                {
+                    while (this.getCurrPlayer().playerRunes >= 2)
+                    {
+                        //add method to hide all buttons for AI
+                        try
+                        {
+                            this.boardView.clickPlayAll();
+                            int indexOfHighestRuneCostCardAffordable = this.getHighestCost();
+                            this.boardView.selectCard(getHighestCost());
+                            this.boardView.cardView.clickPurchaseButton();
+                            System.Windows.Forms.MessageBox.Show("Bought something from the center row.");
+                        }
+                        catch
+                        {
+                            try
+                            {
+                                if (this.getCurrPlayer().playerRunes >= 3)
+                                {
+                                    this.boardView.clickBuyMystic();
+                                    System.Windows.Forms.MessageBox.Show("Bought a mystic.");
+                                }
+                                else throw nullReferenceException;
+                            }
+
+                            catch
+                            {
+                                try
+                                {
+                                    this.boardView.clickBuyHI();
+                                    System.Windows.Forms.MessageBox.Show("Bought a heavy infantry.");
+                                }
+
+                                catch
+                                {
+                                    System.Windows.Forms.MessageBox.Show("Did not buy anything.");
+                                }
+                            }
+                        }
+                    }
+                }
+                else System.Windows.Forms.MessageBox.Show("Did not buy anything.");
+
+                if (this.getCurrPlayer().playerPower >= 2)
+                {
+                    while (this.getCurrPlayer().playerPower >= 2)
+                    {
+                        try
+                        {
+                            this.boardView.selectCard(getHighestPower());
+                            this.boardView.cardView.clickKillButton(); //this... kind of isn't working? I'm scared of all of this.
+                            System.Windows.Forms.MessageBox.Show("Killed a monster in the center row.");
+                        }
+
+                        catch
+                        {
+                            try
+                            {
+                                this.killCultist();
+                                System.Windows.Forms.MessageBox.Show("Killed the Cultist.");
+                            }
+
+                            catch
+                            {
+                                System.Windows.Forms.MessageBox.Show("Did not kill anything.");
+                            }
+                        }
+                    }
+                }
+                else System.Windows.Forms.MessageBox.Show("Did not kill anything.");
+            }
+        }
+        
+
+
+           
+        private int getHighestCost()
+        {
+            int totalRunes = this.getCurrPlayer().playerRunes;
+            Card currBest = this.cenRow.cards[0];
+            foreach (Card card in this.cenRow.cards)
+            {
+                if ((currBest.runeCost < card.runeCost) && (totalRunes >= card.runeCost) && (card.runeCost > 0))
+                {
+                    currBest = card;
+                }
+            }
+            if ((currBest.runeCost <= totalRunes) && (currBest.runeCost > 0))
+            {
+                return this.cenRow.cards.IndexOf(currBest);
+            }
+            else throw nullReferenceException;
         }
         public Card buyMyst()
         {
             Card temp = null;
 
-            if ((myst.length != 0) && (getCurrPlayer().playerRunes >= 3))
+            if ((myst.cards.Count != 0) && (getCurrPlayer().playerRunes >= 3))
             {
                 temp = myst.getCard(0);
             }
@@ -315,12 +441,31 @@ namespace Ascension
         public Card buyHI()
         {
             Card temp = null;
-            if ((heavyIn.length != 0) && (getCurrPlayer().playerRunes >= 2))
+            if ((heavyIn.cards.Count != 0) && (getCurrPlayer().playerRunes >= 2))
             {
                 temp = heavyIn.getCard(0);
             }
             return temp;
         }
+
+        private int getHighestPower()
+        {
+            int totalPower = this.getCurrPlayer().playerPower;
+            Card currBest = this.cenRow.cards[0];
+            foreach (Card card in this.cenRow.cards)
+            {
+                if ((currBest.powerCost < card.powerCost) && (totalPower >= card.powerCost) && (card.powerCost > 0))
+                {
+                    currBest = card;
+                }
+            }
+            if ((currBest.powerCost <= totalPower) && (currBest.powerCost > 0))
+            {
+                return this.cenRow.cards.IndexOf(currBest);
+            }
+            else throw nullReferenceException;
+        }
+       
 
         public void killCultist()
         {
@@ -330,6 +475,7 @@ namespace Ascension
                 getCurrPlayer().addPower(-2);
                 boardView.updatePlayer();
             }
+            else throw nullReferenceException;
         }
 
         public Boolean canDoMore()
@@ -337,6 +483,10 @@ namespace Ascension
             int availableRunes = getCurrPlayer().playerRunes;
             int availablePower = getCurrPlayer().playerPower;
 
+            if (availablePower >= 2 || availableRunes >= 2)
+            {
+                return true;
+            }
 
             if (this.cenRow != null)
             {
@@ -349,8 +499,25 @@ namespace Ascension
                     }
                     else
                     {
-                        if (card.runeCost <= availableRunes)
-                            return true;
+                        if (card.cardType.Equals("construct"))
+                        {
+                            if (card.faction.Equals("mechana"))
+                            {
+                                if (card.runeCost <= (availableRunes + getCurrPlayer().playerMechRunes + getCurrPlayer().playerConstRunes))
+                                    return true;
+                            }
+                            else
+                            {
+                                if (card.runeCost <= (availableRunes + getCurrPlayer().playerConstRunes))
+                                    return true;
+                            }
+                        }
+                        else
+                        {
+                            if (card.runeCost <= availableRunes)
+                                return true;
+                        }
+                        
                     }
                 }
                 return this.getCurrPlayer().hand.cards.Count > 0;
@@ -361,22 +528,21 @@ namespace Ascension
 
         public void playAll()
         {
-            if (!(hasAI && (0 == this.currTurn % this.numPlayers)))
-            {
                
-                while (this.getCurrPlayer().hand.length > 0)
+                while (this.getCurrPlayer().hand.cards.Count > 0)
                 {
                     this.getCurrPlayer().play(this.getCurrPlayer().hand.getCard(0));
                 }
 
                 this.boardView.updatePlayer();
-            }
-        }
+       }
 
         public void endGame()
         {
             this.endOfGame = true;
         }
-        
+
+
+        public Exception nullReferenceException { get; set; }
     }
 }

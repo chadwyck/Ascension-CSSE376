@@ -38,7 +38,7 @@ namespace Ascension
             foreach (string cardFile in files)
             {
                 
-                deck.add(fileToCard(cardFile,path));
+                deck.cards.AddRange(fileToCard(cardFile,path));
             }
             
             
@@ -62,18 +62,17 @@ namespace Ascension
 
             foreach (string cardFile in files)
             {
-
-                deck.add(fileToCard(cardFile, path));
+                var cards = fileToCard(cardFile, path);
+                deck.cards.AddRange(cards);
             }
-
-
-
-           
+          
         }
         private class imCard{
         
 
             public string cardName { get; set; }
+
+            public int rarity { get; set; }
 
             public string cardImage { get; set; }
 
@@ -100,11 +99,14 @@ namespace Ascension
                public int incrementBy { get; set; }
                public bool userChoice{get;set;}
                public bool optional { get; set; }
+               public bool isABanish { get; set; }
                public string faction {get; set;}
                public string cardType { get; set;}
                public bool playedOne { get; set; }
                public string fromCC { get; set; }
                public string toCC { get; set; }
+               public int atMost { get; set; }
+               public bool destroyAll { get; set; }
                
 
 
@@ -128,14 +130,67 @@ namespace Ascension
                if (act.type.Equals("moveFromTo"))
                 {
                   
-                    ret.Add(new MoveFromTo(act.fromCC, act.toCC,act.userChoice,act.optional,game));
+                    ret.Add(new MoveFromTo(act.fromCC, act.toCC,act.userChoice,act.optional,act.isABanish,game));
+                }
+                if(act.type.Equals("allConstructsMechana"))
+                {
+                    ret.Add(new AllConstructsMechana(game));
+                }
+                if (act.type.Equals("mechanaDirectToPlay"))
+                {
+                    ret.Add(new MechanaDirectToPlay(game));
+                }
+                if (act.type.Equals("mechanaDraw"))
+                {
+                    ret.Add(new MechanaDraw(game));
+                }
+                if (act.type.Equals("copyActions"))
+                {
+                    ret.Add(new CopyActions(game));
+                }
+                if (act.type.Equals("moveBlahOrLess"))
+                {
+                    ret.Add(new MoveBlahOrLess(act.fromCC,act.cardType,act.metricID,act.atMost,game));
+                }
+                if (act.type.Equals("banishToTakeTurn"))
+                {
+                    ret.Add(new BanishToTakeTurn(game));
+                }
+                if (act.type.Equals("takeFromOpponent"))
+                {
+                    ret.Add(new TakeFromOpponent(game));
+                }
+                if (act.type.Equals("chooseMetricToChange"))
+                {
+                    ret.Add(new ChooseMetricToChange(game));
+                }
+                if (act.type.Equals("drawIfConstructs"))
+                {
+                    ret.Add(new DrawIfConstructs(game));
+                }
+                if (act.type.Equals("gainForEachFaction"))
+                {
+                    ret.Add(new GainForEachFaction(game));
+                }
+                if (act.type.Equals("firstTimeKillMonster"))
+                {
+                    ret.Add(new FirstTimeKillMonster(game));
+                }
+                if (act.type.Equals("spendRunesForHonor"))
+                {
+                    ret.Add(new SpendRunesForHonor(game));
+                }
+                if (act.type.Equals("destroyConstructs"))
+                {
+                    ret.Add(new DestroyConstructs(game, act.destroyAll));
                 }
                
             }
         return ret;
         }
-        private Card fileToCard(String file, String path)
+        private List<Card> fileToCard(String file, String path)
         {
+            List<Card> ret = new List<Card>();
             var json = System.IO.File.ReadAllText(file);
            
             imCard card = new System.Web.Script.Serialization.JavaScriptSerializer().Deserialize<imCard>(json);
@@ -143,7 +198,7 @@ namespace Ascension
              string currentDirName = @"" + System.IO.Directory.GetCurrentDirectory();
             if(currentDirName.Contains("UnitTestProject1")){
                 currentDirName = currentDirName.Substring(0, System.IO.Directory.GetCurrentDirectory().Length - 26) + "Ascension\\CardSets\\" + path;
-            }else {
+            } else {
                 currentDirName = currentDirName.Substring(0, System.IO.Directory.GetCurrentDirectory().Length - 19) + "Ascension\\CardSets\\" + path;
             }
         
@@ -152,9 +207,16 @@ namespace Ascension
             {
                 image = new System.Drawing.Bitmap(currentDirName+ card.cardImage);
             }
-            
-            return new Card(game, card.cardName, image, card.runeCost, card.powerCost, card.endGameHonorGain, card.faction, card.cardType,
+
+            Card newCard = new Card(game, card.cardName, image, card.runeCost, card.powerCost, card.endGameHonorGain, card.faction, card.cardType,
                  cardActionGen(card.actions));
+
+            for (int i = 0; i < card.rarity; i++)
+            {
+                ret.Add(newCard);
+            }
+
+            return ret;
             
         }
     }

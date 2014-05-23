@@ -2,7 +2,8 @@
 	"cardName": "Samaels Trickster",
 	"cardImage": "Samaels-Trickster.jpg",
 	"runeCost": 0,
-	"powerCost": 4,
+	"powerCost": 3,
+	"rarity": 4,
 	
 	"endGameHonorGain": 0,
 	"faction": "fallen",

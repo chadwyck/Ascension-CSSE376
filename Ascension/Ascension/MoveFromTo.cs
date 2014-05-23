@@ -6,18 +6,24 @@ using System.Threading.Tasks;
 
 namespace Ascension
 {
-    public class MoveFromTo : CardAction
+    public class MoveFromTo : CopyActions
     {
         public String fromCC, toCC;
-        public bool userChoice, optional, willPerformAction;
+        public CardCollection to;
+        public CardCollection from;
+        public bool isABanish;
         //private Card cardToMove;
-        private Game game;
-        public MoveFromTo (String fromCC, String toCC, bool userChoice, bool optional, Game gme)
+        public Game game;
+
+        public bool willPerformAction { get; set; }
+
+        public MoveFromTo (String fromCC, String toCC, bool userChoice, bool optional, bool isABanish, Game gme) : base(gme)
         {
             this.fromCC = fromCC;
             this.toCC = toCC;
             this.userChoice = userChoice;
             this.optional = optional;
+            this.isABanish = isABanish;
             this.game = gme;
             this.willPerformAction = true;
             
@@ -25,15 +31,22 @@ namespace Ascension
         public override void doAction()
         {
             if (userChoice || optional)
+            {
+                this.game.boardView.updateCombos();
                 queryUser();
+            }
             else
-                doTheAction(null);
+            {
+                doTheAction();
+                actuallyDoTheAction(null);
+            }
+                
         }
         
-        public void doTheAction(Card moving)
+        public void doTheAction()
         {
-            CardCollection to =null;
-            CardCollection from = null;
+            to = null;
+            from = null;
 
             switch (this.toCC)
             {
@@ -46,6 +59,9 @@ namespace Ascension
                 case "hand":
                     to = game.getCurrPlayer().hand;
                     break;
+                //case "deck":
+                //    to = game.getCurrPlayer().deck;
+                //    break;
             }
             switch (this.fromCC)
             {
@@ -58,22 +74,57 @@ namespace Ascension
                 case "hand":
                     from = game.getCurrPlayer().hand;
                     break;
+                case "center":
+                    from = game.cenRow;
+                    break;
                 case "deck":
                     from = game.getCurrPlayer().deck;
                     break;
             }
-            if(moving==null)
-            moving = from.getCard(0);
-            
-            
-                from.remove(moving);
-                to.add(moving);
-            
         }
 
-        private void queryUser()
+        public override void actuallyDoTheAction(Card moving)
         {
-            //new OptionalPlay(this);
+            if (moving == null)
+            {
+                moving = from.getCard(0);
+            }
+
+
+            from.remove(moving);
+            to.add(moving);
+
+            this.game.boardView.updateCombos();
+
+        }
+
+        new private void queryUser()
+        {
+            this.doTheAction();
+            ChoiceForm cf = new ChoiceForm(this);
+            cf.Show();
+
+            CardCollection cc = new CardCollection();
+            cc.cards.AddRange(this.from.cards);
+
+            if (cc.containsAvatarOfFallen() && this.isABanish)
+            {
+                cc.remove(cc.getAvatarOfFallen());
+            }
+
+
+            cf.updateChoiceBox(cc);
+
+            if(!this.userChoice)
+            {
+                cf.hideCombo();
+            }
+
+            if (!this.optional)
+            {
+                cf.hideOptions();
+            }
+            
         }
         public override string printAction()
         {

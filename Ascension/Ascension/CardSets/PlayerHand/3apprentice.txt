@@ -2,6 +2,7 @@
 	"cardName": "Apprentice",
 	"cardImage": "apprentice.jpg",
 	"runeCost": 2,
+	"rarity": 1,
 	"powerCost": 0,
 	"cardsToDraw": 0,
 	"endGameHonorGain": 0,

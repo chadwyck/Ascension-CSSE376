@@ -3,21 +3,17 @@
 	"cardImage": "Voidthirster.jpg",
 	"runeCost": 5,
 	"powerCost": 0,
-	"endGameHonorGain": 2,
+	"rarity": 2,
+
+	"endGameHonorGain": 3,
 	"faction": "void",
 	"cardType": "construct",
 	"actions":[
 	
 		{"type": "changeMetric",
 		"metricID": 2,
-		"incrementBy": 2},
-		{
-		"type": "firstTimeGet",
-		"faction": "void", 
-		"cardType": "construct",
-		"metricID": 0,
-		"incrementBy": 1
-		 }
+		"incrementBy": 1},
+		{"type": "firstTimeKillMonster"}
 		
 		
 

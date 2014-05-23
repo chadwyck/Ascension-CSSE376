@@ -60,7 +60,7 @@ namespace AscensionTest
         public void TestNotEnoughPowerToKillCultist()
         {
             var target = new Game(2, false, true);
-            target.killCultist();
+            target.killCultist(); 
             Assert.True(target.getCurrPlayer().playerHonor == 0);
         }
 
@@ -79,10 +79,12 @@ namespace AscensionTest
             var target = new Game(2, false, true);
             target.getCurrPlayer().addRunes(4);
             Card temp;
-            if ((temp = target.buyMyst()) != null)
-            {
-                Assert.Throws<NullReferenceException>( ()=>target.getCurrPlayer().purchase(temp, false, temp.runeCost));
-            }
+            temp = target.buyMyst();
+            target.getCurrPlayer().purchase(temp, false, temp.runeCost);
+            //if ((temp = target.buyMyst()) != null)
+            //{
+            //    Assert.Throws<NullReferenceException>( ()=>target.getCurrPlayer().purchase(temp, false, temp.runeCost));
+            //}
             Assert.True((target.getCurrPlayer().playerRunes == 1)); // && (target.getCurrPlayer().discardPile.cards.Count == 1)
         }
 
@@ -92,10 +94,13 @@ namespace AscensionTest
             var target = new Game(2, false, true);
             target.getCurrPlayer().addRunes(3);
             Card temp;
-            if ((temp = target.buyHI()) != null)
-            {
-                Assert.Throws<NullReferenceException>( ()=>target.getCurrPlayer().purchase(temp, false, temp.runeCost));
-            }
+            temp = target.buyHI();
+            target.getCurrPlayer().purchase(temp, false, temp.runeCost);
+            
+            //if ((temp = target.buyHI()) != null)
+            //{
+            //    Assert.Throws<NullReferenceException>( ()=>target.getCurrPlayer().purchase(temp, false, temp.runeCost));
+            //}
             Assert.True((target.getCurrPlayer().playerRunes == 1)); // && (target.getCurrPlayer().discardPile.cards.Count == 1)
         }
 
@@ -125,7 +130,7 @@ namespace AscensionTest
             target.getCurrPlayer().addRunes((-1) * target.getCurrPlayer().currentRunes);
             target.getCurrPlayer().hand.discardAllCards();
             bool canDoMore = target.canDoMore();
-            Assert.IsFalse(canDoMore);
+            Assert.IsFalse(canDoMore); // should be assert isFalse
         }
 
         [Test()]

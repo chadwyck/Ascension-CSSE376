@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Ascension;
@@ -120,6 +121,36 @@ namespace Ascension
         private void CardView_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void CardView_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar >= 48 && e.KeyChar <= 57)
+            {
+                MessageBox.Show("Form.KeyPress: '" +
+                    e.KeyChar.ToString() + "' pressed.");
+
+                switch (e.KeyChar)
+                {
+                    case (char)49:
+                    case (char)52:
+                    case (char)55:
+                        MessageBox.Show("Form.KeyPress: '" +
+                            e.KeyChar.ToString() + "' consumed.");
+                        e.Handled = true;
+                        break;
+                }
+            }
+        }
+
+        public void clickPurchaseButton()
+        {
+            Purchase.PerformClick();
+        }
+
+        public void clickKillButton()
+        {
+            Kill.PerformClick();
         }
 
         private void Play_Click(object sender, EventArgs e)

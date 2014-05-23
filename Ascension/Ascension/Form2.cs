@@ -17,7 +17,7 @@ namespace Ascension
         private PortalDeck pDeck;
         private CardCollection voidDeck;
         private CenterRow cenRow;
-        private CardView cardView;
+        public CardView cardView;
         private InHand inHand;
         private ConstructDeck constDeck;
         private Game game;
@@ -36,8 +36,12 @@ namespace Ascension
         private void initialize(Game gm, bool f)
         {
             InitializeComponent();
+            this.voidDeck = new CardCollection();
             //Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("fr-FR");
             //Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
+            this.KeyPreview = true;
+            this.KeyPress +=
+                new KeyPressEventHandler(BoardView_KeyPress);
 
             label9.Text = strings.Honor;
             currentPlayNum.Text = strings.Player;
@@ -64,9 +68,82 @@ namespace Ascension
             game = gm;
 
             this.updatePlayer();
-            this.currentPlayNum.Text = "Player " + this.game.getCurrPlayer().playerNumber;
         }
 
+        private void BoardView_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            
+                
+                System.Console.WriteLine("key pressed: " + e.KeyChar.ToString());
+
+                switch (e.KeyChar)
+                {
+                    case 'a':
+                        this.button6.PerformClick();
+                        SendKeys.Send("{BS}");
+                        this.comboBox1.DroppedDown = false;
+                        this.playHand.DroppedDown = false;
+                        break;
+                    case 'e':
+                        this.button4.PerformClick();
+                        SendKeys.Send("{BS}");
+                        this.comboBox1.DroppedDown = false;
+                        this.playHand.DroppedDown = false;
+                        break;
+                    case 'm':
+                        this.button1.PerformClick();
+                        SendKeys.Send("{BS}");
+                        this.comboBox1.DroppedDown = false;
+                        this.playHand.DroppedDown = false;
+                        break;
+                    case 'i':
+                        this.button2.PerformClick();
+                        SendKeys.Send("{BS}");
+                        this.comboBox1.DroppedDown = false;
+                        this.playHand.DroppedDown = false;
+                        break;
+                    case 'k':
+                        this.button3.PerformClick();
+                        SendKeys.Send("{BS}");
+                        this.comboBox1.DroppedDown = false;
+                        this.playHand.DroppedDown = false;
+                        break;
+                    case 'c':
+                        SendKeys.Send("{BS}");
+                        this.comboBox1.Select();
+                        this.comboBox1.DroppedDown = true;
+                        this.playHand.DroppedDown = false;
+                        this.playHand.SelectedItem = "";
+                        break;
+                    case 'h':
+                        SendKeys.Send("{BS}");
+                        this.playHand.Select();
+                        this.playHand.DroppedDown = true;
+                        this.comboBox1.DroppedDown = false;
+                        this.comboBox1.SelectedItem = "";
+                        break;
+                    case 'p':
+                        this.cardView.Play.PerformClick();
+                        SendKeys.Send("{BS}");
+                        this.comboBox1.DroppedDown = false;
+                        this.playHand.DroppedDown = false;
+                        break;
+                    case '4':
+                        this.cardView.Purchase.PerformClick();
+                        SendKeys.Send("{BS}");
+                        this.comboBox1.DroppedDown = false;
+                        this.playHand.DroppedDown = false;
+                        break;
+                    case '`':
+                        this.cardView.Kill.PerformClick();
+                        SendKeys.Send("{BS}");
+                        this.comboBox1.DroppedDown = false;
+                        this.playHand.DroppedDown = false;
+                        break;
+                    
+                }
+        }
+        
         private void button1_Click(object sender, EventArgs e)
         {
             Card temp;
@@ -147,6 +224,19 @@ namespace Ascension
                 this.updatePlayer();
             }
         }
+
+        public void clickEndTurn()
+        {
+            button4.PerformClick();
+        }
+
+        public void updateCombos()
+        {
+            this.updatePlayer();
+            this.updateVoidDeck(this.game.voidDeck);
+            this.updateCenRow(this.game.cenRow,this.game.pDeck);
+            this.updatePortal(this.game.pDeck);
+        }
         public void updatePlayer()
         {
 
@@ -156,61 +246,16 @@ namespace Ascension
             playDisc.Items.Clear();
             playConstructs.Items.Clear();
             playDeck.Items.AddRange(game.getCurrPlayer().deck.toStringArray());
-
-            if ((game.hasAI) && (game.currTurn % game.numPlayers == 0))
-            {
-                Boolean isMonster = game.cenRow.cards[0].cardType == "monster";
-                Card currCard = game.cenRow.cards[0];
-                Random randCard = new Random();
-                int randNum = randCard.Next();
-                game.getCurrPlayer().play(game.getCurrPlayer().hand.cards[randNum % 5]);
-                int cardCost;
-                if (isMonster)
-                {
-                    cardCost = game.cenRow.cards[0].powerCost;
-                }
-                else 
-                {
-                    cardCost = game.cenRow.cards[0].runeCost;
-                }
-                game.getCurrPlayer().addRunes(10);
-                game.getCurrPlayer().addPower(10);
-                //game.getCurrPlayer().play(game.getCurrPlayer().hand.cards[0]);
-
-                //Randomly chooses between buying a mystic and taking a card from the center row.
-                Random rand = new Random();
-                int thisRand = rand.Next();
-                if (thisRand % 2 == 0)
-                {
-                    Card temp = this.game.myst.getCard(0);
-                    this.game.myst.remove(temp);
-                    game.getCurrPlayer().addRunes(-3); //these references to aiPlayer really ought to be abstracted
-                    game.getCurrPlayer().discardPile.add(temp);
-                }
-                else
-                {
-                    if (isMonster)
-                    {
-                        game.getCurrPlayer().kill(game.cenRow.cards[0], cardCost);
-                        currCard.game.boardView.updateVoidDeck(currCard.game.voidDeck);
-                    }
-                    else
-                    {
-                        game.getCurrPlayer().purchase(game.cenRow.cards[0], false, cardCost);
-                    }
-                }
-
-                game.boardView.updateCenRow(game.cenRow, game.pDeck);
-            }
-
             playHand.Items.AddRange(game.getCurrPlayer().hand.toStringArray());
             playPlay.Items.AddRange(game.getCurrPlayer().onBoard.toStringArray());
             playDisc.Items.AddRange(game.getCurrPlayer().discardPile.toStringArray());
             playConstructs.Items.AddRange(game.getCurrPlayer().constructs.toStringArray());
             lblHonorCount.Text = this.game.honorOnBoard.ToString();
             lblYourHonor.Text = this.game.getCurrPlayer().playerHonor.ToString();
+            this.currentPlayNum.Text = "Player " + this.game.getCurrPlayer().playerNumber;
             runeNum.Text = this.game.getCurrPlayer().playerRunes.ToString();
             mechRuneNum.Text = this.game.getCurrPlayer().playerMechRunes.ToString();
+            constRuneNum.Text = this.game.getCurrPlayer().playerConstRunes.ToString();
             powNum.Text = this.game.getCurrPlayer().playerPower.ToString();
             if (!this.game.canDoMore())
             {
@@ -220,9 +265,43 @@ namespace Ascension
 
         }
 
+        public void clickPlayAll()
+        {
+            button6.PerformClick();
+        }
+
+        public void clickBuyMystic()
+        {
+            button1.PerformClick();
+        }
+
+        public void clickBuyHI()
+        {
+            button2.PerformClick();
+        }
+
+        public void clickKillCultist()
+        {
+            button3.PerformClick();
+        }
+
+        public void selectCard(int indexOfCard)
+        {
+            comboBox1.SelectedIndex = indexOfCard;
+            cardView.Update();
+            Thread.Sleep(1000);
+        }
+
         private void button3_Click(object sender, EventArgs e)
         {
-            game.killCultist();
+            try
+            {
+                game.killCultist();
+            }
+            catch
+            {
+                MessageBox.Show("Not enough power to kill the cultist.");
+            }
             
         }
 
@@ -284,11 +363,16 @@ namespace Ascension
 
         private void playConstructs_SelectedIndexChanged(object sender, EventArgs e)
         {
-            cardView.changeVisibilityPlayButton(true);
+            cardView.changeVisibilityPlayButton(false);
             cardView.changeVisibilityPurchaseButton(false);
             cardView.changeVisibilityAbilityButton(false);
             cardView.changeVisibilityKillButton(false);
             cardView.update(this.game.getCurrPlayer().constructs.getCard(playConstructs.SelectedIndex));
+        }
+
+        private void BoardView_Load(object sender, EventArgs e)
+        {
+
         }
 
     }

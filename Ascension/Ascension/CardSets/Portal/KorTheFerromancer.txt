@@ -1,0 +1,18 @@
+﻿{
+	"cardName": "Kor, the Ferromancer",
+	"cardImage": "Kor-the-Ferromancer.jpg",
+	"runeCost": 3,
+	"powerCost": 0,
+	"rarity": 1,
+	
+	"endGameHonorGain": 2,
+	"faction": "mechana",
+	"cardType": "hero",
+	"actions":[
+		{"type":"changeMetric",
+		"metricID": 2,
+		"incrementBy": 2},
+		{"type":"drawIfConstructs"}
+
+	]
+}
