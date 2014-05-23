@@ -21,6 +21,11 @@ namespace Ascension
             
             InitializeComponent();
 
+            button1.Visible = false;
+            label4.Visible = false;
+            comboBox1.Visible = false;
+            Banish.Visible = false;
+
             cardName.Text = strings_form3.PleaseSelectCard;
             label2.Text = strings_form3.RuneCost;
             label3.Text = strings_form3.PowerCost;

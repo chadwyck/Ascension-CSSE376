@@ -1,7 +1,7 @@
 ﻿{
 	"cardName": "Militia",
 	"cardImage": "militia.jpg",
-	"runeCost": 2,
+	"runeCost": 0,
 	"powerCost": 0,
 	"rarity": 1,
 	"cardsToDraw": 0,

@@ -144,6 +144,12 @@
   <data name="Player2" xml:space="preserve">
     <value>Joueur 2</value>
   </data>
+  <data name="Player3" xml:space="preserve">
+    <value>Joueur 3</value>
+  </data>
+  <data name="Player4" xml:space="preserve">
+    <value>Joueur 4</value>
+  </data>
   <data name="WantToDo" xml:space="preserve">
     <value>Voulez-vous le faire?</value>
   </data>

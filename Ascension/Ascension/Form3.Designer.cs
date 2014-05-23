@@ -209,7 +209,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.cardName);
             this.Name = "CardView";
-            this.Text = "4";
+            this.Text = "Card View";
             this.Load += new System.EventHandler(this.CardView_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

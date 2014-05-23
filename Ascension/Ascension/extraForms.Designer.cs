@@ -142,6 +142,24 @@ namespace Ascension {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Player 3.
+        /// </summary>
+        internal static string Player3 {
+            get {
+                return ResourceManager.GetString("Player3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Player 4.
+        /// </summary>
+        internal static string Player4 {
+            get {
+                return ResourceManager.GetString("Player4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Do you want to do this?.
         /// </summary>
         internal static string WantToDo {

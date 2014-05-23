@@ -14,7 +14,7 @@ namespace Ascension
             if (this.cards.Count == 0)
             {
                 this.discard.emptyDiscard();
-                return discard.getCard(0);
+                return this.getCard(0);
             } else
             return cards.ElementAt<Card>(index);
         }
